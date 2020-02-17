@@ -1,0 +1,33 @@
+.grid {
+	display: grid;
+	height: calc(100vh - 16px);
+	grid-template-columns: 230px auto 50px 40px;
+  grid-template-rows: 10% 50% 10fr 10% 5% auto;
+}
+
+.grid div {
+	background: white;
+}
+
+.brand-name-container {
+	grid-row: 1;
+	grid-column: 1 / 2;
+	justify-self: start;
+	align-self: center;
+}
+
+.search-bar-container {
+	grid-row: 1;
+	grid-column: 2 / 3;
+	justify-self: stretch;
+	align-self: center;
+	border: 1px solid lightgrey;
+	border-radius: 25px;
+}
+
+.plus-container {
+	grid-column-start: 3;
+	grid-row-start: 4;
+	justify-self: end;
+	align-self: stretch;
+}
