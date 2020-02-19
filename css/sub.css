@@ -39,30 +39,21 @@
 	height: 40px;
 }
 
-#add-audio {
-	color: black;
-	text-decoration: none;
-	font-size: 50px;
+.file-list-container img {
+	height: 100px;
 }
 
-.rotate {
-	display: inline-block;
-	animation-name: rotat;
-	animation-duration: 1s;
+.flexbox {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: left;
+	align-items: center;
 }
 
-@keyframes rotat {
-	from {transform: rotate(0deg)}
-	to {transform: rotate(90deg);}
+.file-list-container a {
+	flex-basis: 30%;
 }
 
-.rotate-back {
-	display: inline-block;
-	animation-name: rotat-back;
-	animation-duration: 1s;
-}
-
-@keyframes rotat-back {
-	from {transform: rotate(90deg);}
-	to {transform: rotate(0deg)};
+.file-list-container a p {
+	text-align: center;
 }
