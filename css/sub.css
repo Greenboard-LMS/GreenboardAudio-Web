@@ -20,17 +20,49 @@
 	outline: none;
 }
 
-.search-bar-container input {
-	height: 40px;
+.search-bar-container button {
+	cursor: pointer;
 }
 
-.search-bar-container button.search-bar-icon img {
+.search-bar-container img {
+	padding: 5px;
 	width: 20px;
 	vertical-align: middle;
+}
+
+.search-bar-container img:hover {
+	background-color: lightgrey;
+	border-radius: 80%;
+}
+
+.search-bar-container input {
+	height: 40px;
 }
 
 #add-audio {
 	color: black;
 	text-decoration: none;
 	font-size: 50px;
+}
+
+.rotate {
+	display: inline-block;
+	animation-name: rotat;
+	animation-duration: 1s;
+}
+
+@keyframes rotat {
+	from {transform: rotate(0deg)}
+	to {transform: rotate(90deg);}
+}
+
+.rotate-back {
+	display: inline-block;
+	animation-name: rotat-back;
+	animation-duration: 1s;
+}
+
+@keyframes rotat-back {
+	from {transform: rotate(90deg);}
+	to {transform: rotate(0deg)};
 }

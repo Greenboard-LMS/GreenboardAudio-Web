@@ -6,5 +6,6 @@ require('brand_header.html');
 	<a id = "add-audio" href = "add">+</a>
 </div>
 </div>
+<script src = "scripts/script.js"></script>
 </body>
 </html>

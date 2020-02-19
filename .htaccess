@@ -1,4 +1,4 @@
 RewriteEngine On
 RewriteBase /
 RewriteRule ^$ /pages/index.php [L]
-RewriteRule    ^([A-Za-z_]+)$       pages/$1.php                  [NC]    # Handle pages
+RewriteRule ^([A-Za-z_]+)$ pages/$1.php [NC]   

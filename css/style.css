@@ -23,6 +23,8 @@
 	align-self: center;
 	border: 1px solid lightgrey;
 	border-radius: 25px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .plus-container {
