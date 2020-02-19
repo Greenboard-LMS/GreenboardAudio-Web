@@ -1,0 +1,27 @@
+#add-audio {
+	color: black;
+	text-decoration: none;
+	font-size: 50px;
+}
+
+.rotate {
+	display: inline-block;
+	animation-name: rotat;
+	animation-duration: 1s;
+}
+
+@keyframes rotat {
+	from {transform: rotate(0deg)}
+	to {transform: rotate(90deg);}
+}
+
+.rotate-back {
+	display: inline-block;
+	animation-name: rotat-back;
+	animation-duration: 1s;
+}
+
+@keyframes rotat-back {
+	from {transform: rotate(90deg);}
+	to {transform: rotate(0deg)};
+}
