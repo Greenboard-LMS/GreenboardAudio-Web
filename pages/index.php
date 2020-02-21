@@ -19,6 +19,10 @@ require('brand_header.html');
 		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio B</p></a>
 		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio C</p></a>
 		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio D</p></a>
+		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio E</p></a>
+		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio F</p></a>
+		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio G</p></a>
+		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio H</p></a>
 
 	</div>
 </div>

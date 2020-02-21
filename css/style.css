@@ -49,7 +49,7 @@
 
 .plus-container {
 	grid-column-start: 3;
-	grid-row-start: 4;
+	grid-row-start: 1;
 	justify-self: end;
 	align-self: end;
 }
