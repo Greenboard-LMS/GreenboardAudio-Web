@@ -10,6 +10,9 @@ Google, Microsoft, and Apple give users the ability to store documents, spreadsh
 
 Flytrap is named after the [Venus Flytrap](https://en.wikipedia.org/wiki/Venus_flytrap) and is a subsidiary of Borum. 
  
- ## Guidelines
+## Guidelines
  
- Contributing to the project is **strictly prohibited** in case it is entered for a competition. 
+Contributing to the project is **strictly prohibited** in case it is entered for a competition. 
+Copying, downloading, and distributing the project or parts of the project in any way is **strictly prohibited**
+
+Copyright 2020 Borum Inc
