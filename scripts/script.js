@@ -28,7 +28,10 @@ function handleMatch(e) {
 			container.appendChild(newButtonEls[i]);
 		}
 	} else if (window.matchMedia("(min-width: 500px) and (max-width: 767px)").matches) {
-
+		const container = document.querySelector('.plus-container');
+		for (let i = 0; i < newButtonEls.length; i++) {
+			container.appendChild(newButtonEls[i]);
+		}
 	}
 }
 const ml = window.matchMedia("(min-width: 1025px)");

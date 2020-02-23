@@ -57,3 +57,7 @@
 .file-list-container a p {
 	text-align: center;
 }
+
+.new-button img {
+	display: none;
+}

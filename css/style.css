@@ -66,6 +66,19 @@
 /* Tablet Portrait Mode */
 @media only screen and (min-width: 500px) and (max-width: 767px) {
 	.plus-container {
+		display: block;
+	}
+
+	#add-audio {
+		display: none;
+	}
+
+	.new-button img {
+		display: inline-block;
+		height: 20px;
+	}
+
+	.new-button img + span {
 		display: none;
 	}
 }

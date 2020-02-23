@@ -8,8 +8,14 @@ require('brand_header.html');
 		<option value = "shared">Shared Audios</option>
 		<option value = "all">All Audios</option>
 	</select>
-	<button class = "new-button" id = 'new-audio-btn'>New Audio</button>
-	<button class = "new-button" id = 'new-folder-btn'>New Folder</button>
+	<button class = "new-button" id = 'new-audio-btn'>
+		<img id = 'new-audio-icon' src = 'images/NewAudio.png'>
+		<span>New Audio</span>
+	</button>
+	<button class = "new-button" id = 'new-folder-btn'>
+		<img id = 'new-folder-icon' src = "images/NewFolder.png">
+		<span>New Folder</span>
+	</button>
 </div>
 <div class = "file-list-container">
 	<div class = "flexbox">
