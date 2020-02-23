@@ -8,8 +8,8 @@ require('brand_header.html');
 		<option value = "shared">Shared Audios</option>
 		<option value = "all">All Audios</option>
 	</select>
-	<button id = 'new-folder-btn'>New Folder</button>
-	<button id = 'new-audio-btn'>New Audio</button>
+	<button class = "new-button" id = 'new-audio-btn'>New Audio</button>
+	<button class = "new-button" id = 'new-folder-btn'>New Folder</button>
 </div>
 <div class = "file-list-container">
 	<div class = "flexbox">
@@ -27,7 +27,7 @@ require('brand_header.html');
 	</div>
 </div>
 <div class = "plus-container">
-	<a id = "add-audio" href = "add">+</a>
+	<a id = "add-audio">+</a>
 	<div id = 'plus-between' style="
     width: 40px;
     height: 50px;
@@ -36,10 +36,7 @@ require('brand_header.html');
     position: absolute;
 "></div>
 </div>
-<div class = "new-media-btn-container">
-	<button>New Audio</button>
-	<button>New Folder</button>
-</div>
+<div class = "new-media-btn-container"></div>
 </div>
 <script src = "scripts/script.js"></script>
 </body>
