@@ -15,14 +15,22 @@ document.querySelectorAll('.plus-container, .new-media-btn-container').forEach((
 });
 
 const newButtonEls = document.querySelectorAll(".new-button");
-// if (window.matchMedia("(min-width: 1025px)").matches) {
-	for (let i = 0; i < newButtonEls.length; i++) {
+
+function handleMatch(e) {
+	if (e.matches) {
 		const container = document.querySelector('.new-media-btn-container');
-		container.appendChild(newButtonEls[i]);
+		for (let i = 0; i < newButtonEls.length; i++) {
+			container.appendChild(newButtonEls[i]);
+		}
+	} else if (window.matchMedia("(min-width: 768px) and (max-width: 1024px)").matches) {
+		const container = document.querySelector('.nav-container');
+		for (let i = 0; i < newButtonEls.length; i++) {
+			container.appendChild(newButtonEls[i]);
+		}
+	} else if (window.matchMedia("(min-width: 500px) and (max-width: 767px)").matches) {
+
 	}
-// } else if (window.matchMedia("(min-width: 768px) and (max-width: 1024px)").matches) {
-// 	const container = document.querySelector('.nav-container');
-// 	for (let i = 0; i < newButtonEls.length; i++) {
-// 		container.appendChild(newButtonEls[i]);
-// 	}
-// }
+}
+const ml = window.matchMedia("(min-width: 1025px)");
+handleMatch(ml);
+ml.addListener(handleMatch);
