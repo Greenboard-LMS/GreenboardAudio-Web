@@ -1,7 +1,7 @@
 .grid {
 	display: grid;
 	height: calc(100vh - 16px);
-	grid-template-columns: 230px auto 50px 40px;
+	grid-template-columns: 230px auto 80px 10px;
   grid-template-rows: 10% 5% 60% 15% auto;
 }
 
@@ -48,10 +48,18 @@
 }
 
 .plus-container {
-	grid-column-start: 3;
-	grid-row-start: 1;
+	grid-row: 1;
+	grid-column: 3;
 	justify-self: end;
 	align-self: center;
+	display: none;
+}
+
+.new-media-btn-container {
+	grid-row: 2 / 4;
+	grid-column: 3;
+	justify-self: center;
+	align-self: start;
 	display: none;
 }
 
@@ -73,10 +81,6 @@
 @media only screen and (min-width: 1025px) {
 	.plus-container {
 		display: block;
-	}
-
-	#add-audio {
-		
 	}
 
 	.nav-container button {

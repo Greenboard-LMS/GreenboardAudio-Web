@@ -28,6 +28,17 @@ require('brand_header.html');
 </div>
 <div class = "plus-container">
 	<a id = "add-audio" href = "add">+</a>
+	<div id = 'plus-between' style="
+    width: 40px;
+    height: 50px;
+		background: none;
+		display: none;
+    position: absolute;
+"></div>
+</div>
+<div class = "new-media-btn-container">
+	<button>New Audio</button>
+	<button>New Folder</button>
 </div>
 </div>
 <script src = "scripts/script.js"></script>

@@ -2,15 +2,14 @@
 	color: black;
 	text-decoration: none;
 	font-size: 50px;
-	line-height: 28.203px;
+	line-height: 28px;
 	border: 1px solid black;
-	padding: 1px;
+	padding: 5px;
 	border-radius: 100%;
 	display: inline-block;
 }
 
 .rotate {
-	display: inline-block;
 	animation-name: rotat;
 	animation-duration: 1s;
 }
@@ -21,7 +20,6 @@
 }
 
 .rotate-back {
-	display: inline-block;
 	animation-name: rotat-back;
 	animation-duration: 1s;
 }
