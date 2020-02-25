@@ -1,0 +1,7 @@
+form input {
+	display: block;
+	margin: 10px;
+	border-radius: 25px;
+	text-indent: 3px;
+	font-size: 1em;
+}
