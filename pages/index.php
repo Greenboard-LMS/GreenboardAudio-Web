@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['id'] = 50;
 if(!isset($_SESSION['id'])) {
 	require('notloggedin.html');
 	exit();
@@ -7,6 +8,12 @@ if(!isset($_SESSION['id'])) {
 $page_title = "My Flytrap";
 require('brand_header.html');
 ?>
+<div class = "search-bar-container">
+	<button class = "search-bar-icon">
+		<img src="http://cdn.bforborum.com/images/search-bar-icon.png">
+	</button>
+	<input id="search-bar" onkeydown="" type="text" placeholder="Search your Flytrap">
+</div>
 <div class = "nav-container">
 	<select id = 'filter-audio'>
 		<option value = "owned">My Audios</option>
