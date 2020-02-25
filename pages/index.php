@@ -1,5 +1,10 @@
 <?php
-require('header.html');
+session_start();
+if(!isset($_SESSION['id'])) {
+	require('notloggedin.html');
+	exit();
+}
+$page_title = "My Flytrap";
 require('brand_header.html');
 ?>
 <div class = "nav-container">
