@@ -2,6 +2,31 @@ form input {
 	display: block;
 	margin: 10px;
 	border-radius: 25px;
-	text-indent: 3px;
+	text-indent: 4px;
 	font-size: 1em;
+}
+
+div.grid {
+	grid-template-columns: 50% 50%;
+	grid-template-rows: repeat(10, 10%);
+}
+
+.account-form-container {
+	justify-self: center;
+}
+
+.account-form-container.login {
+	grid-row: 2;
+	grid-column: 1;
+}
+
+.account-form-container.register {
+	grid-row: 2;
+	grid-column: 2;
+	justify-self:
+}
+
+.account-form-container button {
+	text-align: center;
+	width: 100%;
 }
