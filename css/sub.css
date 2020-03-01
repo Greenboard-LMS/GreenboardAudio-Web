@@ -1,3 +1,7 @@
+#add-audio {
+	display: none;
+}
+
 .brand-name-container a {
 	color: black;
 	text-decoration: none;
@@ -14,7 +18,11 @@
 	vertical-align: bottom;
 }
 
-.search-bar-container * {
+.search-bar-container {
+	border: none;
+}
+
+.search-bar-container *:not(#filter-audio) {
 	border: none;
 	background: none;
 	outline: none;
@@ -30,12 +38,13 @@
 	vertical-align: middle;
 }
 
-.search-bar-container img:hover {
+#search-bar-icon-img:hover {
 	background-color: lightgrey;
 	border-radius: 80%;
 }
 
-.search-bar-container input {
+#search-bar {
+	display: none;
 	height: 40px;
 }
 
@@ -59,5 +68,9 @@
 }
 
 .new-button img {
+	height: 20px;
+}
+
+.new-button span {
 	display: none;
 }
