@@ -1,4 +1,5 @@
 RewriteEngine On
 RewriteBase /
 RewriteRule ^$ /pages/index.php [L]
-RewriteRule ^([A-Za-z_]+)$ pages/$1.php [NC]   
+RewriteRule ^([A-Za-z_]+)$ pages/$1.php [NC]
+php_value session.cookie_domain accounts.bforborum.com

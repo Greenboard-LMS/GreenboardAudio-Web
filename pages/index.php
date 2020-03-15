@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['id'] = 74;
 if(!isset($_SESSION['id'])) {
 	require('notloggedin.html');
 	exit();
@@ -31,16 +32,14 @@ require('brand_header.html');
 <div class = "file-list-container">
 	<div class = "flexbox">
 		<?php
+		# Retrieve audio files for this user
+		require('../../flytrap_connect.inc.php');
+		$q = "SELECT id, file_name FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
+		$r = mysqli_query($dbc, $q);
+		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+			echo "<a href = ''><img src = 'images/microphone.png'><p>{$row['file_name']}</p></a>";
+		}
 		?>
-		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio A</p></a>
-		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio B</p></a>
-		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio C</p></a>
-		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio D</p></a>
-		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio E</p></a>
-		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio F</p></a>
-		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio G</p></a>
-		<a href = ""><img src = "https://static.makeuseof.com/wp-content/uploads/2013/05/dropbox3.png"><br><p>Audio H</p></a>
-
 	</div>
 </div>
 <div class = "plus-container">

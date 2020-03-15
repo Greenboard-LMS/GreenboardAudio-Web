@@ -29,3 +29,17 @@
 	from {transform: rotate(90deg);}
 	to {transform: rotate(0deg)};
 }
+
+.top-buttons-container {
+	align-self: center;
+	justify-self: center;
+}
+
+#login-page-btn {
+	background-color: lightblue;
+	border-radius: 75%;
+	text-decoration: none;
+	padding: 10px;
+	display: inline-block;
+	color: black;
+}

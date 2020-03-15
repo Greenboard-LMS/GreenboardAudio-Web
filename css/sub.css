@@ -48,10 +48,6 @@
 	height: 40px;
 }
 
-.file-list-container img {
-	height: 100px;
-}
-
 .flexbox {
 	display: flex;
 	flex-flow: row wrap;
@@ -59,12 +55,19 @@
 	align-items: center;
 }
 
-.file-list-container a {
-
+.flexbox a {
+	background-color: lightcoral;
+	padding: 1em;
+	flex-basis: 20%;
+	height: 200px;
+	text-align: center;
+	margin: 5px;
+	text-decoration: none;
+	color: black;
 }
 
-.file-list-container a p {
-	text-align: center;
+.file-list-container img {
+	height: 100px;
 }
 
 .new-button img {
