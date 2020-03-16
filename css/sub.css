@@ -56,14 +56,29 @@
 }
 
 .flexbox a {
-	background-color: lightcoral;
 	padding: 1em;
 	flex-basis: 20%;
-	height: 200px;
 	text-align: center;
 	margin: 5px;
 	text-decoration: none;
 	color: black;
+}
+
+.flexbox.files a {
+	background-color: lightcoral;
+	height: 200px;
+}
+
+.flexbox.folders a {
+	background-image: url('../images/Folder.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.flexbox.folders a > span {
+	position: absolute;
+	left: 50%;
 }
 
 .file-list-container img {

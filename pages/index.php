@@ -30,10 +30,20 @@ require('brand_header.html');
 	</button>
 </div>
 <div class = "file-list-container">
-	<div class = "flexbox">
+	<div class = "folders flexbox">
 		<?php
-		# Retrieve audio files for this user
+		# Retrieve folders for this user
 		require('../../flytrap_connect.inc.php');
+		$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']}";
+		$r = mysqli_query($dbc, $q);
+		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+			echo "<a href = ''>{$row['folder_name']}</a>";
+		}
+		?>
+	</div>
+	<div class = "files flexbox">
+		<?php
+		# Retrieve files for this user
 		$q = "SELECT id, file_name FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
