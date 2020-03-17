@@ -1,22 +1,25 @@
-document.querySelectorAll('.plus-container *, .new-media-btn-container').forEach((item, i) => {
-	item.addEventListener('mouseover', function(e) {
-		if (window.matchMedia('(min-width: 1025px)').matches) {
-			document.getElementById('add-audio').className = 'rotate';
-			document.querySelector('.new-media-btn-container').style.display = "block";
-			document.getElementById('plus-between').style.display = "block";
-		}
-	});
-});
+/**
+	* handles events for plus sign on desktops
+	* Takes four parameters
+		* mouseEvent - the name of the event, String
+		* addAudioClass - the class given to #add-audio
+		* nmbtnStyle - the display value for the new media button container
+		* plusBetweenStyle - the display value for #plus-between
+*/
+function handlePlusMouseEvents(mouseEvent, addAudioClass, nmbtnStyle, plusBetweenStyle) {
+	document.querySelectorAll('.plus-container *, .new-media-btn-container').forEach((item, i) => {
+		item.addEventListener(mouseEvent, function(e) {
+			if (window.matchMedia('(min-width: 1025px)').matches) {
+				document.getElementById('add-audio').className = addAudioClass;
+				document.querySelector('.new-media-btn-container').style.display = nmbtnStyle;
+				document.getElementById('plus-between').style.display = plusBetweenStyle;
+			}
+		});
+	})
+}
 
-document.querySelectorAll('.plus-container, .new-media-btn-container').forEach((item, i) => {
-	item.addEventListener('mouseout', function(e) {
-		if (window.matchMedia('(min-width: 1025px)').matches) {
-			document.getElementById('add-audio').className = 'rotate-back';
-			document.querySelector('.new-media-btn-container').style.display = "none";
-			document.getElementById('plus-between').style.display = "none";
-		}
-	});
-});
+handlePlusMouseEvents('mouseover', 'rotate', 'block', 'block');
+handlePlusMouseEvents('mouseout', 'rotate-back', 'none', 'none');
 
 function handleMatch() {
 	const filterEl = document.getElementById('filter-audio');
