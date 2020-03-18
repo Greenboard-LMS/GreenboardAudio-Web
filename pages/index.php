@@ -60,10 +60,23 @@ require('brand_header.html');
 		background: none;
 		display: none;
     position: absolute;
-"></div>
+		"></div>
+</div>
+<div style = "display: none" class = "new-file-box-container">
+	<div>
+		<button>Record directly</button>
+	</div>
+	<span class = "vertical-line"></span>
+	<form>
+		<label class="custom-file-upload">
+	    <input type="file"/>
+    	Upload mp3, wav, m4a
+		</label>
+	</form>
 </div>
 <div class = "new-media-btn-container"></div>
 </div>
 <script src = "scripts/script.js"></script>
+<script src = "scripts/popupBox.js"></script>
 </body>
 </html>

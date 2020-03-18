@@ -64,6 +64,15 @@ body {
 	display: none;
 }
 
+.new-file-box-container {
+	grid-row: 2 / 4;
+	grid-column: 2 / 3;
+	justify-self: stretch;
+	align-self: stretch;
+	border: 1px solid black;
+	z-index: 2;
+}
+
 @media only screen and (max-width: 767px) {
 	.grid {
 		grid-template-columns: 150px auto 80px 10px;

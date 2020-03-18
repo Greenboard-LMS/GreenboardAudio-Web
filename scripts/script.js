@@ -56,7 +56,6 @@ function handleMatch() {
 
 window.addEventListener('resize', handleMatch);
 window.addEventListener('load', handleMatch);
-
 // document.querySelector('.search-bar-icon').addEventListener('click', function() {
 // 	if (window.matchMedia("(max-width: )"))
 // });

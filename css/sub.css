@@ -92,3 +92,37 @@
 .new-button span {
 	display: none;
 }
+
+.new-file-box-container > div {
+	float: left;
+	width: 48%;
+	text-align: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.vertical-line {
+	border-left: 1px solid black;
+	height: 100%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.new-file-box-container > form {
+	float: right;
+	width: 48%;
+	text-align: center;
+}
+
+.grid > div:not(.new-file-box-container) {
+	z-index: 1;
+}
