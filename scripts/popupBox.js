@@ -24,6 +24,7 @@ function showBox(event) {
     toggleDisplay("block", 0.5);
     toggleDisabled(true);
     document.addEventListener('click', outsideClickListener);
+    setTimeout(animateUploadArrow, 500);
   }
 }
 
@@ -33,4 +34,9 @@ function outsideClickListener(event) {
     toggleDisabled(false);
     document.removeEventListener('click', outsideClickListener)
   }
+}
+
+function animateUploadArrow() {
+  const imgEl = document.getElementById('upload-file-arrow');
+  imgEl.className = "bounce";
 }

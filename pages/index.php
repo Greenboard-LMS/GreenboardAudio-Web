@@ -63,15 +63,19 @@ require('brand_header.html');
 		"></div>
 </div>
 <div style = "display: none" class = "new-file-box-container">
+	<!-- Record audio -->
 	<div>
-		<button>Record directly</button>
+		<button class = "audio-option">Record directly</button>
 	</div>
+	<!-- Vertical line -->
 	<span class = "vertical-line"></span>
+	<!-- Upload file -->
 	<form>
-		<label class="custom-file-upload">
+		<label class="audio-option custom-file-upload">
 	    <input type="file"/>
     	Upload mp3, wav, m4a
 		</label>
+		<img height = "200" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
 	</form>
 </div>
 <div class = "new-media-btn-container"></div>

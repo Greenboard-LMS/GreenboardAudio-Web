@@ -1,0 +1,11 @@
+.bounce {
+	animation-name: UpAndDown;
+	animation-duration: 300ms;
+	animation-fill-mode: forwards;
+	animation-iteration-count: 4;
+	animation-direction: alternate;
+}
+
+@keyframes UpAndDown {
+	to { transform: translateY(-55px); }
+}
