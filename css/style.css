@@ -1,0 +1,23 @@
+button {
+	cursor: pointer;
+}
+
+#filter-view :not(.slider) {
+	position: relative;
+	z-index: 2;
+}
+
+#filter-view svg:first-child {
+	margin-right: 2px;
+}
+
+#filter-view .slider {
+	background-color: lightgrey;
+	position: absolute;
+	width: 19px;
+	height: 24px;
+	display: inline-block;
+	top: 0;
+	left: 18px;
+	z-index: 1;
+}

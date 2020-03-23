@@ -10,11 +10,26 @@ require('brand_header.html');
 ?>
 <div class = "search-bar-container">
 	<button class = "search-bar-icon">
-		<img src="http://cdn.bforborum.com/images/search-bar-icon.png" id = "search-bar-icon-img">
+		<img class = 'grey-circle' src="http://cdn.bforborum.com/images/search-bar-icon.png" id = "search-bar-icon-img">
 	</button>
 	<input id="search-bar" onkeydown="" type="text" placeholder="Search your Flytrap">
 </div>
 <div class = "nav-container">
+	<div id = 'filter-view'>
+		<svg height="12" width="12">
+			<line x1="0" y1="1" x2="12" y2="1" style="stroke:rgb(0,0,0);stroke-width:2" />
+			<line x1="0" y1="6" x2="12" y2="6" style="stroke:rgb(0,0,0);stroke-width:2" />
+			<line x1="0" y1="11" x2="12" y2="11" style="stroke:rgb(0,0,0);stroke-width:2" />
+			Sorry, your browser does not support inline SVG.
+		</svg>
+		<svg height="12" width="12">
+			<line x1="1" y1="0" x2="1" y2="12" style="stroke:rgb(0,0,0);stroke-width:2" />
+			<line x1="6" y1="0" x2="6" y2="12" style="stroke:rgb(0,0,0);stroke-width:2" />
+			<line x1="11" y1="0" x2="11" y2="12" style="stroke:rgb(0,0,0);stroke-width:2" />
+			Sorry, your browser does not support inline SVG.
+		</svg>
+		<div class = "slider"></div>
+	</div>
 	<select id = 'filter-audio'>
 		<option value = "owned">My Audios</option>
 		<option value = "shared">Shared Audios</option>
@@ -30,27 +45,38 @@ require('brand_header.html');
 	</button>
 </div>
 <div class = "file-list-container">
-	<div class = "folders flexbox">
+	<ul class = "folders flexbox">
 		<?php
 		# Retrieve folders for this user
 		require('../../flytrap_connect.inc.php');
 		$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']}";
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-			echo "<a href = ''>{$row['folder_name']}</a>";
+			echo "<li><a href = ''>{$row['folder_name']}</a></li>";
 		}
 		?>
-	</div>
-	<div class = "files flexbox">
+	</ul>
+	<ul class = "files flexbox">
 		<?php
 		# Retrieve files for this user
 		$q = "SELECT id, file_name FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-			echo "<a href = ''><img src = 'images/microphone.png'><p>{$row['file_name']}</p></a>";
+			echo "
+			<li>
+				<a href = ''>
+					<img src = 'images/microphone.png'>
+					<p>{$row['file_name']}</p>
+				</a>
+				<div class = 'customize-btns'>
+					<button><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
+					<button><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
+					<button><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
+				</div>
+			</li>";
 		}
 		?>
-	</div>
+	</ul>
 </div>
 <div class = "plus-container">
 	<a id = "add-audio">+</a>
@@ -75,12 +101,13 @@ require('brand_header.html');
 	    <input type="file"/>
     	Upload mp3, wav, m4a
 		</label>
-		<img height = "200" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
+		<img height = "100" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
 	</form>
 </div>
 <div class = "new-media-btn-container"></div>
 </div>
 <script src = "scripts/script.js"></script>
 <script src = "scripts/popupBox.js"></script>
+<script src = "scripts/filters.js"></script>
 </body>
 </html>

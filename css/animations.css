@@ -9,3 +9,27 @@
 @keyframes UpAndDown {
 	to { transform: translateY(-55px); }
 }
+
+.slide-left {
+	animation-name: slideHorizontal;
+	animation-duration: 600ms;
+	animation-direction: normal;
+	animation-fill-mode: forwards;
+}
+
+.slide-right {
+	animation-name: slideHorizontal;
+	animation-duration: 600ms;
+	animation-direction: reverse;
+	animation-fill-mode: forwards;
+}
+
+@keyframes slideHorizontal {
+	from {
+		left: 18px;
+	}
+
+	to {
+		left: 0;
+	}
+}

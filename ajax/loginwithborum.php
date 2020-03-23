@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(0, '/', '.bforborum.com');
 session_start();
 include('../../mysqli_connect.inc.php');
 $q = "SELECT id FROM users WHERE email = \"{$_GET['email']}\" AND pass = \"{$_GET['password']}\"";

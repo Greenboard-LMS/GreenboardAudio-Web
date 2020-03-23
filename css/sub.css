@@ -22,7 +22,7 @@
 
 /* search-bar-container */
 
-.search-bar-container *:not(#filter-audio) {
+.search-bar-container * {
 	border: none;
 	background: none;
 	outline: none;
@@ -38,7 +38,7 @@
 	vertical-align: middle;
 }
 
-#search-bar-icon-img:hover {
+.grey-circle:hover {
 	background-color: lightgrey;
 	border-radius: 80%;
 }
@@ -48,6 +48,18 @@
 	height: 40px;
 }
 
+#filter-audio {
+	border: 1px solid rgb(169, 169, 169);
+}
+
+#filter-view {
+	display: inline-block;
+	padding: 3px;
+	position: relative;
+	border: 1px solid grey;
+	margin-right: 5px;
+}
+
 .flexbox {
 	display: flex;
 	flex-flow: row wrap;
@@ -55,7 +67,13 @@
 	align-items: center;
 }
 
-.flexbox a {
+.file-list-container .flexbox {
+	padding: 0;
+	margin: 0;
+}
+
+.file-list-container .flexbox li {
+	display: block;
 	padding: 1em;
 	flex-basis: 20%;
 	text-align: center;
@@ -64,12 +82,42 @@
 	color: black;
 }
 
-.flexbox.files a {
+.file-list-container a {
+	text-decoration: none;
+	color: black;
+}
+
+.flexbox.files li {
 	background-color: lightcoral;
 	height: 200px;
 }
 
-.flexbox.folders a {
+.flexbox.files a p {
+	height: 36px;
+}
+
+.flexbox.files div.customize-btns {
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	background: none;
+}
+
+.flexbox.files div.customize-btns img {
+	height: 20px;
+}
+
+.flexbox.files div.customize-btns button {
+	border: none;
+	outline: none;
+	background: none;
+}
+
+div.customize-btns img.grey-circle {
+	padding: 3px;
+}
+
+.flexbox.folders li {
 	background-image: url('../images/Folder.png');
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -81,7 +129,7 @@
 	left: 50%;
 }
 
-.file-list-container img {
+.file-list-container img:first-child {
 	height: 100px;
 }
 
