@@ -77,6 +77,49 @@ require('brand_header.html');
 		}
 		?>
 	</ul>
+	<table style = "display:none" class = "folders">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Date Created</th>
+		</thead>
+		<tbody>
+			<?php
+			# Retrieve files for this user
+			$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']}";
+			$r = mysqli_query($dbc, $q);
+			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+				echo "
+				<tr>
+					<td>{$row['folder_name']}</td>
+					<td>{$row['time_created']}</td>
+				</tr>";
+			}
+			?>
+		</tbody>
+	</table>
+	<table class = "files" style = "display: none">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Date Created</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			# Retrieve files for this user
+			$q = "SELECT id, file_name, time_created FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
+			$r = mysqli_query($dbc, $q);
+			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+				echo "
+				<tr>
+					<td>{$row['file_name']}</td>
+					<td>{$row['time_created']}</td>
+				</tr>";
+			}
+			?>
+		</tbody>
+	</table>
 </div>
 <div class = "plus-container">
 	<a id = "add-audio">+</a>
@@ -101,7 +144,7 @@ require('brand_header.html');
 	    <input type="file"/>
     	Upload mp3, wav, m4a
 		</label>
-		<img height = "100" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
+		<img height = "200" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
 	</form>
 </div>
 <div class = "new-media-btn-container"></div>
