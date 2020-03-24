@@ -63,7 +63,7 @@ require('brand_header.html');
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
 			echo "
-			<li>
+			<li id = \"file-{$row['id']}\">
 				<a href = ''>
 					<img src = 'images/microphone.png'>
 					<p>{$row['file_name']}</p>
