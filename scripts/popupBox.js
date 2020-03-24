@@ -12,10 +12,11 @@ function handleActionBox(boxEl, btnEl) {
 
 function handleDeleteBox() {
 	const deleteBoxEl = document.querySelector('.delete-container');
-	const showBoxBtnEl = document.querySelectorAll('button.delete-audio');
-	showBoxBtnEl.forEach((item, i) => {
+	const showBoxBtnEls = document.querySelectorAll('button.delete-audio');
+	showBoxBtnEls.forEach((item, i) => {
 		item.onclick = () => {
 		  deleteBoxEl.style.display = "block";
+      deleteBoxEl.id = item.parentElement.parentElement.id;
 		};
 	});
 }
