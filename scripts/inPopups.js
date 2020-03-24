@@ -14,3 +14,15 @@ function deleteAudioFile(user_i, audio_id) {
 		}, 1000);
 	});
 }
+
+function shareAudioFile(user_id, audio_id, share_id) {
+	function deleteAudioFile(user_id, audio_id) {
+		fetch(`/ajax/shareaudio.php?user_id=${user_id}&audio_id=${audio_id}`, {method: 'get'}).then(response => {
+			if (response.status >= 200 && response.status < 300) {
+				return response.text();
+			}
+		}).then(response => {
+			document.querySelector('.share-container').style.display = 'none';
+		});
+	}
+}
