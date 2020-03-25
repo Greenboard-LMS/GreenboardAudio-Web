@@ -14,3 +14,13 @@ function deleteAudioFile(user_i, audio_id) {
 		}, 1000);
 	});
 }
+
+function renameAudioFile(user_id, audio_id, new_name) {
+	fetch(`/ajax/renameaudio.php?user_id=${user_id}&audio_id=${audio_id}&new_name=${new_name}`, {method: 'get'}).then(response => {
+		if (response.status >= 200 && response.status < 300) {
+			return response.text();
+		}
+	}).then(response => {
+		
+	})
+}

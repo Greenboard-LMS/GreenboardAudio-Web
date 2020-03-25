@@ -1,6 +1,7 @@
 handleShareBox();
 handleDeleteBox();
 handleNewFileBox();
+handleRenameBox();
 
 function handleActionBox(boxEl, btnEl) {
   btnEl.forEach((item, i) => {
@@ -28,6 +29,17 @@ function handleShareBox() {
   		shareBoxEl.style.display = "block";
   	};
   });
+}
+
+function handleRenameBox() {
+  const renameBoxEl = document.querySelector('.rename-container');
+  const showBoxBtnEl = document.querySelectorAll('button.rename-audio');
+  showBoxBtnEl.forEach((item, i) => {
+    item.onclick = () => {
+      renameBoxEl.style.display = "block";
+    };
+  });
+
 }
 
 function handleNewFileBox() {

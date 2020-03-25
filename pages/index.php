@@ -147,6 +147,10 @@ require('brand_header.html');
 		<img height = "200" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
 	</form>
 </div>
+<div style = "display: none" class = "rename-container">
+	<input type = "text" value = "">
+	<input type = "button" value = "Rename" onclick = "renameAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
+</div>
 <div style = "display: none" class = "share-container">
 	<input type = "submit" value = "Share">
 </div>
