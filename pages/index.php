@@ -69,7 +69,7 @@ require('brand_header.html');
 					<p>{$row['file_name']}</p>
 				</a>
 				<div class = 'customize-btns'>
-					<button><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
+					<button class = 'rename-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
 					<button class = 'delete-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
 					<button class = 'share-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
 				</div>
@@ -146,6 +146,10 @@ require('brand_header.html');
 		</label>
 		<img height = "200" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
 	</form>
+</div>
+<div style = "display: none" class = "rename-container">
+	<input type = "text" value = "">
+	<input type = "button" value = "Rename" onclick = "renameAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
 </div>
 <div style = "display: none" class = "share-container">
 	<input type = "submit" value = "Share">
