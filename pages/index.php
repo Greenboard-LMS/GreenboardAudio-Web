@@ -63,7 +63,7 @@ require('brand_header.html');
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
 			echo "
-			<li>
+			<li id = \"file-{$row['id']}\">
 				<a href = ''>
 					<img src = 'images/microphone.png'>
 					<p>{$row['file_name']}</p>
@@ -152,7 +152,7 @@ require('brand_header.html');
 </div>
 <div style = "display: none" class = "delete-container">
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
-	<input type = "button" value = "Delete" onclick = "deleteAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
+	<input type = "button" value = "Delete" onclick = "deleteAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(11))">
 </div>
 <div class = "new-media-btn-container"></div>
 </div>

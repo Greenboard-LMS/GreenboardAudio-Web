@@ -16,7 +16,7 @@ function handleDeleteBox() {
 	showBoxBtnEls.forEach((item, i) => {
 		item.onclick = () => {
 		  deleteBoxEl.style.display = "block";
-      deleteBoxEl.id = item.parentElement.parentElement.id;
+      deleteBoxEl.id = 'delete-box-' + item.parentElement.parentElement.id.substring(5);
 		};
 	});
 }
