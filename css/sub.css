@@ -75,7 +75,7 @@
 .file-list-container .flexbox li {
 	display: block;
 	padding: 1em;
-	flex-basis: 20%;
+	flex-basis: 15%;
 	text-align: center;
 	margin: 5px;
 	text-decoration: none;
@@ -94,6 +94,7 @@
 .file-list-container a {
 	text-decoration: none;
 	color: black;
+	font-size: 0.8rem;
 }
 
 .flexbox.files li {
@@ -131,11 +132,18 @@ div.customize-btns img.grey-circle {
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
+	height: 65px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.flexbox.folders a > span {
-	position: absolute;
-	left: 50%;
+.flexbox.folders a {
+	display: block;
+	max-height: calc(1.2em * 3);
+	overflow: hidden;
+	width: 100px;
+	line-height: 1.2em;
 }
 
 .file-list-container img:first-child {
