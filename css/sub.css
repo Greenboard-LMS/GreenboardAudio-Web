@@ -207,3 +207,14 @@ input[type="file"] {
 .grid > div:not(.new-file-box-container) {
 	z-index: 1;
 }
+
+.action-container {
+	position: relative;
+	padding: 1em;
+}
+
+.action-container img {
+	position: absolute;
+	height: 20px;
+	right: 0;
+}

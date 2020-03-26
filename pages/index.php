@@ -147,14 +147,18 @@ require('brand_header.html');
 		<img height = "200" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
 	</form>
 </div>
-<div style = "display: none" class = "rename-container">
+<div style = "display: none" class = "action-container rename-container">
+	<img src = "images/Exit.png">
 	<input type = "text" value = "">
 	<input type = "button" value = "Rename" onclick = "renameAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
 </div>
-<div style = "display: none" class = "share-container">
+<div style = "display: none" class = "action-container share-container">
+	<img src = "images/Exit.png">
+	<input type = "text" placeholder = "Insert recipient">
 	<input type = "submit" value = "Share">
 </div>
-<div style = "display: none" class = "delete-container">
+<div style = "display: none" class = "action-container delete-container">
+	<p>Are you sure you want to <strong>permanently</strong> delete this file? You will not be able to get it back.</p>
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
 	<input type = "button" value = "Delete" onclick = "deleteAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(11))">
 </div>

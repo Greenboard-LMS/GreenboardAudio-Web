@@ -80,6 +80,7 @@ body {
 	height: 50%;
 	border: 1px solid black;
 	background-color: white;
+	text-align: center;
 }
 
 @media only screen and (max-width: 767px) {
