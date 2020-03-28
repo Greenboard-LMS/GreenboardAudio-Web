@@ -139,23 +139,24 @@ require('brand_header.html');
 	<!-- Vertical line -->
 	<span class = "vertical-line"></span>
 	<!-- Upload file -->
-	<form>
+	<form id = 'upload-form' action = '' enctype = 'multipart/form-data'>
 		<label class="audio-option custom-file-upload">
-	    <input type="file"/>
+	    <input multiple id = "audio-files" name = "file" type="file"/>
     	Upload mp3, wav, m4a
 		</label>
 		<img height = "200" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
+		<progress style = 'display:none' id = 'upload-file-progress-bar'></progress>
 	</form>
 </div>
 <div style = "display: none" class = "action-container rename-container">
 	<img src = "images/Exit.png">
 	<input type = "text" value = "">
-	<input type = "button" value = "Rename" onclick = "renameAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
+	<input type = "button" value = "Rename" onclick = "renameAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(11))">
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "images/Exit.png">
-	<input type = "text" placeholder = "Insert recipient">
-	<input type = "submit" value = "Share">
+	<input type = "text" placeholder = "Insert recipient's email">
+	<input onclick = "shareAudioFile()" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this file? You will not be able to get it back.</p>

@@ -1,3 +1,5 @@
+const showBoxBtnEl = document.querySelector('#new-audio-btn');
+
 handleShareBox();
 handleDeleteBox();
 handleNewFileBox();
@@ -28,6 +30,7 @@ function handleShareBox() {
   showBoxBtnEl.forEach((item, i) => {
   	item.onclick = () => {
   		shareBoxEl.style.display = "block";
+      shareBoxEl.id = 'share-box-' + item.parentElement.parentElement.id.substring(5);
   	};
   });
 }
@@ -38,30 +41,22 @@ function handleRenameBox() {
   showBoxBtnEl.forEach((item, i) => {
     item.onclick = () => {
       renameBoxEl.style.display = "block";
+      renameBoxEl.id = 'rename-box-' + item.parentElement.parentElement.id.substring(5);
     };
   });
 
 }
 
+
+const fileBoxEl = document.querySelector('.new-file-box-container');
 function handleNewFileBox() {
-  const fileBoxEl = document.querySelector('.new-file-box-container');
-  const showBoxBtnEl = document.querySelector('#new-audio-btn');
+
 
   let isDisabled = false;
   const isVisible = elem => !!elem && !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length); // source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js
 
   showBoxBtnEl.addEventListener('click', showBox);
-  function toggleDisabled(bool) {
-      showBoxBtnEl.attributes.disabled = bool;
-      isDisabled = bool;
-  }
 
-  function toggleDisplay(display, opacity) {
-      document.querySelectorAll('.grid > div:not(.new-file-box-container)').forEach((item, i) => {
-        item.style.opacity = opacity;
-      });
-      fileBoxEl.style.display = display;
-  }
 
   function showBox(event) {
     if (!isDisabled) {
@@ -78,7 +73,8 @@ function handleNewFileBox() {
     if (!fileBoxEl.contains(event.target) && isVisible(fileBoxEl)) { // or use: event.target.closest(selector) === null
       toggleDisplay("none", 1);
       toggleDisabled(false);
-      document.removeEventListener('click', outsideClickListener)
+      document.removeEventListener('click', outsideClickListener);
+      document.getElementById('upload-file-progress-bar').style.display = "none";
     }
   }
 
@@ -87,4 +83,16 @@ function handleNewFileBox() {
     imgEl.className = "bounce";
   }
 
+}
+
+function toggleDisplay(display, opacity) {
+    document.querySelectorAll('.grid > div:not(.new-file-box-container)').forEach((item, i) => {
+      item.style.opacity = opacity;
+    });
+    fileBoxEl.style.display = display;
+}
+
+function toggleDisabled(bool) {
+    showBoxBtnEl.attributes.disabled = bool;
+    isDisabled = bool;
 }
