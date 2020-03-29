@@ -75,7 +75,7 @@
 .file-list-container .flexbox li {
 	display: block;
 	padding: 1em;
-	flex-basis: 15%;
+	flex: 0 1 15%;
 	text-align: center;
 	margin: 5px;
 	text-decoration: none;

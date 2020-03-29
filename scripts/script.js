@@ -24,7 +24,7 @@ function uploadFile(e) {
 
 			data.append('file' + fileNumber, file);
 
-			if (file.type !== 'audio/wav' && file.type !== 'audio/x-wav' && file.type !== 'audio/mpeg' && file.type !== 'audio/mp3') {
+			if (!['audio/wav', 'audio/x-wav', 'audio/mp3', 'audio/mpeg'].includes(file.type)) {
 				alert('You may only upload an audio file!');
 				return;
 			}
