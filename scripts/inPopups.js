@@ -5,7 +5,7 @@ function deleteAudioFile(user_id, audio_id) {
 		}
 	}).then(response => {
 		document.querySelector('.delete-container').style.display = 'none';
-		window.alert(response);
+		window.displayStatus(response);
 	});
 }
 
@@ -16,7 +16,7 @@ function shareAudioFile(user_id, audio_id, share_id) {
 		}
 	}).then(response => {
 		document.querySelector('.share-container').style.display = 'none';
-		window.alert(response);
+		window.displayStatus(response);
 	});
 }
 function renameAudioFile(user_id, audio_id) {
@@ -27,7 +27,7 @@ function renameAudioFile(user_id, audio_id) {
 			return response.text();
 		}
 	}).then(response => {
-		window.alert(response);
+		window.displayStatus(response);
 		document.querySelector('#rename-box-' + audio_id).style.display = "none";
 		document.querySelector('#file-' + audio_id + ' p').innerHTML = new_name;
 	})

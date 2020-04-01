@@ -25,12 +25,12 @@ function uploadFile(e) {
 			data.append('file' + fileNumber, file);
 
 			if (!['audio/wav', 'audio/x-wav', 'audio/mp3', 'audio/mpeg'].includes(file.type)) {
-				alert('You may only upload an audio file!');
+				displayStatus('You may only upload an audio file!');
 				return;
 			}
 
 			if (file.size > 10000000) {
-	    	alert('max upload size is 10 MB');
+	    	displayStatus('max upload size is 10 MB');
 				return;
 	  	}
 
@@ -81,14 +81,18 @@ function sendFiles(data) {
 			toggleDisplay('none', 1);
 			toggleDisabled(false);
 			document.getElementById('upload-file-progress-bar').style.display = "none";
-			document.querySelector('.status-container').classList.add("show-status");
-			document.querySelector('.status-container').style.display = "block";
-			document.querySelector('.status-container').innerHTML = xhr.responseText;
-			setTimeout(function() {
-				document.querySelector('.status-container').classList.remove('show-status');
-				document.querySelector('.status-container').classList.add('hide-status');
-			}, 1500);
+			displayStatus(xhr.responseText);
 		}
 	}
 	xhr.send(data);
+}
+
+function displayStatus(status) {
+	document.querySelector('.status-container').classList.add("show-status");
+	document.querySelector('.status-container').style.display = "block";
+	document.querySelector('.status-container').innerHTML = status;
+	setTimeout(function() {
+		document.querySelector('.status-container').classList.remove('show-status');
+		document.querySelector('.status-container').classList.add('hide-status');
+	}, 2000);
 }
