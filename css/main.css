@@ -83,6 +83,17 @@ body {
 	text-align: center;
 }
 
+.status-container {
+	grid-row: 1;
+	grid-column: 2 / 3;
+	justify-self: stretch;
+	align-self: center;
+	background-color: lightgreen;
+	border-radius: 25px;
+	text-align: center;
+	height: 45px;
+}
+
 @media only screen and (max-width: 767px) {
 	.grid {
 		grid-template-columns: 150px auto 80px 10px;

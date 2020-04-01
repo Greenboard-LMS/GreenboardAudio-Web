@@ -57,23 +57,37 @@ function sendFiles(data) {
 
   function handleEvent(e) {
 		document.getElementById('upload-file-progress-bar').value = e.loaded;
-		document.getElementById('upload-file-progress-bar').max = e.total;
 	}
 
 	xhr.addEventListener('loadstart', handleEvent);
-	xhr.addEventListener('load', handleEvent);
+	function fakeProgress(percent) {
+		if (percent > 90) { // Base case
+			return;
+		} else {
+			document.getElementById('upload-file-progress-bar').value = percent;
+			setTimeout(function() {
+				fakeProgress(percent + 1);
+			}, 200);
+		}
+	}
+
+	fakeProgress(1);
 	xhr.addEventListener('loadend', handleEvent);
-	xhr.addEventListener('progress', handleEvent);
 	xhr.addEventListener('error', handleEvent);
 	xhr.addEventListener('abort', handleEvent);
 
 	xhr.onreadystatechange = function() { // Call a function when the state changes.
 		if (xhr.readyState == 4 && xhr.status == 200) {
+			toggleDisplay('none', 1);
+			toggleDisabled(false);
+			document.getElementById('upload-file-progress-bar').style.display = "none";
+			document.querySelector('.status-container').classList.add("show-status");
+			document.querySelector('.status-container').style.display = "block";
+			document.querySelector('.status-container').innerHTML = xhr.responseText;
 			setTimeout(function() {
-				toggleDisplay('none', 1);
-				toggleDisabled(false);
-				document.getElementById('upload-file-progress-bar').style.display = "none";
-			}, 1000);
+				document.querySelector('.status-container').classList.remove('show-status');
+				document.querySelector('.status-container').classList.add('hide-status');
+			}, 1500);
 		}
 	}
 	xhr.send(data);

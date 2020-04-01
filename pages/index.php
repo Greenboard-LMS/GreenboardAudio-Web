@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['id'] = 74;
 if(!isset($_SESSION['id'])) {
 	require('notloggedin.html');
 	exit();
@@ -145,7 +144,7 @@ require('brand_header.html');
     	Upload mp3, wav, m4a
 		</label>
 		<img height = "200" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
-		<progress style = 'display:none' id = 'upload-file-progress-bar'></progress>
+		<progress style = 'display:none' value = "0" max = "100" id = 'upload-file-progress-bar'></progress>
 	</form>
 </div>
 <div style = "display: none" class = "action-container rename-container">
@@ -164,6 +163,7 @@ require('brand_header.html');
 	<input type = "button" value = "Delete" onclick = "deleteAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(11))">
 </div>
 <div class = "new-media-btn-container"></div>
+<div class = "status-container" style = "display: none"></div>
 </div>
 <script src = "scripts/script.js"></script>
 <script src = "scripts/popupBox.js"></script>

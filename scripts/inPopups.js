@@ -4,7 +4,7 @@ function deleteAudioFile(user_id, audio_id) {
 			return response.text();
 		}
 	}).then(response => {
-		document.querySelector('.delete-container').textContent = response;
+		document.querySelector('.delete-container').style.display = 'none';
 		window.alert(response);
 	});
 }

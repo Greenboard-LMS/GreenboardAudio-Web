@@ -10,26 +10,6 @@
 	cursor: pointer;
 }
 
-.rotate {
-	animation-name: rotat;
-	animation-duration: 1s;
-}
-
-@keyframes rotat {
-	from {transform: rotate(0deg)}
-	to {transform: rotate(90deg);}
-}
-
-.rotate-back {
-	animation-name: rotat-back;
-	animation-duration: 1s;
-}
-
-@keyframes rotat-back {
-	from {transform: rotate(90deg);}
-	to {transform: rotate(0deg)};
-}
-
 .top-buttons-container {
 	align-self: center;
 	justify-self: center;

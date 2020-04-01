@@ -33,3 +33,57 @@
 		left: 0;
 	}
 }
+
+.rotate {
+	animation-name: rotat;
+	animation-duration: 1s;
+}
+
+@keyframes rotat {
+	from {transform: rotate(0deg)}
+	to {transform: rotate(90deg);}
+}
+
+.rotate-back {
+	animation-name: rotat-back;
+	animation-duration: 1s;
+}
+
+@keyframes rotat-back {
+	from {transform: rotate(90deg);}
+	to {transform: rotate(0deg)};
+}
+
+.show-status {
+	animation-name: drop-in;
+	animation-duration: 0.8s;
+}
+
+@keyframes drop-in {
+	from {
+		transform: scaleY(0);
+	}
+	to {
+		transition: all .2s ease-in-out;
+		transform-origin: left top;
+		transform: scaleY(1);
+	}
+}
+
+.hide-status {
+	animation-name: jump-out;
+	animation-duration: 0.8s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes jump-out {
+	from {
+		transition: all .2s ease-in-out;
+		transform-origin: left top;
+		transform: scaleY(1);
+	}
+
+	to {
+		transform: scaleY(0);
+	}
+}
