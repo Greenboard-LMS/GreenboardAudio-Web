@@ -6,13 +6,8 @@ if(!isset($_SESSION['id'])) {
 }
 $page_title = "My Flytrap";
 require('brand_header.html');
+require('search.html');
 ?>
-<div class = "search-bar-container">
-	<button class = "search-bar-icon">
-		<img class = 'grey-circle' src="http://cdn.bforborum.com/images/search-bar-icon.png" id = "search-bar-icon-img">
-	</button>
-	<input id="search-bar" onkeydown="" type="text" placeholder="Search your Flytrap">
-</div>
 <div class = "nav-container">
 	<div id = 'filter-view'>
 		<svg height="12" width="12">

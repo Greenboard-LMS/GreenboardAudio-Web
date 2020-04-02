@@ -220,3 +220,10 @@ input[type="file"] {
 	right: 0;
 	top: 0;
 }
+
+#exit-search-bar {
+	position: relative;
+	left: 275px;
+	height: 30px;
+	width: 40px;
+}

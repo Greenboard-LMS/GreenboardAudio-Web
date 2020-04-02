@@ -1,3 +1,35 @@
+function searchFlytrap(e) {
+	const query = e.target.value;
+	const fileListEl = document.querySelector('.file-list-container');
+	if (['Shift', 'Control'].includes(e.key))
+		return;
+	fetch('ajax/search.php?q=' + query, {method: 'get'}).then(response => {
+		if (response.status >= 200 && response.status < 300) {
+			return response.text();
+		}
+	}).then(response => {
+		return JSON.parse(response);
+	}).then(response => {
+		document.querySelector('.files.flexbox').innerHTML = "";
+		for (item in response) {
+			addNewFile(response[item]);
+		}
+	});
+	if (e.key == 'Enter') {
+		location.href = '/search?q=' + query;
+	}
+}
+
+function addNewFile(data) {
+	document.querySelector('.files.flexbox').innerHTML += `<li id = ${data[0]}><a href><img src = 'images/microphone.png'><p>${data[1]}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/register.png"></button></div></li>`;
+	handleShareBox();
+	handleDeleteBox();
+	handleNewFileBox();
+	handleRenameBox();
+}
+
+document.getElementById('search-bar').onkeyup = searchFlytrap;
+
 function exitPopup(e) {
 	e.target.parentElement.style.display = "none";
 }
