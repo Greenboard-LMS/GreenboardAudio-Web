@@ -21,6 +21,7 @@ function searchFlytrap(e) {
 }
 
 function addNewFile(data) {
+	console.log(data);
 	document.querySelector('.files.flexbox').innerHTML += `<li id = ${data[0]}><a href><img src = 'images/microphone.png'><p>${data[1]}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/register.png"></button></div></li>`;
 	handleShareBox();
 	handleDeleteBox();
