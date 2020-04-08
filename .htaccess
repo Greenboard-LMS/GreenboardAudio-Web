@@ -2,4 +2,5 @@ RewriteEngine On
 RewriteBase /
 RewriteRule ^$ /pages/index.php [L]
 RewriteRule ^([A-Za-z_]+)$ pages/$1.php [NC]
+RewriteRule ^audio/([A-Za-z0-9]+)$ /pages/audio.php?id=$1
 #php_value session.cookie_domain accounts.bforborum.com
