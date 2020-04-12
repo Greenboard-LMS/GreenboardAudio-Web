@@ -28,3 +28,10 @@ $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 echo $row['file_name'];
 
 ?>
+</div>
+<div class = "audio-file-container">
+	<audio controls>
+		<source src="/hear_audio?audio=<?php echo $row['file_name']; ?>.mp3" type="audio/mpeg">
+		Your browser does not support the audio tag.
+	</audio>
+</div>

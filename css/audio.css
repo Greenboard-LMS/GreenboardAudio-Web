@@ -5,5 +5,7 @@
 }
 
 .audio-file-container {
-
+	grid-row: 3;
+	grid-column: 1 / -1;
+	justify-self: center;
 }

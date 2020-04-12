@@ -56,9 +56,11 @@ require('search.html');
 		$q = "SELECT id, file_name FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+			require_once('uniqueid.php');
+			$alphaid = alphaid($row['id'], false, 10);
 			echo "
 			<li id = \"file-{$row['id']}\">
-				<a href = ''>
+				<a href = 'audio/$alphaid'>
 					<img src = 'images/microphone.png'>
 					<p>{$row['file_name']}</p>
 				</a>
