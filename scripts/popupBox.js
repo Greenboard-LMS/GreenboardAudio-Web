@@ -14,7 +14,7 @@ function handleActionBox(boxEl, btnEl) {
 }
 
 function handleDeleteBox() {
-	const deleteBoxEl = document.getElementsByClassName('.delete-container')[0];
+	const deleteBoxEl = document.getElementsByClassName('delete-container')[0];
 	const showBoxBtnEls = document.querySelectorAll('button.delete-audio');
 	showBoxBtnEls.forEach((item, i) => {
 		item.onclick = () => {

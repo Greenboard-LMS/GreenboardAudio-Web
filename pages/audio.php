@@ -12,7 +12,7 @@ $r = mysqli_query($dbc, $q);
 $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
 $page_title = "{$row['file_name']} | Flytrap";
-$css = "<link href = '/css/audio.css' rel = 'stylesheet' type = 'text/css'>";
+$css = "<link href = '/css/usercontent.css' rel = 'stylesheet' type = 'text/css'>";
 
 require('brand_header.html');
 ?>
@@ -20,12 +20,7 @@ require('brand_header.html');
 
 <?php
 
-$alphaid = $_GET['id'];
-$numid = @alphaid($_GET['id'], true, 10);
-$q = "SELECT id, file_name FROM audio_files WHERE id = $numid";
-$r = mysqli_query($dbc, $q);
-$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
-echo $row['file_name'];
+echo "<h1>" . $row['file_name'] . "</h1>";
 
 ?>
 </div>

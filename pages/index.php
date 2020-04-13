@@ -41,12 +41,14 @@ require('search.html');
 <div class = "file-list-container">
 	<ul class = "folders flexbox">
 		<?php
+		require_once('uniqueid.php');
 		# Retrieve folders for this user
 		require('../../flytrap_connect.inc.php');
 		$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']}";
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-			echo "<li><a href = ''>{$row['folder_name']}</a></li>";
+			$alphaid = alphaid($row['id'], false, 10);
+			echo "<li><a href = 'folders/$alphaid'>{$row['folder_name']}</a></li>";
 		}
 		?>
 	</ul>
@@ -56,7 +58,7 @@ require('search.html');
 		$q = "SELECT id, file_name FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-			require_once('uniqueid.php');
+
 			$alphaid = alphaid($row['id'], false, 10);
 			echo "
 			<li id = \"file-{$row['id']}\">
