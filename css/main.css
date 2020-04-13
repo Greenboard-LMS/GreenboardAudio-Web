@@ -1,3 +1,9 @@
+@font-face {
+	font-family: 'Odibee Sans';
+	src: url(OdibeeSans/OdibeeSans-Regular.ttf);
+	font-weight: 400;
+}
+
 body {
 	font-family: 'Roboto', sans-serif;
 }
