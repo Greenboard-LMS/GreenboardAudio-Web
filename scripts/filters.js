@@ -25,3 +25,18 @@ flexViewBtnEl.onclick = event => {
 		item.style.display = "none";
 	});
 };
+
+function filterAudio(val) {
+	fetch('/ajax/filteraudio.php?val=' + val).then(response => {
+		if (response.status >= 200 && response.status < 300) {
+			return response.text();
+		}
+	}).then(response => {
+		return JSON.parse(response);
+	}).then(response => {
+		document.querySelector('.files.flexbox').innerHTML = "";
+		for (item in response) {
+			addNewFile(response[item]);
+		}
+	});
+}

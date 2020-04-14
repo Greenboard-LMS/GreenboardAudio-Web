@@ -1,5 +1,6 @@
 <?php
 session_start();
+header('Cache-control: max-age='.(60*60*24*365));
 if(!isset($_SESSION['id'])) {
 	require('notloggedin.html');
 	exit();
@@ -24,7 +25,7 @@ require('search.html');
 		</svg>
 		<div class = "slider"></div>
 	</div>
-	<select id = 'filter-audio'>
+	<select onchange = "filterAudio(this.value)" id = 'filter-audio'>
 		<option value = "owned">My Audios</option>
 		<option value = "shared">Shared Audios</option>
 		<option value = "all">All Audios</option>

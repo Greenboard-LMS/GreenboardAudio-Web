@@ -52,8 +52,7 @@ $searchquery = mysqli_real_escape_string($dbc, trim($_GET['q']))
 		<?php
 		# Retrieve files for this user
 		if (isset($searchquery)) {
-			$sq = $searchquery;
-			$q = "SELECT id, file_name, time_created, user_id FROM audio_files WHERE file_name LIKE '%$sq%' AND user_id = {$_SESSION['id']} AND folder_id IS NULL";
+			$q = "SELECT id, file_name, time_created, user_id FROM audio_files WHERE file_name LIKE '%$searchquery%' AND user_id = {$_SESSION['id']} AND folder_id IS NULL";
 			$r = mysqli_query($dbc, $q);
 			$encoded = [];
 			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
