@@ -23,7 +23,7 @@ require('search.html');
 			<line x1="11" y1="0" x2="11" y2="12" style="stroke:rgb(0,0,0);stroke-width:2" />
 			Sorry, your browser does not support inline SVG.
 		</svg>
-		<div class = "slider"></div>
+		<div class = "slider" style = "<?php echo isset($_GET['sortby']) ? 'left: 0px' : 'left: 18px'; ?>"></div>
 	</div>
 	<select onchange = "filterAudio(this.value)" id = 'filter-audio'>
 		<option value = "owned">My Audios</option>
@@ -39,8 +39,22 @@ require('search.html');
 		<span>New Folder</span>
 	</button>
 </div>
+<?php
+
+function sortBy($name) {
+	if (isset($_GET['sortby'])) {
+		switch ($_GET['sortby']) {
+			case 'name':
+				return " ORDER BY $name";
+			case 'time':
+				return " ORDER BY time_created DESC";
+		}
+	}
+}
+
+?>
 <div class = "file-list-container">
-	<ul class = "folders flexbox">
+	<ul class = "folders flexbox" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>">
 		<?php
 		require_once('uniqueid.php');
 		# Retrieve folders for this user
@@ -53,7 +67,7 @@ require('search.html');
 		}
 		?>
 	</ul>
-	<ul class = "files flexbox">
+	<ul class = "files flexbox" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>">
 		<?php
 		# Retrieve files for this user
 		$q = "SELECT id, file_name FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
@@ -76,16 +90,17 @@ require('search.html');
 		}
 		?>
 	</ul>
-	<table style = "display:none" class = "folders">
+	<table style = "<?php echo isset($_GET['sortby']) ? 'display:block' : 'display:none'; ?>" class = "folders">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Date Created</th>
+				<th><a href = "?sortby=name">Name</a></th>
+				<th><a href = "?sortby=time">Date Created</a></th>
 		</thead>
 		<tbody>
 			<?php
 			# Retrieve files for this user
 			$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']}";
+			$q .= sortBy('folder_name');
 			$r = mysqli_query($dbc, $q);
 			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
 				echo "
@@ -97,17 +112,18 @@ require('search.html');
 			?>
 		</tbody>
 	</table>
-	<table class = "files" style = "display: none">
+	<table class = "files" style = "<?php echo isset($_GET['sortby']) ? 'display:block' : 'display:none'; ?>">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Date Created</th>
+				<th><a href = "?sortby=name">Name</a></th>
+				<th><a href = "?sortby=time">Date Created</a></th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php
 			# Retrieve files for this user
 			$q = "SELECT id, file_name, time_created FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
+			$q .= sortBy('file_name');
 			$r = mysqli_query($dbc, $q);
 			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
 				echo "

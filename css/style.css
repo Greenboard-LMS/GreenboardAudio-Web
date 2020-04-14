@@ -21,3 +21,7 @@ button {
 	left: 18px;
 	z-index: 1;
 }
+
+table th > a {
+	font-size: 1em;
+}

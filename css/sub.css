@@ -95,6 +95,9 @@
 .file-list-container a {
 	text-decoration: none;
 	color: black;
+}
+
+.file-list-container li a {
 	font-size: 0.8rem;
 }
 
