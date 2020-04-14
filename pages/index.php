@@ -164,10 +164,10 @@ require('search.html');
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>
 </div>
-<script src = "scripts/script.js"></script>
-<script src = "scripts/popupBox.js"></script>
-<script src = "scripts/filters.js"></script>
-<script src = "scripts/media.js"></script>
-<script src = "scripts/inPopups.js"></script>
+<script src = "scripts/minified/script.min.js"></script>
+<script src = "scripts/minified/popupBox.min.js"></script>
+<script src = "scripts/minified/filters.min.js"></script>
+<script src = "scripts/minified/media.min.js"></script>
+<script src = "scripts/minified/inPopups.min.js"></script>
 </body>
 </html>

@@ -25,4 +25,4 @@ require('brand_header.html');
 	</form>
 	<button onclick = "connectToBorum('Register')"><img height="20" src = "http://cdn.bforborum.com/images/icon.png" style = "margin-right: 10px">Sign up with Borum</button>
 </div>
-<script src = "scripts/login.js"></script>
+<script src = "scripts/minified/login.min.js"></script>

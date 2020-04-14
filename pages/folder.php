@@ -59,3 +59,5 @@ echo "<h1>" . $row['folder_name'] . "</h1>";
 		?>
 	</ul>
 </div>
+</body>
+</html>

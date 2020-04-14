@@ -5,7 +5,7 @@ require('brand_header.html');
 require('search.html');
 
 include('../../flytrap_connect.inc.php');
-
+$searchquery = mysqli_real_escape_string($dbc, trim($_GET['q']))
 ?>
 <div class = "nav-container">
 	<div id = 'filter-view'>
@@ -51,8 +51,8 @@ include('../../flytrap_connect.inc.php');
 	<ul class = "files flexbox">
 		<?php
 		# Retrieve files for this user
-		if (isset($_GET['q'])) {
-			$sq = $_GET['q'];
+		if (isset($searchquery)) {
+			$sq = $searchquery;
 			$q = "SELECT id, file_name, time_created, user_id FROM audio_files WHERE file_name LIKE '%$sq%' AND user_id = {$_SESSION['id']} AND folder_id IS NULL";
 			$r = mysqli_query($dbc, $q);
 			$encoded = [];
@@ -162,9 +162,9 @@ include('../../flytrap_connect.inc.php');
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>
 </div>
-<script src = "scripts/script.js"></script>
-<script src = "scripts/popupBox.js"></script>
-<script src = "scripts/filters.js"></script>
-<script src = "scripts/media.js"></script>
-<script src = "scripts/inPopups.js"></script>
-<script>document.getElementById('search-bar').value = '<?php echo isset($_GET['q']) ? $_GET['q'] : ''; ?>'</script>
+<script src = "scripts/minified/script.min.js"></script>
+<script src = "scripts/minified/popupBox.min.js"></script>
+<script src = "scripts/minified/filters.min.js"></script>
+<script src = "scripts/minified/media.min.js"></script>
+<script src = "scripts/minified/inPopups.min.js"></script>
+<script>document.getElementById('search-bar').value = '<?php echo isset($searchquery) ? $searchquery : ''; ?>'</script>

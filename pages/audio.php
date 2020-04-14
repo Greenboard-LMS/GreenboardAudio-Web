@@ -30,3 +30,5 @@ echo "<h1>" . $row['file_name'] . "</h1>";
 		Your browser does not support the audio tag.
 	</audio>
 </div>
+</body>
+</html>
