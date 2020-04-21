@@ -14,7 +14,8 @@ function handleActionBox(actionName, mediaType) {
   showBoxBtnEls.forEach((item, i) => {
     item.onclick = () => {
       actionBoxEl.style.display = "block";
-      actionBoxEl.id = actionName + "-" + mediaType + "-box-" + item.parentElement.parentElement.id.substring(5);
+      actionBoxEl.id = actionName + "-" + mediaType + "-box-" + item.parentElement.parentElement.id.substring(mediaType == 'audio' ? 5 : 7);
+      console.log(actionBoxEl.id);
     };
   });
 }
