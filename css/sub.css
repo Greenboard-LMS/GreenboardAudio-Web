@@ -110,18 +110,17 @@
 	height: 36px;
 }
 
-.flexbox.files div.customize-btns {
-	text-align: center;
+.flexbox div.customize-btns {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	background: none;
 }
 
-.flexbox.files div.customize-btns img {
+.flexbox div.customize-btns img {
 	height: 20px;
 }
 
-.flexbox.files div.customize-btns button {
+.flexbox div.customize-btns button {
 	border: none;
 	outline: none;
 	background: none;
@@ -137,17 +136,17 @@ div.customize-btns img.grey-circle {
 	background-repeat: no-repeat;
 	background-position: center;
 	height: 65px;
-	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .flexbox.folders a {
-	display: block;
-	max-height: calc(1.2em * 3);
+	display: inline-block;
+	height: calc(1.2em * 3);
 	overflow: hidden;
 	width: 100px;
 	line-height: 1.2em;
+	margin-top: 3px;
 }
 
 .file-list-container img:first-child {

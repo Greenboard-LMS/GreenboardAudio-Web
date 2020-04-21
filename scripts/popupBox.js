@@ -1,52 +1,23 @@
 const showBoxBtnEl = document.querySelector('#new-audio-btn');
 
-handleShareBox();
-handleDeleteBox();
+handleActionBox('share', 'audio');
+handleActionBox('delete', 'audio');
+handleActionBox('rename', 'audio');
+handleActionBox('share', 'folder');
+handleActionBox('delete', 'folder');
+handleActionBox('rename', 'folder');
 handleNewFileBox();
-handleRenameBox();
 
-function handleActionBox(boxEl, btnEl) {
-  btnEl.forEach((item, i) => {
+function handleActionBox(actionName, mediaType) {
+  const actionBoxEl = document.getElementsByClassName(actionName + '-container')[mediaType == 'audio' ? 0 : 1];
+  const showBoxBtnEls = document.querySelectorAll('button.' + actionName + '-' + mediaType);
+  showBoxBtnEls.forEach((item, i) => {
     item.onclick = () => {
-      boxEl.style.display = "block";
+      actionBoxEl.style.display = "block";
+      actionBoxEl.id = actionName + "-" + mediaType + "-box-" + item.parentElement.parentElement.id.substring(5);
     };
   });
 }
-
-function handleDeleteBox() {
-	const deleteBoxEl = document.getElementsByClassName('delete-container')[0];
-	const showBoxBtnEls = document.querySelectorAll('button.delete-audio');
-	showBoxBtnEls.forEach((item, i) => {
-		item.onclick = () => {
-		  deleteBoxEl.style.display = "block";
-      deleteBoxEl.id = 'delete-box-' + item.parentElement.parentElement.id.substring(5);
-		};
-	});
-}
-
-function handleShareBox() {
-  const shareBoxEl = document.querySelector('.share-container');
-  const showBoxBtnEl = document.querySelectorAll('button.share-audio');
-  showBoxBtnEl.forEach((item, i) => {
-  	item.onclick = () => {
-  		shareBoxEl.style.display = "block";
-      shareBoxEl.id = 'share-box-' + item.parentElement.parentElement.id.substring(5);
-  	};
-  });
-}
-
-function handleRenameBox() {
-  const renameBoxEl = document.querySelector('.rename-container');
-  const showBoxBtnEl = document.querySelectorAll('button.rename-audio');
-  showBoxBtnEl.forEach((item, i) => {
-    item.onclick = () => {
-      renameBoxEl.style.display = "block";
-      renameBoxEl.id = 'rename-box-' + item.parentElement.parentElement.id.substring(5);
-    };
-  });
-
-}
-
 
 const fileBoxEl = document.querySelector('.new-file-box-container');
 function handleNewFileBox() {
