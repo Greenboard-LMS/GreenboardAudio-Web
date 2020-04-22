@@ -26,7 +26,7 @@ echo "<h1>" . $row['file_name'] . "</h1>";
 </div>
 <div class = "audio-file-container">
 	<audio controls>
-		<source src="/hear_audio?audio=<?php echo $row['file_name']; ?>.mp3" type="audio/mpeg">
+		<source src="/hear_audio?audio=<?php echo $alphaid; ?>" type="audio/mpeg">
 		Your browser does not support the audio tag.
 	</audio>
 </div>
