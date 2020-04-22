@@ -1,5 +1,4 @@
 <?php
-require('../../flytrap_connect.inc.php');
 $path = "../../audio_uploads/" . $_GET['audio'];
 if(file_exists($path)) {
 	$fs = filesize($path);

@@ -89,7 +89,10 @@
 
 .file-list-container > table td {
 	border-top: 1px solid black;
-	width: 200px;
+}
+
+.file-list-container > table th {
+	width: 300px;
 }
 
 .file-list-container a {
@@ -108,6 +111,7 @@
 
 .flexbox.files a p {
 	height: 36px;
+	overflow-wrap: anywhere;
 }
 
 .flexbox div.customize-btns {

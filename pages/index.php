@@ -156,7 +156,7 @@ function sortBy($name) {
 <div style = "display: none" class = "new-file-box-container">
 	<!-- Record audio -->
 	<div>
-		<button class = "audio-option">Record directly</button>
+		<button class = "audio-option">Record directly</button><br>
 		<input id = 'volume' type = 'range' min = '1' max = '10'>
 	</div>
 	<!-- Vertical line -->

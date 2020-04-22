@@ -40,11 +40,25 @@ $searchquery = mysqli_real_escape_string($dbc, trim($_GET['q']))
 <div class = "file-list-container">
 	<ul class = "folders flexbox">
 		<?php
-		# Retrieve folders for this user
-		$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']}";
-		$r = mysqli_query($dbc, $q);
-		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-			echo "<li><a href = ''>{$row['folder_name']}</a></li>";
+		# Retrieve files for this user
+		if (isset($searchquery)) {
+			$q = "SELECT id, folder_name, time_created, user_id FROM folders WHERE folder_name LIKE '%$searchquery%' AND user_id = {$_SESSION['id']} AND parent_id = 0";
+			$r = mysqli_query($dbc, $q);
+			$encoded = [];
+			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+			    array_push($encoded, $row);
+			}
+			$data = json_encode($encoded);
+			echo "<script>
+			window.addEventListener('DOMContentLoaded', function() {
+				let x = $data;
+				console.log(x);
+				for (item in x) {
+					addNewFolder(x[item]);
+					console.log(item);
+				}
+			});
+			</script>";
 		}
 		?>
 	</ul>
@@ -146,7 +160,7 @@ $searchquery = mysqli_real_escape_string($dbc, trim($_GET['q']))
 <div style = "display: none" class = "action-container rename-container">
 	<img src = "images/Exit.png">
 	<input type = "text" value = "">
-	<input type = "button" value = "Rename" onclick = "renameAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(11))">
+	<input type = "button" value = "Rename" onclick = "renameAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "images/Exit.png">
@@ -156,7 +170,22 @@ $searchquery = mysqli_real_escape_string($dbc, trim($_GET['q']))
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this file? You will not be able to get it back.</p>
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
-	<input type = "button" value = "Delete" onclick = "deleteAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(11))">
+	<input type = "button" value = "Delete" onclick = "deleteAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(17))">
+</div>
+<div style = "display: none" class = "action-container rename-container">
+	<img src = "images/Exit.png">
+	<input type = "text" value = "">
+	<input type = "button" value = "Rename" onclick = "renameFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
+</div>
+<div style = "display: none" class = "action-container share-container">
+	<img src = "images/Exit.png">
+	<input type = "text" placeholder = "Insert recipient's email">
+	<input onclick = "shareFolder()" type = "button" value = "Share">
+</div>
+<div style = "display: none" class = "action-container delete-container">
+	<p>Are you sure you want to <strong>permanently</strong> delete this folder? You will not be able to get it back.</p>
+	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
+	<input type = "button" value = "Delete" onclick = "deleteFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(16))">
 </div>
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>
