@@ -134,3 +134,9 @@ function displayStatus(status) {
 		document.querySelector('.status-container').classList.add('hide-status');
 	}, 2000);
 }
+
+function handleNewFolderBox() {
+	addNewFolder([176, 'New folder']);
+}
+
+document.getElementById('new-folder-btn').addEventListener('click', handleNewFolderBox);

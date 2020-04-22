@@ -205,9 +205,9 @@ function sortBy($name) {
 <div class = "status-container" style = "display: none"></div>
 </div>
 <script src = "scripts/minified/script.min.js"></script>
-<script src = "scripts/popupBox.js"></script>
+<script src = "scripts/minified/popupBox.min.js"></script>
 <script src = "scripts/minified/filters.min.js"></script>
 <script src = "scripts/minified/media.min.js"></script>
-<script src = "scripts/inPopups.js"></script>
+<script src = "scripts/minified/inPopups.min.js"></script>
 </body>
 </html>
