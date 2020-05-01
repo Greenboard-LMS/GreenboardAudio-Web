@@ -77,7 +77,7 @@ function sortBy($name) {
 	<ul class = "files flexbox" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>">
 		<?php
 		# Retrieve files for this user
-		$q = "SELECT id, file_name FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
+		$q = "SELECT id, time_created, file_name FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
 
