@@ -27,7 +27,7 @@ function addNewFolder(data) {
 
 function addNewFile(data) {
 	console.log(data);
-	document.querySelector('.files.flexbox').innerHTML += `<li id = 'file-${data[0]}'><a href><img src = 'images/microphone.png'><p>${data[1]}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/register.png"></button></div></li>`;
+	document.querySelector('.files.flexbox').innerHTML += `<li id = 'file-${data[0]}'><a href = "/audio/${data['afid']}"><img src = 'images/microphone.png'><p>${data[1]}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/register.png"></button></div></li>`;
 	handleActionBox('share', 'audio');
 	handleActionBox('delete', 'audio');
 	handleNewFileBox();

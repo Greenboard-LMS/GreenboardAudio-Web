@@ -168,3 +168,9 @@ Stack trace:
 [22-Apr-2020 18:43:27 UTC] PHP Warning:  A non-numeric value encountered in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php on line 141
 [22-Apr-2020 18:45:56 UTC] PHP Warning:  A non-numeric value encountered in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php on line 141
 [22-Apr-2020 18:48:56 UTC] PHP Warning:  A non-numeric value encountered in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php on line 141
+[02-May-2020 02:14:18 UTC] PHP Fatal error:  Cannot redeclare alphaID() (previously declared in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php:91) in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php on line 154
+[02-May-2020 02:14:22 UTC] PHP Fatal error:  Cannot redeclare alphaID() (previously declared in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php:91) in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php on line 154
+[02-May-2020 02:14:26 UTC] PHP Fatal error:  Cannot redeclare alphaID() (previously declared in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php:91) in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php on line 154
+[02-May-2020 02:14:27 UTC] PHP Fatal error:  Cannot redeclare alphaID() (previously declared in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php:91) in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php on line 154
+[02-May-2020 02:14:31 UTC] PHP Fatal error:  Cannot redeclare alphaID() (previously declared in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php:91) in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php on line 154
+[02-May-2020 02:14:37 UTC] PHP Fatal error:  Cannot redeclare alphaID() (previously declared in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php:91) in /home/libuc6kfb0jg/Flytrap/pages/uniqueid.php on line 154
