@@ -35,7 +35,7 @@ echo "<h1>" . $row['folder_name'] . "</h1>";
 			$alphaid = alphaid($row['id'], false, 10);
 			echo "
 			<li id = \"file-{$row['id']}\">
-				<a href = 'audio/$alphaid'>
+				<a href = '/audio/$alphaid'>
 					<img src = '/images/microphone.png'>
 					<p>{$row['file_name']}</p>
 				</a>

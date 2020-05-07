@@ -199,15 +199,15 @@ function sortBy($name) {
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this folder? You will not be able to get it back.</p>
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
-	<input type = "button" value = "Delete" onclick = "deleteFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(16))">
+	<input type = "button" value = "Delete" onclick = "deleteFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(20))">
 </div>
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>
 </div>
-<script src = "scripts/minified/script.min.js"></script>
+<script src = "scripts/script.js"></script>
 <script src = "scripts/minified/popupBox.min.js"></script>
 <script src = "scripts/minified/filters.min.js"></script>
 <script src = "scripts/minified/media.min.js"></script>
-<script src = "scripts/minified/inPopups.min.js"></script>
+<script src = "scripts/inPopups.js"></script>
 </body>
 </html>

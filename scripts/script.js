@@ -126,6 +126,7 @@ function sendFiles(data) {
 }
 
 function displayStatus(status) {
+	document.querySelector('.status-container').classList.remove('hide-status');
 	document.querySelector('.status-container').classList.add("show-status");
 	document.querySelector('.status-container').style.display = "block";
 	document.querySelector('.status-container').innerHTML = status;

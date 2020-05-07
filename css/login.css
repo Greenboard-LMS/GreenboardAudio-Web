@@ -7,23 +7,26 @@ form input {
 }
 
 div.grid {
-	grid-template-columns: 50% 50%;
+	grid-template-columns: 100%;
 	grid-template-rows: repeat(10, 10%);
 }
 
 .account-form-container {
 	justify-self: center;
-}
-
-.account-form-container.login {
-	grid-row: 2;
+	background-color: lightblue;
+	align-self: center;
+	grid-row: 1 / 10;
 	grid-column: 1;
+	padding: 1em;
+	border-radius: 25px;
 }
 
-.account-form-container.register {
-	grid-row: 2;
-	grid-column: 2;
-	justify-self:
+.account-form-container > * {
+	font-size: 1.5em;
+}
+
+.login > button > img {
+	height: 30px;
 }
 
 .account-form-container button {
