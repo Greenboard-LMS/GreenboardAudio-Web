@@ -182,3 +182,18 @@ body {
 		display: inline;
 	}
 }
+
+footer {
+	/* Put at bottom of grid and span entire length of window */
+	grid-row: 5;
+	grid-column: 1 / -1;
+	width: calc(100vw - 17px);
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1em;
+	box-sizing: border-box;
+	margin: -8px; /* Cancels out body margin */
+	background-color: lightcoral;
+}

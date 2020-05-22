@@ -203,6 +203,9 @@ function sortBy($name) {
 </div>
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>
+<?php
+include('footer.html');
+?>
 </div>
 <script src = "scripts/script.js"></script>
 <script src = "scripts/minified/popupBox.min.js"></script>

@@ -17,9 +17,15 @@
 
 #login-page-btn {
 	background-color: lightblue;
-	border-radius: 75%;
+	border-radius: 25px;
 	text-decoration: none;
 	padding: 10px;
-	display: inline-block;
+	display: block;
+	text-align: center;
 	color: black;
+	font-size: 3em;
+}
+
+#login-page-btn ~ p {
+	text-align: center;
 }
