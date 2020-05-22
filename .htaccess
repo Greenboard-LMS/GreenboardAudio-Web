@@ -3,6 +3,6 @@ RewriteBase /
 RewriteRule ^$ /pages/index.php [L]
 RewriteRule ^([A-Za-z_]+)$ pages/$1.php [NC]
 RewriteRule ^audio/([A-Za-z0-9]+)$ /pages/audio.php?id=$1
-RewriteRule ^legal/Privacy%20Policy$ pages/legal/Privacy_Policy.html [NC]
+RewriteRule ^legal/Privacy\ Policy$ pages/legal/Privacy_Policy.html [NC]
 #php_value session.cookie_domain accounts.bforborum.com
 RewriteRule ^folders/([A-Za-z0-9]+)$ /pages/folder.php?id=$1
