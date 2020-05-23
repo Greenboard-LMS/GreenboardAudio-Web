@@ -27,13 +27,17 @@ function deleteFolder(user_id, folder_id) {
 }
 
 function shareFolder() {
-	actionFolder('share', user_id, folder_id);
+	actionFolder('share', user_id, folder_id, null, function() {
+
+	});
 }
 
 function renameFolder(user_id, folder_id) {
-	const new_name = document.querySelector('#' + folder_id + ' input[type="text"]').value;
-	const id = folder_id.substring(20);
-	actionFolder('rename', user_id, id, new_name, function() {
+	let new_name = document.querySelector('#' + folder_id + ' input[type="text"]');
+	new_name = new_name.value;
+	console.log(new_name);
+	const id = folder_id.substring("rename-folder-box-".length);
+	actionFolder('rename', user_id, id, encodeURIComponent(new_name), function() {
 		document.querySelector('#folder-' + id + ' a').innerHTML = new_name;
 	});
 }
@@ -42,8 +46,11 @@ function deleteAudioFile(user_id, audio_id) {
 	actionAudioFile('delete', user_id, audio_id);
 }
 
-function shareAudioFile(user_id, audio_id, share_id) {
-	actionAudioFile('share', user_id, audio_id);
+function shareAudioFile(sender_id, audio_id) {
+	const emailInput = document.getElementById('share-file-email');
+	const share_id = emailInput.parentElement.id.substring(16);
+	audio_id = audio_id.substring("share-audio-box-".length);
+	actionAudioFile('share', sender_id, audio_id, emailInput.value);
 }
 function renameAudioFile(user_id, audio_id) {
 	const new_name = document.querySelector('#' + audio_id + ' input[type="text"]').value;

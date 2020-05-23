@@ -178,8 +178,8 @@ function sortBy($name) {
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "images/Exit.png">
-	<input type = "text" placeholder = "Insert recipient's email">
-	<input onclick = "shareAudioFile()" type = "button" value = "Share">
+	<input id = 'share-file-email' type = "text" placeholder = "Insert recipient's email">
+	<input onclick = "shareAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this file? You will not be able to get it back.</p>
@@ -208,8 +208,8 @@ include('footer.html');
 ?>
 </div>
 <script src = "scripts/script.js"></script>
-<script src = "scripts/minified/popupBox.min.js"></script>
-<script src = "scripts/minified/filters.min.js"></script>
+<script src = "scripts/popupBox.js"></script>
+<script src = "scripts/filters.js"></script>
 <script src = "scripts/minified/media.min.js"></script>
 <script src = "scripts/inPopups.js"></script>
 </body>

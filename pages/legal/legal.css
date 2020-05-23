@@ -1,0 +1,14 @@
+html, body { height: calc(100% - 12px); overflow: hidden; font-family: sans-serif; }
+
+.brand-name-container {
+	margin-top: 10px;
+}
+
+ul {
+	border-radius: 10px;
+	line-height: 2em;
+	height: 70%;
+	background-color: lightcoral;
+	padding: 1em;
+	list-style-type: '- ';
+}
