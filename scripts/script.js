@@ -26,8 +26,10 @@ function addNewFolder(data) {
 }
 
 function addNewFile(data) {
+	console.log("Data: ");
 	console.log(data);
-	document.querySelector('.files.flexbox').innerHTML += `<li id = 'file-${data[0]}'><a href = "/audio/${data['afid']}"><img src = 'images/microphone.png'><p>${data[1]}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/register.png"></button></div></li>`;
+	data = data[0];
+	document.querySelector('.files.flexbox').innerHTML += `<li id = 'file-${data[0]}'><a href = "/audio/${data['afid']}"><img src = 'images/microphone.png'><p>${data['file_name']}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/register.png"></button></div></li>`;
 	handleActionBox('share', 'audio');
 	handleActionBox('delete', 'audio');
 	handleNewFileBox();
