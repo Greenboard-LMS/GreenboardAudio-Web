@@ -156,7 +156,9 @@ function sortBy($name) {
 <div style = "display: none" class = "new-file-box-container">
 	<!-- Record audio -->
 	<div>
-		<button class = "audio-option">Record directly</button><br>
+		<button class = "audio-option" onclick = "recordDirectly()">Record directly</button><br>
+		<button class = "stop-recording">Stop Recording</button>
+		<video autoplay></video>
 		<input id = 'volume' type = 'range' min = '1' max = '10'>
 	</div>
 	<!-- Vertical line -->
@@ -212,5 +214,6 @@ include('footer.html');
 <script src = "scripts/filters.js"></script>
 <script src = "scripts/minified/media.min.js"></script>
 <script src = "scripts/inPopups.js"></script>
+<script src = "scripts/microphoneinput.js"></script>
 </body>
 </html>
