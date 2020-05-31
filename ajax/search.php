@@ -10,7 +10,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
     array_push($encoded, $row);
 }
 
-$q = "SELECT id, folder_name, time_created, user_id FROM folders WHERE folder_name LIKE '%$sq%' AND user_id = {$_SESSION['id']} AND parent_id IS NULL";
+$q = "SELECT id, folder_name, time_created, user_id FROM folders WHERE folder_name LIKE '%$sq%' AND user_id = {$_SESSION['id']} AND parent_id = 0";
 $r = mysqli_query($dbc, $q);
 $encoded2 = [];
 while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {

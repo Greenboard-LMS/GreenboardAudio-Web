@@ -34,7 +34,7 @@ require('search.html');
 		<img id = 'new-audio-icon' src = 'images/NewAudio.png'>
 		<span>New Audio</span>
 	</button>
-	<button class = "new-button" id = 'new-folder-btn'>
+	<button class = "new-button" id = 'new-folder-btn' onclick = "createNewFolder()">
 		<img id = 'new-folder-icon' src = "images/NewFolder.png">
 		<span>New Folder</span>
 	</button>

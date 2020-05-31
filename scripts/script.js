@@ -11,8 +11,18 @@ function searchFlytrap(e) {
 		return JSON.parse(response);
 	}).then(response => {
 		document.querySelector('.files.flexbox').innerHTML = "";
-		for (item in response) {
-			addNewFile(response[item]);
+		document.querySelector('.folders.flexbox').innerHTML = "";
+		// Display the files that match the query
+		console.log("Add New File Data: ");
+		console.log(response[0])
+		for (item of response[0]) {
+			addNewFile(item);
+		}
+		// Display the folders that match the query
+		console.log("Add New Folder Data: ");
+		console.log(response[1])
+		for (item of response[1]) {
+			addNewFolder(item);
 		}
 	});
 	if (e.key == 'Enter') {
@@ -20,15 +30,27 @@ function searchFlytrap(e) {
 	}
 }
 
+function createNewFolder() {
+	fetch('/ajax/newfolder.php').then(response => {
+		if (response.status >= 200 && response.status < 300) {
+			return response.text();
+		}
+	}).then(response => JSON.parse(response)).then(response => {
+		if (response.length == 1) {
+			window.displayStatus(response[0]);
+		}
+		addNewFolder([{}, {afid: response[2], 0: response[1], 1: response[3]}])
+	});
+}
+
 function addNewFolder(data) {
-	console.log(data);
-	document.querySelector('.folders.flexbox').innerHTML += `<li id = \"folder-${data[0]}\"><a href = ''>${data[1]}</a><div class = 'customize-btns'><button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button><button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button><button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button></div></li>`;
+	document.querySelector('.folders.flexbox').innerHTML += `<li id = \"folder-${data[0]}\"><a href = "/folders/${data['afid']}">${data[1]}</a><div class = 'customize-btns'><button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button><button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button><button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button></div></li>`;
+	handleActionBox('share', 'folder');
+	handleActionBox('delete', 'folder');
+	handleActionBox('rename', 'folder');
 }
 
 function addNewFile(data) {
-	console.log("Data: ");
-	console.log(data);
-	data = data[0];
 	document.querySelector('.files.flexbox').innerHTML += `<li id = 'file-${data[0]}'><a href = "/audio/${data['afid']}"><img src = 'images/microphone.png'><p>${data['file_name']}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/register.png"></button></div></li>`;
 	handleActionBox('share', 'audio');
 	handleActionBox('delete', 'audio');
@@ -45,7 +67,6 @@ function exitPopup(e) {
 document.querySelectorAll('.action-container img').forEach((item, i) => {
 	item.onclick = exitPopup;
 	item.onkeydown = e => {
-		console.log(e);
 		if (e.key == 'Escape') {
 			exitPopup(e);
 		}
@@ -88,7 +109,6 @@ function sendFiles(data) {
 	} else { // code for IE6, IE5
 		xhr = new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	console.log(document.getElementById('audio-files'));
 	const url = 'ajax/uploadaudio.php';
 	xhr.open("POST", url, true);
 
@@ -136,10 +156,5 @@ function displayStatus(status) {
 		document.querySelector('.status-container').classList.remove('show-status');
 		document.querySelector('.status-container').classList.add('hide-status');
 	}, 2000);
-}
 
-function handleNewFolderBox() {
-	addNewFolder([176, 'New folder']);
 }
-
-document.getElementById('new-folder-btn').addEventListener('click', handleNewFolderBox);
