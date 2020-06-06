@@ -158,7 +158,7 @@ function sortBy($name) {
 	<div>
 		<button class = "audio-option" onclick = "recordDirectly()">Record directly</button><br>
 		<button class = "stop-recording">Stop Recording</button>
-		<video autoplay></video>
+		<video style = "display:none" autoplay></video>
 		<input id = 'volume' type = 'range' min = '1' max = '10'>
 	</div>
 	<!-- Vertical line -->
@@ -172,6 +172,12 @@ function sortBy($name) {
 		<img height = "200" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
 		<progress style = 'display:none' value = "0" max = "100" id = 'upload-file-progress-bar'></progress>
 	</form>
+</div>
+<div class="filter-container">
+	<div class="folders">
+	</div>
+	<div class="files">
+	</div>
 </div>
 <div style = "display: none" class = "action-container rename-container">
 	<img src = "images/Exit.png">

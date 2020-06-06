@@ -52,6 +52,16 @@ body {
 	align-self: stretch;
 }
 
+.filter-container {
+	grid-row: 3;
+	grid-column: 3;
+	justify-self: stretch;
+	align-self: stretch;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 200px 200px 1fr;
+}
+
 .plus-container {
 	grid-row: 1;
 	grid-column: 3;
