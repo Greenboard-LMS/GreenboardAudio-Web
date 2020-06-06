@@ -67,6 +67,8 @@
 	align-items: center;
 }
 
+/** file-list-container */
+
 .file-list-container .flexbox {
 	padding: 0;
 	margin: 0;
@@ -184,6 +186,8 @@ input[type="file"] {
 	margin: 0 auto;
 }
 
+/** new-file-box-container */
+
 .new-file-box-container > div {
 	float: left;
 	display: flex;
@@ -232,4 +236,9 @@ input[type="file"] {
 	left: 275px;
 	height: 30px;
 	width: 40px;
+}
+
+.filter-container > .files, .filter-container > .folders {
+	align-self: center;
+	justify-self: left;
 }

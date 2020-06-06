@@ -41,3 +41,33 @@ function filterAudio(val) {
 		}
 	});
 }
+
+(function displayFilterSVGs() {
+	 function createSVG(i) {
+		 svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
+		 svg.setAttribute('width', 90);
+		 svg.setAttribute('height', 40);
+		 filters = ['Mine', 'Shared', 'All'];
+		 pentagon = document.createElementNS("http://www.w3.org/2000/svg", 'polygon');
+		 // <polygon points="230,50 250,30 300,30 300,70 250,70" style="fill:lime;stroke:purple;stroke-width:1" />
+		 pentagon.setAttribute('points', '0,20 20,0 90,0 90,40 20,40');
+		 pentagon.setAttribute('fill', 'lightblue');
+		 pentagon.setAttribute('stroke-width', 1);
+
+		 purpose = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+		 purpose.textContent = filters[i];
+		 purpose.setAttribute('x', '50%');
+		 purpose.setAttribute('y', '50%');
+		 purpose.setAttribute('text-anchor', 'middle')
+
+		 svg.appendChild(pentagon);
+		 svg.appendChild(purpose);
+		 return svg;
+	 }
+	 const filterContainerEl = document.querySelector('.filter-container');
+	 const childContainers = filterContainerEl.querySelectorAll('.files, .folders')
+	 childContainers.forEach((item, i) => {
+	 		for (let j = 0; j < 3; j++)
+				item.appendChild(createSVG(j));
+	 });
+})();
