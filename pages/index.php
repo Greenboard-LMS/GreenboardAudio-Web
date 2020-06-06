@@ -195,13 +195,13 @@ function sortBy($name) {
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "images/Exit.png">
-	<input type = "text" placeholder = "Insert recipient's email">
-	<input onclick = "shareFolder()" type = "button" value = "Share">
+	<input type = "text" id = "share-folder-email" placeholder = "Insert recipient's email">
+	<input onclick = "shareFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id)" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this folder? You will not be able to get it back.</p>
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
-	<input type = "button" value = "Delete" onclick = "deleteFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(20))">
+	<input type = "button" value = "Delete" onclick = "deleteFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(18))">
 </div>
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>

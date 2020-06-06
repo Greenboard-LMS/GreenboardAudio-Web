@@ -26,10 +26,11 @@ function deleteFolder(user_id, folder_id) {
 	actionFolder('delete', user_id, folder_id);
 }
 
-function shareFolder() {
-	actionFolder('share', user_id, folder_id, null, function() {
-
-	});
+function shareFolder(sender_id, folder_id) {
+	const emailInput = document.getElementById('share-folder-email');
+	const share_id = emailInput.parentElement.id.substring(17);
+	folder_id = folder_id.substring("share-folder-box-".length);
+	actionFolder('share', sender_id, folder_id, emailInput.value);
 }
 
 function renameFolder(user_id, folder_id) {

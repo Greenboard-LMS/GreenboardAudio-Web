@@ -2,7 +2,7 @@
 	require('../../flytrap_connect.inc.php');
 	session_start();
 
-	$q = "SELECT COUNT(*) FROM folders WHERE user_id = {$_SESSION['id']}";
+	$q = "SELECT COUNT(*) FROM folders";
 	$r = mysqli_query($dbc, $q);
 	$row = mysqli_fetch_array($r, MYSQLI_NUM);
 	$count = $row[0];
