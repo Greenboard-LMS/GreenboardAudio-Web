@@ -42,6 +42,22 @@ function filterAudio(val) {
 	});
 }
 
+function filterFolder(val) {
+	fetch('/ajax/filterfolder.php?val=' + val).then(response => {
+		if (response.status >= 200 && response.status < 300) {
+			return response.text();
+		}
+	}).then(response => {
+		return JSON.parse(response);
+	}).then(response => {
+		document.querySelector('.folders.flexbox').innerHTML = "";
+		window.filterResponse = response;
+		for (item in response) {
+			addNewFolder(response[item]);
+		}
+	});
+}
+
 (function displayFilterSVGs() {
 	 function createSVG(i) {
 		 svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
@@ -50,7 +66,7 @@ function filterAudio(val) {
 		 filters = ['Mine', 'Shared', 'All'];
 		 pentagon = document.createElementNS("http://www.w3.org/2000/svg", 'polygon');
 		 // <polygon points="230,50 250,30 300,30 300,70 250,70" style="fill:lime;stroke:purple;stroke-width:1" />
-		 pentagon.setAttribute('points', '0,20 20,0 90,0 90,40 20,40');
+		 pentagon.setAttribute('points', '10,20 20,0 90,0 90,40 20,40');
 		 pentagon.setAttribute('fill', 'lightblue');
 		 pentagon.setAttribute('stroke-width', 1);
 
@@ -67,7 +83,29 @@ function filterAudio(val) {
 	 const filterContainerEl = document.querySelector('.filter-container');
 	 const childContainers = filterContainerEl.querySelectorAll('.files, .folders')
 	 childContainers.forEach((item, i) => {
-	 		for (let j = 0; j < 3; j++)
-				item.appendChild(createSVG(j));
+	 		for (let j = 0; j < 3; j++) {
+				let mySVG = createSVG(j);
+				item.appendChild(mySVG);
+				mySVG.onclick = e => {
+					mySVG.querySelector('polygon').setAttribute('points', '0,20, 20,0, 90,0 90,40 20,40');
+					item.querySelectorAll("svg:not(:nth-child(" + (j + 1) + ")) > polygon").forEach((item, i) => {
+						item.setAttribute('points', '10,20 20,0 90,0 90,40 20,40');
+					});
+
+					let fileOrFolder = i == 1 ? "Audio" : "Folder";
+					fileOrFolder = "filter" + fileOrFolder;
+					switch(mySVG.querySelector('text').textContent) {
+						case "Mine":
+							window[fileOrFolder]('owned');
+							break;
+						case "Shared":
+							window[fileOrFolder]('shared');
+							break;
+						case "All":
+							window[fileOrFolder]('all');
+							break;
+					}
+				};
+			}
 	 });
 })();
