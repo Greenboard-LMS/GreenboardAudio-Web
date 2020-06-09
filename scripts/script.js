@@ -158,3 +158,55 @@ function displayStatus(status) {
 	}, 2000);
 
 }
+
+function onDragStart(event) {
+	event.dataTransfer.setData('text/plain', event.target.id);
+	event.currentTarget.style.backgroundColor = 'yellow';
+}
+
+function onDragOver(event) {
+  event.preventDefault();
+
+	if (event.target.getAttribute("draggable") == "true")
+		event.dataTransfer.dropEffect = "none"; // dropping is not allowed
+	else
+		event.dataTransfer.dropEffect = "all"; // drop it like it's hot
+}
+
+function onDrop(event) {
+  const id = event.dataTransfer.getData('text'); // Get id in text format
+	if (!id.includes('microphone-')) {
+		return;
+	}
+
+  const draggableElement = document.getElementById(id);
+  const dropzone = event.target.closest('li');
+	let newFolderID = dropzone.id.substring("folder-".length);
+	let fileID = draggableElement.parentElement.parentElement.id.substring("file-".length);
+	console.log("Folder ID: " + newFolderID + ", File ID: " + fileID)
+
+  dropzone.appendChild(draggableElement.parentElement.parentElement);
+
+  event.dataTransfer.clearData();
+
+	fetch("/ajax/movefolder.php", {
+	  method: "post",
+	  headers: {
+	    'Content-Type': 'application/x-www-form-urlencoded'
+	  },
+
+	  //make sure to serialize your JSON body
+	  body: `new_folder=${newFolderID}&file_id=${fileID}`
+	})
+	.then( (response) => {
+		if (response.status >= 200 && response.status < 300) {
+			return response.text();
+		}
+	}).then(response => {
+		window.displayStatus(response);
+	});
+}
+
+function onDragEnd(event) {
+	event.currentTarget.style.background = 'none';
+}

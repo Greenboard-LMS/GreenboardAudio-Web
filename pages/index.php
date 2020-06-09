@@ -59,7 +59,7 @@ function sortBy($name) {
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
 			$alphaid = alphaid($row['id'], false, 10);
-			echo "<li id = \"folder-{$row['id']}\">
+			echo "<li ondragover = 'onDragOver(event)' ondrop = 'onDrop(event)' id = \"folder-{$row['id']}\">
 			<a href = 'folders/$alphaid'>{$row['folder_name']}</a>
 			<div class = 'customize-btns'>
 				<button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
@@ -81,7 +81,7 @@ function sortBy($name) {
 			echo "
 			<li id = \"file-{$row['id']}\">
 				<a href = 'audio/$alphaid'>
-					<img src = 'images/microphone.png'>
+					<img id = \"microphone-{$row['id']}\" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = 'images/microphone.png'>
 					<p>{$row['file_name']}</p>
 				</a>
 				<div class = 'customize-btns'>
