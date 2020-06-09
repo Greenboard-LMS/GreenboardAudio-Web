@@ -25,16 +25,12 @@ require('search.html');
 		</svg>
 		<div class = "slider" style = "<?php echo isset($_GET['sortby']) ? 'left: 0px' : 'left: 18px'; ?>"></div>
 	</div>
-	<select onchange = "filterAudio(this.value)" id = 'filter-audio'>
-		<option value = "owned">My Audios</option>
-		<option value = "shared">Shared Audios</option>
-		<option value = "all">All Audios</option>
-	</select>
+
 	<button class = "new-button" id = 'new-audio-btn'>
 		<img id = 'new-audio-icon' src = 'images/NewAudio.png'>
 		<span>New Audio</span>
 	</button>
-	<button class = "new-button" id = 'new-folder-btn' onclick = "createNewFolder()">
+	<button class = "new-button" id = 'new-folder-btn' onclick = "createNewFolder(<?php echo $_SESSION['id']; ?>)">
 		<img id = 'new-folder-icon' src = "images/NewFolder.png">
 		<span>New Folder</span>
 	</button>
@@ -218,7 +214,7 @@ include('footer.html');
 <script src = "scripts/script.js"></script>
 <script src = "scripts/popupBox.js"></script>
 <script src = "scripts/filters.js"></script>
-<script src = "scripts/minified/media.min.js"></script>
+<script src = "scripts/media.js"></script>
 <script src = "scripts/inPopups.js"></script>
 <script src = "scripts/microphoneinput.js"></script>
 </body>

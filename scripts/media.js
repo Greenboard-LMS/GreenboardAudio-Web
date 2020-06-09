@@ -26,13 +26,6 @@ function handleMatch() {
 	if (window.matchMedia("(max-width: 460px)").matches) {
 		const container = document.querySelector('.new-media-btn-container');
 		container.style.display = "block";
-		container.appendChild(filterEl);
-	} else if (window.matchMedia("(max-width: 510px)").matches) {
-		const container = document.querySelector('.search-bar-container');
-		container.appendChild(filterEl);
-	} else {
-		const container = document.querySelector('.nav-container');
-		container.appendChild(filterEl);
 	}
 
 	const newButtonEls = document.querySelectorAll(".new-button");

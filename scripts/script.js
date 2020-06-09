@@ -30,7 +30,7 @@ function searchFlytrap(e) {
 	}
 }
 
-function createNewFolder() {
+function createNewFolder(user_id) {
 	fetch('/ajax/newfolder.php').then(response => {
 		if (response.status >= 200 && response.status < 300) {
 			return response.text();
@@ -39,7 +39,7 @@ function createNewFolder() {
 		if (response.length == 1) {
 			window.displayStatus(response[0]);
 		}
-		addNewFolder([{}, {afid: response[2], 0: response[1], 1: response[3]}])
+		addNewFolder({afid: response[2], 0: response[1], 1: response[3]});
 	});
 }
 
