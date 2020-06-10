@@ -137,7 +137,7 @@ div.customize-btns img.grey-circle {
 }
 
 .flexbox.folders li {
-	background-image: url('../images/Folder.png');
+	background-image: url('/images/Folder.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;

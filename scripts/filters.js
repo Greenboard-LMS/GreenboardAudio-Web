@@ -27,7 +27,8 @@ flexViewBtnEl.onclick = event => {
 };
 
 function filterAudio(val) {
-	fetch('/ajax/filteraudio.php?val=' + val).then(response => {
+	const folderid = window.location.href.includes("folder") ? "&folder_id=" + window.location.href.substring(window.location.href.length - 10) : "";
+	fetch('/ajax/filteraudio.php?val=' + val + folderid).then(response => {
 		if (response.status >= 200 && response.status < 300) {
 			return response.text();
 		}
@@ -43,7 +44,8 @@ function filterAudio(val) {
 }
 
 function filterFolder(val) {
-	fetch('/ajax/filterfolder.php?val=' + val).then(response => {
+	const parentid = window.location.href.includes("folder") ? "&parent_id=" + window.location.href.substring(window.location.href.length - 10) : "";
+	fetch('/ajax/filterfolder.php?val=' + val + parentid).then(response => {
 		if (response.status >= 200 && response.status < 300) {
 			return response.text();
 		}

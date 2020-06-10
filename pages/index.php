@@ -27,11 +27,11 @@ require('search.html');
 	</div>
 
 	<button class = "new-button" id = 'new-audio-btn'>
-		<img id = 'new-audio-icon' src = 'images/NewAudio.png'>
+		<img id = 'new-audio-icon' src = '/images/NewAudio.png'>
 		<span>New Audio</span>
 	</button>
 	<button class = "new-button" id = 'new-folder-btn' onclick = "createNewFolder(<?php echo $_SESSION['id']; ?>)">
-		<img id = 'new-folder-icon' src = "images/NewFolder.png">
+		<img id = 'new-folder-icon' src = "/images/NewFolder.png">
 		<span>New Folder</span>
 	</button>
 </div>
@@ -81,7 +81,7 @@ function sortBy($name) {
 			echo "
 			<li id = \"file-{$row['id']}\">
 				<a href = 'audio/$alphaid'>
-					<img id = \"microphone-{$row['id']}\" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = 'images/microphone.png'>
+					<img id = \"microphone-{$row['id']}\" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = '/imagesmicrophone.png'>
 					<p>{$row['file_name']}</p>
 				</a>
 				<div class = 'customize-btns'>
@@ -165,7 +165,7 @@ function sortBy($name) {
 	    <input multiple id = "audio-files" name = "file" type="file"/>
     	Upload mp3, wav, m4a
 		</label>
-		<img height = "200" id = 'upload-file-arrow' src = "images/UploadFileArrow.png">
+		<img height = "200" id = 'upload-file-arrow' src = "/images/UploadFileArrow.png">
 		<progress style = 'display:none' value = "0" max = "100" id = 'upload-file-progress-bar'></progress>
 	</form>
 </div>
@@ -176,12 +176,12 @@ function sortBy($name) {
 	</div>
 </div>
 <div style = "display: none" class = "action-container rename-container">
-	<img src = "images/Exit.png">
+	<img src = "/images/Exit.png">
 	<input type = "text" value = "">
 	<input type = "button" value = "Rename" onclick = "renameAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
 </div>
 <div style = "display: none" class = "action-container share-container">
-	<img src = "images/Exit.png">
+	<img src = "/images/Exit.png">
 	<input id = 'share-file-email' type = "text" placeholder = "Insert recipient's email">
 	<input onclick = "shareAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)" type = "button" value = "Share">
 </div>
@@ -191,12 +191,12 @@ function sortBy($name) {
 	<input type = "button" value = "Delete" onclick = "deleteAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(17))">
 </div>
 <div style = "display: none" class = "action-container rename-container">
-	<img src = "images/Exit.png">
+	<img src = "/images/Exit.png">
 	<input type = "text" value = "">
 	<input type = "button" value = "Rename" onclick = "renameFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
 </div>
 <div style = "display: none" class = "action-container share-container">
-	<img src = "images/Exit.png">
+	<img src = "/images/Exit.png">
 	<input type = "text" id = "share-folder-email" placeholder = "Insert recipient's email">
 	<input onclick = "shareFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id)" type = "button" value = "Share">
 </div>

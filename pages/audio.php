@@ -20,7 +20,7 @@ require('brand_header.html');
 
 <?php
 
-echo "<h1>" . $row['file_name'] . "</h1>";
+//echo "<h1>" . $row['file_name'] . "</h1>";
 
 ?>
 </div>
