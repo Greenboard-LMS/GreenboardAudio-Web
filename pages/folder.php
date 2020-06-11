@@ -7,7 +7,7 @@ require('uniqueid.php');
 $alphaid = $_GET['id'];
 $numid = @alphaid($_GET['id'], true, 10);
 
-$q = "SELECT id, folder_name FROM folders WHERE id = $numid";
+$q = "SELECT id, folder_name, parent_id FROM folders WHERE id = $numid";
 $r = mysqli_query($dbc, $q);
 $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
@@ -53,7 +53,20 @@ require('search.html');
 ?>
 </div>
 <div class = "map-container">
-<p>MAP COMING SOON!</p></div>
+	<a href = "<?php echo $row['parent_id'] != 0 ? @alphaID($row['parent_id'], false, 10) : '/'; ?>">Go to Parent Folder</a>
+	<figure class = 'move-to-parent-folder'>
+		<li id = "folder-<?php echo $row['parent_id']; ?>">
+			<figcaption>Move up a folder</figcaption>
+			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(event)" src = "/images/closedbox.png" height = "100">
+		</li>
+	</figure>
+	<figure class = 'move-to-root-folder'>
+		<li id = "folder-0">
+			<figcaption>Move to root folder</figcaption>
+			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(event)" src = "/images/closedbox.png" height = "100">
+		</li>
+	</figure>
+</div>
 <div class = "file-list-container">
 	<ul class = "folders flexbox">
 		<?php
@@ -61,7 +74,14 @@ require('search.html');
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
 			$alphaid = alphaid($row['id'], false, 10);
-			echo "<li><a href = 'folders/$alphaid'>{$row['folder_name']}</a></li>";
+			echo "<li ondragover = 'onDragOver(event)' ondrop = 'onDrop(event)' id = \"folder-{$row['id']}\">
+			<a href = '/folders/$alphaid'>{$row['folder_name']}</a>
+			<div class = 'customize-btns'>
+				<button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
+				<button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
+				<button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
+			</div>
+			</li>";
 		}
 		?>
 	</ul>
@@ -74,8 +94,8 @@ require('search.html');
 			$alphaid = alphaid($row['id'], false, 10);
 			echo "
 			<li id = \"file-{$row['id']}\">
-				<a href = '/audio/$alphaid'>
-					<img src = '/images/microphone.png'>
+				<a href = 'audio/$alphaid'>
+					<img id = \"microphone-{$row['id']}\" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = '/images/microphone.png'>
 					<p>{$row['file_name']}</p>
 				</a>
 				<div class = 'customize-btns'>

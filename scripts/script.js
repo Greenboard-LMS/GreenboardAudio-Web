@@ -176,36 +176,42 @@ function onDragOver(event) {
 
 function onDrop(event) {
   const id = event.dataTransfer.getData('text'); // Get id in text format
-	if (!id.includes('microphone-')) {
-		return;
+
+	if (id.includes('microphone-')) {
+		const draggableElement = document.getElementById(id);
+		const dropzone = event.target.closest('li');
+		let newFolderID = dropzone.id.substring("folder-".length);
+		let fileID = draggableElement.parentElement.parentElement.id.substring("file-".length);
+		console.log("Folder ID: " + newFolderID + ", File ID: " + fileID)
+
+		event.dataTransfer.clearData();
+		fetch("/ajax/movefolder.php", {
+			method: "post",
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+
+			//make sure to serialize your JSON body
+			body: `new_folder=${newFolderID}&file_id=${fileID}`
+		})
+		.then(response => {
+			if (response.status >= 200 && response.status < 300) {
+				return response.text();
+			}
+		}).then(response => {
+			window.displayStatus(response);
+		});
 	}
+}
 
-  const draggableElement = document.getElementById(id);
-  const dropzone = event.target.closest('li');
-	let newFolderID = dropzone.id.substring("folder-".length);
-	let fileID = draggableElement.parentElement.parentElement.id.substring("file-".length);
-	console.log("Folder ID: " + newFolderID + ", File ID: " + fileID)
+function moveDragOver(event) {
+	event.target.src='/images/openbox.png';
+	onDragOver(event);
+}
 
-  dropzone.appendChild(draggableElement.parentElement.parentElement);
-
-  event.dataTransfer.clearData();
-
-	fetch("/ajax/movefolder.php", {
-	  method: "post",
-	  headers: {
-	    'Content-Type': 'application/x-www-form-urlencoded'
-	  },
-
-	  //make sure to serialize your JSON body
-	  body: `new_folder=${newFolderID}&file_id=${fileID}`
-	})
-	.then( (response) => {
-		if (response.status >= 200 && response.status < 300) {
-			return response.text();
-		}
-	}).then(response => {
-		window.displayStatus(response);
-	});
+function moveDrop(event) {
+	event.target.src='/images/closedbox.png';
+	onDrop(event);
 }
 
 function onDragEnd(event) {

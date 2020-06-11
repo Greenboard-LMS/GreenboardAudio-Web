@@ -55,7 +55,7 @@ function sortBy($name) {
 		require_once('uniqueid.php');
 		# Retrieve folders for this user
 		require('../../flytrap_connect.inc.php');
-		$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']}";
+		$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']} AND parent_id = 0";
 		$r = mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
 			$alphaid = alphaid($row['id'], false, 10);
@@ -81,7 +81,7 @@ function sortBy($name) {
 			echo "
 			<li id = \"file-{$row['id']}\">
 				<a href = 'audio/$alphaid'>
-					<img id = \"microphone-{$row['id']}\" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = '/imagesmicrophone.png'>
+					<img id = \"microphone-{$row['id']}\" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = '/images/microphone.png'>
 					<p>{$row['file_name']}</p>
 				</a>
 				<div class = 'customize-btns'>
@@ -102,7 +102,7 @@ function sortBy($name) {
 		<tbody>
 			<?php
 			# Retrieve files for this user
-			$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']}";
+			$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']} AND parent_id = 0";
 			$q .= sortBy('folder_name');
 			$r = mysqli_query($dbc, $q);
 			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {

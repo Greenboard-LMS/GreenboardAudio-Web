@@ -2,8 +2,11 @@
 require('../../flytrap_connect.inc.php');
 session_start();
 
-$q = "UPDATE audio_files SET folder_id = {$_POST['new_folder']} WHERE id = {$_POST['file_id']}";
+$newloc = $_POST['new_folder'] != 0 ? $_POST['new_folder'] : "NULL"; // If the query parameter is 0, it indicates going to the root directory
+
+$q = "UPDATE audio_files SET folder_id = $newloc WHERE id = {$_POST['file_id']}";
 $r = mysqli_query($dbc, $q);
+
 if (mysqli_affected_rows($dbc) == 1) {
 	echo "<p class = 'success'>The folder was moved</p>";
 } else {
