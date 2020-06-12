@@ -116,23 +116,23 @@
 	overflow-wrap: anywhere;
 }
 
-.flexbox div.customize-btns {
+.customize-btns {
 	display: flex;
 	justify-content: center;
 	background: none;
 }
 
-.flexbox div.customize-btns img {
+.customize-btns img {
 	height: 20px;
 }
 
-.flexbox div.customize-btns button {
+.customize-btns button {
 	border: none;
 	outline: none;
 	background: none;
 }
 
-div.customize-btns img.grey-circle {
+.customize-btns img.grey-circle {
 	padding: 3px;
 }
 
@@ -155,7 +155,7 @@ div.customize-btns img.grey-circle {
 	margin-top: 3px;
 }
 
-.file-list-container img:first-child {
+.file-list-container ul.flexbox a img {
 	height: 100px;
 }
 

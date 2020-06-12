@@ -106,10 +106,16 @@ function sortBy($name) {
 			$q .= sortBy('folder_name');
 			$r = mysqli_query($dbc, $q);
 			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+				$alphaid = alphaID($row['id'], false, 10);
 				echo "
-				<tr>
-					<td>{$row['folder_name']}</td>
+				<tr id = \"folder-{$row['id']}\">
+					<td><a href = 'folders/$alphaid'>{$row['folder_name']}</a></td>
 					<td>{$row['time_created']}</td>
+					<td class = 'customize-btns'>
+						<button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
+						<button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
+						<button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
+					</td>
 				</tr>";
 			}
 			?>
@@ -129,10 +135,14 @@ function sortBy($name) {
 			$q .= sortBy('file_name');
 			$r = mysqli_query($dbc, $q);
 			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+				$alphaid = alphaID($row['id'], false, 10);
 				echo "
-				<tr>
-					<td>{$row['file_name']}</td>
+				<tr id = \"file-{$row['id']}\">
+					<td><a href = 'audio/$alphaid'>{$row['file_name']}</a></td>
 					<td>{$row['time_created']}</td>
+					<td class = 'customize-btns'>					<button class = 'rename-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
+										<button class = 'delete-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
+										<button class = 'share-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button></td>
 				</tr>";
 			}
 			?>

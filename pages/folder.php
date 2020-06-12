@@ -44,14 +44,14 @@ require('search.html');
 		<span>New Folder</span>
 	</button>
 </div>
-<div class = "metadata-container">
+<!-- <div class = "metadata-container">
 
 <?php
 
 //echo "<h1>" . $row['folder_name'] . "</h1>";
 
 ?>
-</div>
+</div> -->
 <div class = "map-container">
 	<a href = "<?php echo $row['parent_id'] != 0 ? @alphaID($row['parent_id'], false, 10) : '/'; ?>">Go to Parent Folder</a>
 	<figure class = 'move-to-parent-folder'>

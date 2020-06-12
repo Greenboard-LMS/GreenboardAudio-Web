@@ -12,6 +12,8 @@ function searchFlytrap(e) {
 	}).then(response => {
 		document.querySelector('.files.flexbox').innerHTML = "";
 		document.querySelector('.folders.flexbox').innerHTML = "";
+		document.querySelector('table.files tbody').innerHTML = "";
+		document.querySelector('table.folders tbody').innerHTML = "";
 		// Display the files that match the query
 		console.log("Add New File Data: ");
 		console.log(response[0])
@@ -46,6 +48,16 @@ function createNewFolder(user_id) {
 
 function addNewFolder(data) {
 	document.querySelector('.folders.flexbox').innerHTML += `<li id = \"folder-${data[0]}\"><a href = "/folders/${data['afid']}">${data[1]}</a><div class = 'customize-btns'><button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button><button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button><button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button></div></li>`;
+
+	document.querySelector('table.folders tbody').innerHTML += `<tr id = "folder-${data[0]}">
+		<td><a href = 'folders/${data["afid"]}'>${data['folder_name']}</a></td>
+		<td>${data['time_created']}</td>
+		<td class = 'customize-btns'>
+			<button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
+			<button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
+			<button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
+		</td>
+	</tr>`;
 	handleActionBox('share', 'folder');
 	handleActionBox('delete', 'folder');
 	handleActionBox('rename', 'folder');
@@ -53,6 +65,9 @@ function addNewFolder(data) {
 
 function addNewFile(data) {
 	document.querySelector('.files.flexbox').innerHTML += `<li id = 'file-${data[0]}'><a href = "/audio/${data['afid']}"><img src = '/images/microphone.png'><p>${data['file_name']}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/register.png"></button></div></li>`;
+
+	document.querySelector('table.files tbody').innerHTML += `<tr id = "file-${data[0]}"><td><a href = "audio/${data['afid']}">${data['file_name']}</a></td><td>${data['time_created']}</td><td class = 'customize-btns'><button class = 'rename-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button><button class = 'delete-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button><button class = 'share-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button></td>
+	</tr>`;
 	handleActionBox('share', 'audio');
 	handleActionBox('delete', 'audio');
 	handleNewFileBox();
@@ -110,7 +125,7 @@ function sendFiles(data) {
 	} else { // code for IE6, IE5
 		xhr = new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	const url = 'ajax/uploadaudio.php';
+	const url = '/ajax/uploadaudio.php';
 	xhr.open("POST", url, true);
 
 	// Send the proper header information along with the request
@@ -185,7 +200,7 @@ function onDrop(event) {
 		console.log("Folder ID: " + newFolderID + ", File ID: " + fileID)
 
 		event.dataTransfer.clearData();
-		fetch("/ajax/movefolder.php", {
+		fetch("/ajax/moveaudio.php", {
 			method: "post",
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
