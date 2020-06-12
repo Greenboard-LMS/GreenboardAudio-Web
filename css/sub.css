@@ -91,6 +91,7 @@
 
 .file-list-container > table td {
 	border-top: 1px solid black;
+	text-align: center;
 }
 
 .file-list-container > table th {
@@ -102,7 +103,7 @@
 	color: black;
 }
 
-.file-list-container li a {
+.file-list-container li {
 	font-size: 0.8rem;
 }
 
@@ -122,10 +123,6 @@
 	background: none;
 }
 
-.customize-btns img {
-	height: 20px;
-}
-
 .customize-btns button {
 	border: none;
 	outline: none;
@@ -134,6 +131,7 @@
 
 .customize-btns img.grey-circle {
 	padding: 3px;
+	height: 20px;
 }
 
 .flexbox.folders li {
@@ -155,7 +153,7 @@
 	margin-top: 3px;
 }
 
-.file-list-container ul.flexbox a img {
+.file-list-container img {
 	height: 100px;
 }
 

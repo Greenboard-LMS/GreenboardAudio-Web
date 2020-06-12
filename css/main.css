@@ -77,7 +77,7 @@ body {
 	display: none;
 }
 
-.new-file-box-container {
+.new-file-box-container, .change-id-container {
 	grid-row: 2 / 4;
 	grid-column: 2 / 3;
 	justify-self: stretch;
@@ -85,6 +85,11 @@ body {
 	border: 1px solid black;
 	background-color: white;
 	z-index: 2;
+}
+
+.change-id-container {
+	padding: 1em;
+	text-align: center;
 }
 
 .share-container, .delete-container, .rename-container {

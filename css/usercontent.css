@@ -10,6 +10,23 @@
 .map-container {
 	grid-row: 3;
 	grid-column: 1;
+	justify-self: left;
+	text-align: center;
+}
+
+.map-container button {
+	background-color: lightcoral;
+	outline: none;
+	border: none;
+	font-size: 1.5em;
+}
+
+.map-container button:hover {
+	background-color: hsl(0, 60%, 72%);
+}
+
+.map-container button:active {
+	background-color: hsl(0, 70%, 62%);
 }
 
 .file-list-container {
@@ -22,6 +39,10 @@
 	grid-row: 3;
 	grid-column: 2 / -1;
 	justify-self: center;
+}
+
+.change-id-container .file-list-container {
+	height: 60%;
 }
 
 figure > li {

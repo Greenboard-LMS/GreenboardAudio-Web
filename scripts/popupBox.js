@@ -53,7 +53,6 @@ function handleNewFileBox() {
     const imgEl = document.getElementById('upload-file-arrow');
     imgEl.className = "bounce";
   }
-
 }
 
 function toggleDisplay(display, opacity) {

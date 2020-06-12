@@ -98,6 +98,7 @@ function sortBy($name) {
 			<tr>
 				<th><a href = "?sortby=name">Name</a></th>
 				<th><a href = "?sortby=time">Date Created</a></th>
+				<th>Modify</th>
 		</thead>
 		<tbody>
 			<?php
@@ -126,6 +127,7 @@ function sortBy($name) {
 			<tr>
 				<th><a href = "?sortby=name">Name</a></th>
 				<th><a href = "?sortby=time">Date Created</a></th>
+				<th>Modify</th>
 			</tr>
 		</thead>
 		<tbody>

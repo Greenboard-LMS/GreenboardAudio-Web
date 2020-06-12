@@ -12,10 +12,10 @@ switch ($filter) {
 		$q = "SELECT id AS afid, file_name, time_created, user_id FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id $folderid";
 		break;
 	case "shared":
-		$q = "SELECT file_sharing.id, audio_files.file_name, audio_files.id, audio_files.time_created AS afid FROM file_sharing JOIN audio_files ON audio_files.id = file_sharing.file_id WHERE file_sharing.receiver_id = {$_SESSION['id']} AND file_sharing.folder_id $folderid";
+		$q = "SELECT file_sharing.id, audio_files.file_name, audio_files.id AS afid, audio_files.time_created FROM file_sharing JOIN audio_files ON audio_files.id = file_sharing.file_id WHERE file_sharing.receiver_id = {$_SESSION['id']} AND file_sharing.folder_id $folderid";
 		break;
 	case "all":
-		$q = "SELECT id, file_name, audio_files.id, audio_files.time_created AS afid FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id $folderid";
+		$q = "SELECT id, file_name, audio_files.id AS afid, audio_files.time_created FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id $folderid";
 		$q .= " UNION SELECT file_sharing.id, audio_files.file_name, audio_files.id AS afid, audio_files.time_created FROM file_sharing JOIN audio_files ON file_sharing.file_id = audio_files.id WHERE receiver_id = {$_SESSION['id']} AND file_sharing.folder_id $folderid";
 		break;
 }

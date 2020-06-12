@@ -66,6 +66,7 @@ require('search.html');
 			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(event)" src = "/images/closedbox.png" height = "100">
 		</li>
 	</figure>
+	<button class = "advanced-btn">Advanced >></button>
 </div>
 <div class = "file-list-container">
 	<ul class = "folders flexbox">
@@ -173,6 +174,35 @@ require('search.html');
 	<p>Are you sure you want to <strong>permanently</strong> delete this folder? You will not be able to get it back.</p>
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
 	<input type = "button" value = "Delete" onclick = "deleteFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(18))">
+</div>
+<div style = "display: none" class = "change-id-container">
+		<div class = "file-list-container" style = "overflow: auto">
+			<ul class = "folders flexbox">
+				<?php
+				$q = "SELECT id, folder_name, time_created FROM folders WHERE parent_id = $numid";
+				$r = mysqli_query($dbc, $q);
+				while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+					echo "<li id = \"folder-{$row['id']}\">{$row['folder_name']}</li>";
+				}
+				?>
+			</ul>
+			<ul class = "files flexbox">
+				<?php
+				$q = "SELECT id, file_name FROM audio_files WHERE folder_id = $numid";
+				$r = mysqli_query($dbc, $q);
+				while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
+					echo "
+					<li id = \"file-{$row['id']}\">
+						<img id = \"microphone-{$row['id']}\" src = '/images/microphone.png'>
+						<p>{$row['file_name']}</p>
+					</li>";
+				}
+				?>
+			</ul>
+		</div>
+		<p>Enter the id of the parent folder to which you would like the file or folder you would like to move. Leave it blank for root directory.</p>
+		<input type = "text" size = "50" value = "http://audio.bforborum.com/folders/">
+		<input type = "button" value = "Move" onclick = "moveAdvancedItem()">
 </div>
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>

@@ -200,23 +200,27 @@ function onDrop(event) {
 		console.log("Folder ID: " + newFolderID + ", File ID: " + fileID)
 
 		event.dataTransfer.clearData();
-		fetch("/ajax/moveaudio.php", {
-			method: "post",
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-
-			//make sure to serialize your JSON body
-			body: `new_folder=${newFolderID}&file_id=${fileID}`
-		})
-		.then(response => {
-			if (response.status >= 200 && response.status < 300) {
-				return response.text();
-			}
-		}).then(response => {
-			window.displayStatus(response);
-		});
+		moveFolder(newFolderID, fileID);
 	}
+}
+
+function moveFolder(newFolderID, fileID, convert = '0') {
+	fetch("/ajax/moveaudio.php", {
+		method: "post",
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+
+		//make sure to serialize your JSON body
+		body: `new_folder=${newFolderID}&file_id=${fileID}&convert=${convert}`
+	})
+	.then(response => {
+		if (response.status >= 200 && response.status < 300) {
+			return response.text();
+		}
+	}).then(response => {
+		window.displayStatus(response);
+	});
 }
 
 function moveDragOver(event) {
@@ -231,4 +235,74 @@ function moveDrop(event) {
 
 function onDragEnd(event) {
 	event.currentTarget.style.background = 'none';
+}
+
+
+showBoxBtnEl = document.getElementsByClassName('advanced-btn')[0];
+const advancedMoveBox = document.getElementsByClassName('change-id-container')[0];
+handleAdvancedMoveItem();
+function handleAdvancedMoveItem() {
+	let isDisabled = false;
+	const isVisible = elem => !!elem && !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length); // source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js
+
+	if (!showBoxBtnEl || !advancedMoveBox) return;
+
+	showBoxBtnEl.addEventListener('click', showBox);
+	advancedMoveBox.querySelectorAll('.file-list-container ul li').forEach((item, i) => {
+		item.onclick = e => {
+			item.style.outline = item.style.outline == "black solid 3px" ? "none" : "3px solid black";
+			item.classList.add("selected");
+		};
+	});
+
+
+	function showBox() {
+		if (!isDisabled) {
+			event.preventDefault();
+			event.stopPropagation();
+			toggleDisplay2("block", 0.5);
+			toggleDisabled2(true);
+			advancedMoveBox.querySelector('input').value = "http://audio.bforborum.com/folders/";
+			document.addEventListener('click', outsideClickListener);
+		}
+	}
+
+	function outsideClickListener(event) {
+		if (!advancedMoveBox.contains(event.target) && isVisible(advancedMoveBox)) { // or use: event.target.closest(selector) === null
+			toggleDisplay2("none", 1);
+			toggleDisabled2(false);
+			document.removeEventListener('click', outsideClickListener);
+		}
+	}
+
+}
+
+function toggleDisplay2(display, opacity) {
+	document.querySelectorAll('.grid > div:not(.change-id-container)').forEach((item, i) => {
+		item.style.opacity = opacity;
+	});
+	advancedMoveBox.style.display = display;
+}
+
+function toggleDisabled2(bool) {
+	showBoxBtnEl.attributes.disabled = bool;
+	isDisabled = bool;
+}
+
+function moveAdvancedItem() {
+	const selectedFilesEls = document.querySelectorAll('.change-id-container .file-list-container .files .selected');
+	let newFolderID = document.querySelector('.change-id-container input').value.substring('http://audio.bforborum.com/folders/'.length);
+	let convertID = 3;
+	if (newFolderID == "") {
+		newFolderID = 0;
+		convertID = 0;
+	}
+	selectedFilesEls.forEach((item, i) => {
+		let fileID = item.id.substring('file-'.length);
+		moveFolder(newFolderID, fileID, convertID);
+	});
+
+	document.querySelector('.change-id-container').style.display = "none";
+	toggleDisplay2('none', 1);
+	toggleDisabled2(false);
 }
