@@ -6,7 +6,6 @@ handleActionBox('rename', 'audio');
 handleActionBox('share', 'folder');
 handleActionBox('delete', 'folder');
 handleActionBox('rename', 'folder');
-handleNewFileBox();
 
 function handleActionBox(actionName, mediaType) {
   const actionBoxEl = document.getElementsByClassName(actionName + '-container')[mediaType == 'audio' ? 0 : 1];

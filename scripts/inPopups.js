@@ -1,3 +1,4 @@
+handleNewFileBox();
 function actionAudioFile(action, user_id, audio_id, new_name = '', callback = function(response) {}) {
 	fetch(`/ajax/${action}audio.php?user_id=${user_id}&audio_id=${audio_id}&new_name=${new_name}`, {method: 'get'}).then(response => {
 		if (response.status >= 200 && response.status < 300) {

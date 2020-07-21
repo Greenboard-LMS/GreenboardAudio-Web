@@ -70,7 +70,6 @@ function addNewFile(data) {
 	</tr>`;
 	handleActionBox('share', 'audio');
 	handleActionBox('delete', 'audio');
-	handleNewFileBox();
 	handleActionBox('rename', 'audio');
 }
 

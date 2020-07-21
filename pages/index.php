@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(0, '/', '.bforborum.com');
 session_start();
 header('Cache-control: max-age='.(60*60*24*365));
 if(!isset($_SESSION['id'])) {
@@ -229,5 +230,6 @@ include('footer.html');
 <script src = "scripts/media.js"></script>
 <script src = "scripts/inPopups.js"></script>
 <script src = "scripts/microphoneinput.js"></script>
+<script src = "scripts/secure.js"></script>
 </body>
 </html>
