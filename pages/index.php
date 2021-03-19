@@ -74,28 +74,7 @@ function sortBy($name) {
 		}
 		?>
 	</ul>
-	<ul class = "files flexbox" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>">
-		<?php
-		# Retrieve files for this user
-		$q = "SELECT id, time_created, file_name FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
-		$r = mysqli_query($dbc, $q);
-		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-
-			$alphaid = alphaid($row['id'], false, 10);
-			echo "
-			<li id = \"file-{$row['id']}\">
-				<a href = 'audio/$alphaid'>
-					<img id = \"microphone-{$row['id']}\" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = '/images/microphone.png'>
-					<p>{$row['file_name']}</p>
-				</a>
-				<div class = 'customize-btns'>
-					<button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
-					<button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
-					<button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button>
-				</div>
-			</li>";
-		}
-		?>
+	<ul class = "files flexbox" onload="getFolderAudioFiles()" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>">
 	</ul>
 	<table style = "<?php echo isset($_GET['sortby']) ? 'display:block' : 'display:none'; ?>" class = "folders">
 		<thead>
