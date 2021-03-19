@@ -2,6 +2,9 @@
 session_set_cookie_params(0, '/', '.bforborum.com');
 session_start();
 header('Cache-control: max-age='.(60*60*24*365));
+
+$_SESSION['id'] = 6;
+
 if(!isset($_SESSION['id'])) {
 	require('notloggedin.html');
 	exit();
@@ -63,9 +66,9 @@ function sortBy($name) {
 			echo "<li ondragover = 'onDragOver(event)' ondrop = 'onDrop(event)' id = \"folder-{$row['id']}\">
 			<a href = 'folders/$alphaid'>{$row['folder_name']}</a>
 			<div class = 'customize-btns'>
-				<button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
-				<button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
-				<button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
+				<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
+				<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
+				<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button>
 			</div>
 			</li>";
 		}
@@ -86,9 +89,9 @@ function sortBy($name) {
 					<p>{$row['file_name']}</p>
 				</a>
 				<div class = 'customize-btns'>
-					<button class = 'rename-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
-					<button class = 'delete-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
-					<button class = 'share-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
+					<button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
+					<button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
+					<button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button>
 				</div>
 			</li>";
 		}
@@ -114,9 +117,9 @@ function sortBy($name) {
 					<td><a href = 'folders/$alphaid'>{$row['folder_name']}</a></td>
 					<td>{$row['time_created']}</td>
 					<td class = 'customize-btns'>
-						<button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
-						<button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
-						<button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
+						<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
+						<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
+						<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button>
 					</td>
 				</tr>";
 			}
@@ -143,9 +146,9 @@ function sortBy($name) {
 				<tr id = \"file-{$row['id']}\">
 					<td><a href = 'audio/$alphaid'>{$row['file_name']}</a></td>
 					<td>{$row['time_created']}</td>
-					<td class = 'customize-btns'>					<button class = 'rename-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
-										<button class = 'delete-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
-										<button class = 'share-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button></td>
+					<td class = 'customize-btns'>					<button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
+										<button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
+										<button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button></td>
 				</tr>";
 			}
 			?>

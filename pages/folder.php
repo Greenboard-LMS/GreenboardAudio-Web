@@ -78,9 +78,9 @@ require('search.html');
 			echo "<li ondragover = 'onDragOver(event)' ondrop = 'onDrop(event)' id = \"folder-{$row['id']}\">
 			<a href = '/folders/$alphaid'>{$row['folder_name']}</a>
 			<div class = 'customize-btns'>
-				<button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
-				<button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
-				<button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
+				<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
+				<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
+				<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button>
 			</div>
 			</li>";
 		}
@@ -100,9 +100,9 @@ require('search.html');
 					<p>{$row['file_name']}</p>
 				</a>
 				<div class = 'customize-btns'>
-					<button class = 'rename-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
-					<button class = 'delete-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
-					<button class = 'share-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
+					<button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
+					<button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
+					<button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button>
 				</div>
 			</li>";
 		}
@@ -201,7 +201,7 @@ require('search.html');
 			</ul>
 		</div>
 		<p>Enter the id of the parent folder to which you would like the file or folder you would like to move. Leave it blank for root directory.</p>
-		<input type = "text" size = "50" value = "http://audio.bforborum.com/folders/">
+		<input type = "text" size = "50" value = "https://audio.bforborum.com/folders/">
 		<input type = "button" value = "Move" onclick = "moveAdvancedItem()">
 </div>
 <div class = "new-media-btn-container"></div>

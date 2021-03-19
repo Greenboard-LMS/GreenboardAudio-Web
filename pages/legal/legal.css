@@ -4,11 +4,10 @@ html, body { height: calc(100% - 12px); overflow: hidden; font-family: sans-seri
 	margin-top: 10px;
 }
 
-ul {
+.legal-document-content {
 	border-radius: 10px;
 	line-height: 2em;
 	height: 70%;
-	background-color: lightcoral;
 	padding: 1em;
 	list-style-type: '- ';
 }

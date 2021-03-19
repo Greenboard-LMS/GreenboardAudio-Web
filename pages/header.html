@@ -1,24 +1,38 @@
 <?php
 if (session_id() == "")
-		session_start();
+	session_start();
+
+/* if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+	$location = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	header('HTTP/1.1 301 Moved Permanently');
+	header('Location: ' . $location);
+	exit;
+} */
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="description" content="A free audio cloud-based service">
-		<meta name="keywords" content="private,audio,cloud,Borum,free,Flytrap">
-		<meta name="author" content="Varun Singh">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8" />
+		<meta name="description" content="A free audio cloud-based service" />
+		<meta
+			name="keywords"
+			content="private,audio,cloud,Borum,free,Flytrap"
+		/>
+		<meta name="author" content="Varun Singh" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<link href = "/css/rip.css" rel = "stylesheet" type = "text/css">
-		<link href = "/css/animations.css" rel = "stylesheet" type = "text/css">
-		<link href = "/css/sub.css" rel = "stylesheet" type = "text/css">
-		<link href = "/css/style.css" rel = "stylesheet" type = "text/css">
-		<link href = "/css/main.css" rel = "stylesheet" type = "text/css">
+		<link href="/css/rip.css" rel="stylesheet" type="text/css" />
+		<link href="/css/animations.css" rel="stylesheet" type="text/css" />
+		<link href="/css/sub.css" rel="stylesheet" type="text/css" />
+		<link href="/css/style.css" rel="stylesheet" type="text/css" />
+		<link href="/css/main.css" rel="stylesheet" type="text/css" />
 		<?php echo isset($css) ? $css : ''; ?>
-		<link href = "/images/icon.png" rel = "shortcut icon" type = "image/x-icon">
+		<link href="/images/icon.png" rel="shortcut icon" type="image/x-icon" />
 		<title><?php echo $page_title ?></title>
-		<script type="text/javascript" src="/bower_components/crypto-js/crypto-js.js"></script>
+		<script
+			type="text/javascript"
+			src="/bower_components/crypto-js/crypto-js.js"
+		></script>
 	</head>
-	<body>
+	<body></body>
+</html>

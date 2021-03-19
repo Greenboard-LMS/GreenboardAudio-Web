@@ -9,7 +9,7 @@
 	$r = mysqli_query($dbc, $q);
 
 	if (mysqli_affected_rows($dbc) != 1) {
-		echo ["<p class = 'failure'>Error: The folder could not be added. Please try again.</p>"];
+		echo ["data" => "<p class = 'failure'>Error: The folder could not be added. Please try again.</p>"];
 	} else {
 		$q = "SELECT id FROM folders ORDER BY id DESC LIMIT 1";
 		$r = mysqli_query($dbc, $q);

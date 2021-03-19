@@ -1,16 +1,16 @@
 let w;
-function connectToBorum() {
+function connectToBorum(name='Flytrap') {
   w = window.open(
-    "http://www.bforborum.com/Login",
+    "https://forum.bforborum.com/Login",
     "MsgWindow",
     "width=500,height=600"
   );
   window.addEventListener(
     "message",
     function (event) {
-      if (event.origin !== "http://www.bforborum.com") return;
+      if (event.origin !== "https://forum.bforborum.com") return;
       console.log(event.data);
-      performLoginWithBorum(event);
+      performLoginWithBorum(event, name);
     },
     false
   );
@@ -19,12 +19,12 @@ function connectToBorum() {
   };
 }
 
-function performLoginWithBorum(event) {
+function performLoginWithBorum(event, name) {
   try {
     setTimeout(function () {
       window.location.href = "/";
     }, 1000);
   } catch (e) {
-    alert("You could not be logged in to Flytrap because of a system error.");
+    alert(`You could not be logged in to ${name} because of a system error.`);
   }
 }

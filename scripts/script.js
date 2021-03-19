@@ -47,15 +47,15 @@ function createNewFolder(user_id) {
 }
 
 function addNewFolder(data) {
-	document.querySelector('.folders.flexbox').innerHTML += `<li id = \"folder-${data[0]}\"><a href = "/folders/${data['afid']}">${data[1]}</a><div class = 'customize-btns'><button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button><button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button><button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button></div></li>`;
+	document.querySelector('.folders.flexbox').innerHTML += `<li id = \"folder-${data[0]}\"><a href = "/folders/${data['afid']}">${data[1]}</a><div class = 'customize-btns'><button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button><button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button><button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button></div></li>`;
 
 	document.querySelector('table.folders tbody').innerHTML += `<tr id = "folder-${data[0]}">
 		<td><a href = 'folders/${data["afid"]}'>${data['folder_name']}</a></td>
 		<td>${data['time_created']}</td>
 		<td class = 'customize-btns'>
-			<button class = 'rename-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button>
-			<button class = 'delete-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button>
-			<button class = 'share-folder'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button>
+			<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
+			<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
+			<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button>
 		</td>
 	</tr>`;
 	handleActionBox('share', 'folder');
@@ -64,9 +64,9 @@ function addNewFolder(data) {
 }
 
 function addNewFile(data) {
-	document.querySelector('.files.flexbox').innerHTML += `<li id = 'file-${data[0]}'><a href = "/audio/${data['afid']}"><img src = '/images/microphone.png'><p>${data['file_name']}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="http://cdn.bforborum.com/images/register.png"></button></div></li>`;
+	document.querySelector('.files.flexbox').innerHTML += `<li id = 'file-${data[0]}'><a href = "/audio/${data['afid']}"><img src = '/images/microphone.png'><p>${data['file_name']}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="https://cdn.bforborum.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="https://cdn.bforborum.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="https://cdn.bforborum.com/images/register.png"></button></div></li>`;
 
-	document.querySelector('table.files tbody').innerHTML += `<tr id = "file-${data[0]}"><td><a href = "audio/${data['afid']}">${data['file_name']}</a></td><td>${data['time_created']}</td><td class = 'customize-btns'><button class = 'rename-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Edit.png'></button><button class = 'delete-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/Delete.png'></button><button class = 'share-audio'><img class = 'grey-circle' src = 'http://cdn.bforborum.com/images/register.png'></button></td>
+	document.querySelector('table.files tbody').innerHTML += `<tr id = "file-${data[0]}"><td><a href = "audio/${data['afid']}">${data['file_name']}</a></td><td>${data['time_created']}</td><td class = 'customize-btns'><button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button><button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button><button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button></td>
 	</tr>`;
 	handleActionBox('share', 'audio');
 	handleActionBox('delete', 'audio');
@@ -261,7 +261,7 @@ function handleAdvancedMoveItem() {
 			event.stopPropagation();
 			toggleDisplay2("block", 0.5);
 			toggleDisabled2(true);
-			advancedMoveBox.querySelector('input').value = "http://audio.bforborum.com/folders/";
+			advancedMoveBox.querySelector('input').value = "https://audio.bforborum.com/folders/";
 			document.addEventListener('click', outsideClickListener);
 		}
 	}
@@ -290,7 +290,7 @@ function toggleDisabled2(bool) {
 
 function moveAdvancedItem() {
 	const selectedFilesEls = document.querySelectorAll('.change-id-container .file-list-container .files .selected');
-	let newFolderID = document.querySelector('.change-id-container input').value.substring('http://audio.bforborum.com/folders/'.length);
+	let newFolderID = document.querySelector('.change-id-container input').value.substring('https://audio.bforborum.com/folders/'.length);
 	let convertID = 3;
 	if (newFolderID == "") {
 		newFolderID = 0;
@@ -304,4 +304,13 @@ function moveAdvancedItem() {
 	document.querySelector('.change-id-container').style.display = "none";
 	toggleDisplay2('none', 1);
 	toggleDisabled2(false);
+}
+
+function getFolderAudioFiles() {
+	fetch("https://api.audio.bforborum.com/v1/folder?folder_id=").then(response => {
+		if (response.ok) return response.json()
+	}).then(response => {
+		const { data } = response;
+		
+	})
 }

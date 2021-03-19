@@ -23,7 +23,7 @@ switch ($filter) {
 $r = mysqli_query($dbc, $q);
 $encoded = [];
 while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-		$row['afid'] = @alphaid($row['afid'], false, 10);
+	$row['afid'] = @alphaid($row['afid'], false, 10);
     array_push($encoded, $row);
 }
 echo json_encode($encoded);
