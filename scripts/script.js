@@ -375,7 +375,7 @@ function getFolderAudioFiles(userApiKey) {
 		.then(response => {
 			for (const audio of response.data) {
 				const audioListItem = `<li id = "file-${audio.id}">
-					<a href = '/audio/$alphaid'>
+					<a href = 'audio/${audio.alphaId}'>
 						<img id = "microphone-${audio.id}" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = '/images/microphone.png'>
 						<p>${audio.file_name}</p>
 					</a>
