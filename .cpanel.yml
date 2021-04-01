@@ -1,4 +1,4 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/libuc6kfb0jg/Flytrap/Flytrap-Web/
+    - export DEPLOYPATH=/home/libuc6kfb0jg/Flytrap/Flytrap-Web/
