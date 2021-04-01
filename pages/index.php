@@ -1,17 +1,19 @@
 <?php
-session_set_cookie_params(0, '/', '.bforborum.com');
+session_set_cookie_params(0, '/', '.borumtech.com');
 session_start();
-header('Cache-control: max-age='.(60*60*24*365));
 
 $_SESSION['id'] = 6;
+$_SESSION['userApiKey'] = "f590aaf962d6460fb0218dbf270f1877";
 
 if(!isset($_SESSION['id'])) {
 	require('notloggedin.html');
 	exit();
 }
+
 $page_title = "My Flytrap";
 require('brand_header.html');
 require('search.html');
+
 ?>
 <div class = "nav-container">
 	<div id = 'filter-view'>
@@ -66,15 +68,15 @@ function sortBy($name) {
 			echo "<li ondragover = 'onDragOver(event)' ondrop = 'onDrop(event)' id = \"folder-{$row['id']}\">
 			<a href = 'folders/$alphaid'>{$row['folder_name']}</a>
 			<div class = 'customize-btns'>
-				<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
-				<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
-				<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button>
+				<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
+				<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button>
+				<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button>
 			</div>
 			</li>";
 		}
 		?>
 	</ul>
-	<ul class = "files flexbox" onload="getFolderAudioFiles()" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>">
+	<ul class = "files flexbox" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>">
 	</ul>
 	<table style = "<?php echo isset($_GET['sortby']) ? 'display:block' : 'display:none'; ?>" class = "folders">
 		<thead>
@@ -96,9 +98,9 @@ function sortBy($name) {
 					<td><a href = 'folders/$alphaid'>{$row['folder_name']}</a></td>
 					<td>{$row['time_created']}</td>
 					<td class = 'customize-btns'>
-						<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
-						<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
-						<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button>
+						<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
+						<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button>
+						<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button>
 					</td>
 				</tr>";
 			}
@@ -125,9 +127,9 @@ function sortBy($name) {
 				<tr id = \"file-{$row['id']}\">
 					<td><a href = 'audio/$alphaid'>{$row['file_name']}</a></td>
 					<td>{$row['time_created']}</td>
-					<td class = 'customize-btns'>					<button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Edit.png'></button>
-										<button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/Delete.png'></button>
-										<button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.bforborum.com/images/register.png'></button></td>
+					<td class = 'customize-btns'>					<button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
+										<button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button>
+										<button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button></td>
 				</tr>";
 			}
 			?>
@@ -213,5 +215,12 @@ include('footer.html');
 <script src = "scripts/inPopups.js"></script>
 <script src = "scripts/microphoneinput.js"></script>
 <script src = "scripts/secure.js"></script>
+
+<?php 
+
+echo "<script>getFolderAudioFiles('" . $_SESSION["userApiKey"] . "');</script>";
+
+?>
+
 </body>
 </html>

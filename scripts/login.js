@@ -1,14 +1,14 @@
 let w;
 function connectToBorum(name='Flytrap') {
   w = window.open(
-    "https://forum.bforborum.com/Login",
+    "https://forum.borumtech.com/Login",
     "MsgWindow",
     "width=500,height=600"
   );
   window.addEventListener(
     "message",
     function (event) {
-      if (event.origin !== "https://forum.bforborum.com") return;
+      if (event.origin !== "https://forum.borumtech.com") return;
       console.log(event.data);
       performLoginWithBorum(event, name);
     },

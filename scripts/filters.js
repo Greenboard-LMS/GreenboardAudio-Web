@@ -42,7 +42,7 @@ function filterAudio(val) {
 			addNewFile(response[item]);
 		}
 	});
-}
+};
 
 function filterFolder(val) {
 	const parentid = window.location.href.includes("folder") ? "&parent_id=" + window.location.href.substring(window.location.href.length - 10) : "";

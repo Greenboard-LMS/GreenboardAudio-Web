@@ -16,20 +16,42 @@ Flytrap is named after the [Venus Flytrap](https://en.wikipedia.org/wiki/Venus_f
 
 ## Usage
 
-To use this project, go to https://audio.bforborum.com
-
-## Getting Started
-
-To use this projec
+To use this project, go to https://audio.borumtech.com
 
 ## Installation
 
-Install XAMPP, WAMPP, AAMPP, or LAMPP or manually download Apache, MySQL, and PHP. Then, start the web server and open `localhost` in your browser.
+The Flytrap Web app is a lightweight PHP application that only requires a web server and a few tools that are strictly for development. PHP is used for the front-end and the back-end, pure CSS is used for styling, and JavaScript is used for API requests, interactivity, and a little bit of responsiveness. 
+
+In order to run this project locally and see changes, you need to install the following prerequisites:
+
+- The uglifyjs-folder package
+
+uglifyjs-folder is an NPM package meant for minifying the JavaScript files. To install it, run `npm i uglifyjs-folder -g`.
+
+_Note: The -g flag is necessary because this is not a Node project, and the JavaScript is run directly in the browser_
+
+- Install XAMPP, WAMPP, AAMPP, or LAMPP or manually download Apache, MySQL, and PHP. Then, start the web server and open `localhost` in your browser. You may have to update the DocumentRoot in the httpd.conf file
+
+## Built With
+
+- PHP - the main scripting language used for content and server-side scripting
+
+- JavaScript - another scripting language used for interactivity and API requests
+
+- VSCode - the IDE used
+
+- uglifyjs-folder - NPM package for minifying JavaScript `scripts/` folder
 
 ## Contributing
 
-Thanks for considering contributing to Flytrap! This project uses PHP for the front-end and back-end and CSS for styling. To start contributing, fork and clone the project.
+Thanks for considering contributing to Flytrap! To start contributing, fork and clone the project.
 
 `git clone https://github.com/Borumer/Flytrap`
 
-Copyright 2020 Borum Tech
+Then follow the [Installation](#Installation) steps outlined above.
+
+## Author
+
+I, Varun Singh, started this project, engineered the REST API, designed the logo, wrote the scripts, and own the domain on which the site is deployed. Flytrap is part of the Borum Family of Products
+
+Copyright 2021 Borum Tech
