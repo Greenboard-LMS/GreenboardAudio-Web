@@ -302,10 +302,10 @@ function handleAdvancedMoveItem() {
 			};
 		});
 
-	function showBox() {
+	function showBox(e) {
 		if (!isDisabled) {
-			event.preventDefault();
-			event.stopPropagation();
+			e.preventDefault();
+			e.stopPropagation();
 			toggleDisplay2("block", 0.5);
 			toggleDisabled2(true);
 			advancedMoveBox.querySelector("input").value =
@@ -387,6 +387,7 @@ function getFolderAudioFiles(userApiKey) {
 				</li>`;
 
 				document.querySelector('.files.flexbox').innerHTML += audioListItem;
+				handleAllAudioBoxes();
 			}
 		})
 		.catch(response => {

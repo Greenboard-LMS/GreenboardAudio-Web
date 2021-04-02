@@ -175,7 +175,7 @@ function sortBy($name) {
 <div style = "display: none" class = "action-container rename-container">
 	<img src = "/images/Exit.png">
 	<input type = "text" value = "">
-	<input type = "button" value = "Rename" onclick = "renameAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
+	<input type = "button" value = "Rename" onclick = "renameAudioFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)">
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">
