@@ -2,16 +2,8 @@
 session_start();
 
 require('../../flytrap_connect.inc.php');
-require('uniqueid.php');
 
-$alphaid = $_GET['id'];
-$numid = @alphaid($_GET['id'], true, 10);
-
-$q = "SELECT id, folder_name, parent_id FROM folders WHERE id = $numid";
-$r = mysqli_query($dbc, $q);
-$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
-
-$page_title = "{$row['folder_name']} | Flytrap";
+$page_title = "Flytrap";
 $css = "<link href = '/css/usercontent.css' rel = 'stylesheet' type = 'text/css'>";
 
 require('brand_header.html');
@@ -39,7 +31,7 @@ require('search.html');
 		<img id = 'new-audio-icon' src = '/images/NewAudio.png'>
 		<span>New Audio</span>
 	</button>
-	<button class = "new-button" id = 'new-folder-btn' onclick = "createNewFolder(<?php echo $_SESSION['id']; ?>)">
+	<button class = "new-button" id = 'new-folder-btn' onclick = "createNewFolder(<?php echo $_SESSION['userApiKey']; ?>)">
 		<img id = 'new-folder-icon' src = "/images/NewFolder.png">
 		<span>New Folder</span>
 	</button>
@@ -69,45 +61,8 @@ require('search.html');
 	<button class = "advanced-btn">Advanced >></button>
 </div>
 <div class = "file-list-container">
-	<ul class = "folders flexbox">
-		<?php
-		$q = "SELECT id, folder_name, time_created FROM folders WHERE parent_id = $numid";
-		$r = mysqli_query($dbc, $q);
-		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-			$alphaid = alphaid($row['id'], false, 10);
-			echo "<li ondragover = 'onDragOver(event)' ondrop = 'onDrop(event)' id = \"folder-{$row['id']}\">
-			<a href = '/folders/$alphaid'>{$row['folder_name']}</a>
-			<div class = 'customize-btns'>
-				<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
-				<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button>
-				<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button>
-			</div>
-			</li>";
-		}
-		?>
-	</ul>
-	<ul class = "files flexbox">
-		<?php
-		$q = "SELECT id, file_name FROM audio_files WHERE folder_id = $numid";
-		$r = mysqli_query($dbc, $q);
-		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-
-			$alphaid = alphaid($row['id'], false, 10);
-			echo "
-			<li id = \"file-{$row['id']}\">
-				<a href = 'audio/$alphaid'>
-					<img id = \"microphone-{$row['id']}\" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = '/images/microphone.png'>
-					<p>{$row['file_name']}</p>
-				</a>
-				<div class = 'customize-btns'>
-					<button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
-					<button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button>
-					<button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button>
-				</div>
-			</li>";
-		}
-		?>
-	</ul>
+	<ul class = "folders flexbox"></ul>
+	<ul class = "files flexbox"></ul>
 </div>
 <div class = "plus-container">
 	<a id = "add-audio">+</a>
@@ -177,28 +132,8 @@ require('search.html');
 </div>
 <div style = "display: none" class = "change-id-container">
 		<div class = "file-list-container" style = "overflow: auto">
-			<ul class = "folders flexbox">
-				<?php
-				$q = "SELECT id, folder_name, time_created FROM folders WHERE parent_id = $numid";
-				$r = mysqli_query($dbc, $q);
-				while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-					echo "<li id = \"folder-{$row['id']}\">{$row['folder_name']}</li>";
-				}
-				?>
-			</ul>
-			<ul class = "files flexbox">
-				<?php
-				$q = "SELECT id, file_name FROM audio_files WHERE folder_id = $numid";
-				$r = mysqli_query($dbc, $q);
-				while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-					echo "
-					<li id = \"file-{$row['id']}\">
-						<img id = \"microphone-{$row['id']}\" src = '/images/microphone.png'>
-						<p>{$row['file_name']}</p>
-					</li>";
-				}
-				?>
-			</ul>
+			<ul class = "folders flexbox"></ul>
+			<ul class = "files flexbox"></ul>
 		</div>
 		<p>Enter the id of the parent folder to which you would like the file or folder you would like to move. Leave it blank for root directory.</p>
 		<input type = "text" size = "50" value = "https://audio.borumtech.com/folders/">
@@ -212,5 +147,13 @@ require('search.html');
 <script src = "../scripts/media.js"></script>
 <script src = "../scripts/inPopups.js"></script>
 <script src = "../scripts/microphoneinput.js"></script>
+<script src = "../scripts/requests.js"></script>
+
+<?php 
+echo "<script>
+getAndDisplayFolderElements('" . $_SESSION["userApiKey"] . "', '" . $_GET['id'] . "');
+</script>"
+
+?>
 </body>
 </html>

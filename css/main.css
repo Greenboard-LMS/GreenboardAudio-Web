@@ -109,6 +109,10 @@ body {
 	height: 45px;
 }
 
+.error.status-container {
+	background-color: rgb(243, 130, 111);
+}
+
 @media only screen and (max-width: 767px) {
 	.grid {
 		grid-template-columns: 150px auto 80px 10px;
@@ -142,7 +146,7 @@ body {
 	}
 }
 
-@media only screen and (min-width: 461px) and (max-width: 1025px)) {
+@media only screen and (min-width: 461px) and (max-width: 1025px) {
 	.new-media-btn-container {
 		display: none;
 	}

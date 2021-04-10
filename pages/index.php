@@ -1,5 +1,5 @@
 <?php
-session_set_cookie_params(0, '/', '.borumtech.com');
+session_set_cookie_params(3600, '/', '.borumtech.com', true);
 session_start();
 
 $_SESSION['id'] = 6;
@@ -56,26 +56,7 @@ function sortBy($name) {
 
 ?>
 <div class = "file-list-container">
-	<ul class = "folders flexbox" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>">
-		<?php
-		require_once('uniqueid.php');
-		# Retrieve folders for this user
-		require('../../flytrap_connect.inc.php');
-		$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']} AND parent_id = 0";
-		$r = mysqli_query($dbc, $q);
-		while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-			$alphaid = alphaid($row['id'], false, 10);
-			echo "<li ondragover = 'onDragOver(event)' ondrop = 'onDrop(event)' id = \"folder-{$row['id']}\">
-			<a href = 'folders/$alphaid'>{$row['folder_name']}</a>
-			<div class = 'customize-btns'>
-				<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
-				<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button>
-				<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button>
-			</div>
-			</li>";
-		}
-		?>
-	</ul>
+	<ul class = "folders flexbox" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>"></ul>
 	<ul class = "files flexbox" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>">
 	</ul>
 	<table style = "<?php echo isset($_GET['sortby']) ? 'display:block' : 'display:none'; ?>" class = "folders">
@@ -87,6 +68,9 @@ function sortBy($name) {
 		</thead>
 		<tbody>
 			<?php
+			require_once('uniqueid.php');
+			# Retrieve folders for this user
+			require('../../flytrap_connect.inc.php');
 			# Retrieve files for this user
 			$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']} AND parent_id = 0";
 			$q .= sortBy('folder_name');
@@ -215,10 +199,13 @@ include('footer.html');
 <script src = "scripts/inPopups.js"></script>
 <script src = "scripts/microphoneinput.js"></script>
 <script src = "scripts/secure.js"></script>
+<script src = "scripts/requests.js"></script>
 
 <?php 
 
-echo "<script>getFolderAudioFiles('" . $_SESSION["userApiKey"] . "');</script>";
+echo "<script>
+getAndDisplayFolderElements('" . $_SESSION["userApiKey"] . "');
+</script>";
 
 ?>
 

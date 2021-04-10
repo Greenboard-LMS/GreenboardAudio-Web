@@ -192,10 +192,19 @@ function sendFiles(data) {
 	xhr.send(data);
 }
 
-function displayStatus(status) {
+function displayStatus(status, statusType='success') {
+	const statusContainerEl = document.querySelector('.status-container');
+
+	if (statusType === 'error') {
+		statusContainerEl.classList.add('error');		
+	}
+
 	document.querySelector(".status-container").classList.remove("hide-status");
 	document.querySelector(".status-container").classList.add("show-status");
-	document.querySelector(".status-container").style.display = "block";
+	document.querySelector(".status-container").style.display = "flex";
+	statusContainerEl.style.justifyContent="center";
+	statusContainerEl.style.alignItems="center";
+	
 	document.querySelector(".status-container").innerHTML = status;
 	setTimeout(function () {
 		document
@@ -363,34 +372,3 @@ function moveAdvancedItem() {
 	toggleDisabled2(false);
 }
 
-function getFolderAudioFiles(userApiKey) {
-	fetch("https://api.audio.borumtech.com/v1/folder", {
-		headers: {
-			"authorization": `Basic ${userApiKey}`
-		}
-	})
-		.then(response => {
-			if (response.ok) return response.json();
-		})
-		.then(response => {
-			for (const audio of response.data) {
-				const audioListItem = `<li id = "file-${audio.id}">
-					<a href = 'audio/${audio.alphaId}'>
-						<img id = "microphone-${audio.id}" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = '/images/microphone.png'>
-						<p>${audio.file_name}</p>
-					</a>
-					<div class = 'customize-btns'>
-						<button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
-						<button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button>
-						<button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button>
-					</div>
-				</li>`;
-
-				document.querySelector('.files.flexbox').innerHTML += audioListItem;
-				handleAllAudioBoxes();
-			}
-		})
-		.catch(response => {
-			window.displayStatus("The data could not be fetched due to a system error");
-		});
-}
