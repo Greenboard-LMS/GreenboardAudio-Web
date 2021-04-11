@@ -86,7 +86,7 @@ body {
 	text-align: center;
 }
 
-.share-container, .delete-container, .rename-container {
+.action-container {
 	grid-row: 2 / 4;
 	grid-column: 2 / 3;
 	justify-self: center;

@@ -34,35 +34,27 @@ function searchFlytrap(e) {
 	}
 }
 
-function createNewFolder(user_id) {
-	const parentid = window.location.href.includes("folder")
-		? "?parent_id=" +
-		  window.location.href.substring(window.location.href.length - 10)
-		: "";
-	fetch("/ajax/newfolder.php" + parentid, { method: "get" })
-		.then(response => {
-			if (response.status >= 200 && response.status < 300) {
-				return response.text();
-			}
-		})
-		.then(response => JSON.parse(response))
-		.then(response => {
-			if (response.length == 1) {
-				window.displayStatus(response[0]);
-			}
-			addNewFolder({ afid: response[2], 0: response[1], 1: response[3] });
-		});
-}
-
 function addNewFolder(data) {
-	document.querySelector(
-		".folders.flexbox"
-	).innerHTML += `<li id = \"folder-${data[0]}\"><a href = "/folders/${data["afid"]}">${data[1]}</a><div class = 'customize-btns'><button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button><button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button><button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button></div></li>`;
+	document.querySelector(".folders.flexbox").innerHTML += `
+	<li id = \"folder-${data["id"]}\">
+		<a href = "/folders/${data["alpha_id"]}">${data["folder_name"]}</a>
+		<div class = 'customize-btns'>
+			<button class = 'rename-folder'>
+				<img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'>
+			</button>
+			<button class = 'delete-folder'>
+				<img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'>
+			</button>
+			<button class = 'share-folder'>
+				<img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'>
+			</button>
+		</div>
+	</li>`;
 
 	document.querySelector(
 		"table.folders tbody"
-	).innerHTML += `<tr id = "folder-${data[0]}">
-		<td><a href = 'folders/${data["afid"]}'>${data["folder_name"]}</a></td>
+	).innerHTML += `<tr id = "folder-${data["id"]}">
+		<td><a href = 'folders/${data["alpha_id"]}'>${data["folder_name"]}</a></td>
 		<td>${data["time_created"]}</td>
 		<td class = 'customize-btns'>
 			<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
@@ -70,6 +62,9 @@ function addNewFolder(data) {
 			<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button>
 		</td>
 	</tr>`;
+
+	document.querySelectorAll(".create-container")[1].style.display="none";
+
 	handleActionBox("share", "folder");
 	handleActionBox("delete", "folder");
 	handleActionBox("rename", "folder");
@@ -78,7 +73,9 @@ function addNewFolder(data) {
 function addNewFile(data) {
 	document.querySelector(
 		".files.flexbox"
-	).innerHTML += `<li id = 'file-${data[0]}'><a href = "/audio/${data["afid"]}"><img src = '/images/microphone.png'><p>${data["file_name"]}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="https://cdn.borumtech.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="https://cdn.borumtech.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="https://cdn.borumtech.com/images/register.png"></button></div></li>`;
+	).innerHTML += `<li id = 'file-${data["id"]}'><a href = "/audio/${data["alpha_id"]}">
+		<img src = '/images/microphone.png'>
+		<p>${data["file_name"]}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="https://cdn.borumtech.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="https://cdn.borumtech.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="https://cdn.borumtech.com/images/register.png"></button></div></li>`;
 
 	document.querySelector(
 		"table.files tbody"
@@ -192,19 +189,19 @@ function sendFiles(data) {
 	xhr.send(data);
 }
 
-function displayStatus(status, statusType='success') {
-	const statusContainerEl = document.querySelector('.status-container');
+function displayStatus(status, statusType = "success") {
+	const statusContainerEl = document.querySelector(".status-container");
 
-	if (statusType === 'error') {
-		statusContainerEl.classList.add('error');		
+	if (statusType === "error") {
+		statusContainerEl.classList.add("error");
 	}
 
 	document.querySelector(".status-container").classList.remove("hide-status");
 	document.querySelector(".status-container").classList.add("show-status");
 	document.querySelector(".status-container").style.display = "flex";
-	statusContainerEl.style.justifyContent="center";
-	statusContainerEl.style.alignItems="center";
-	
+	statusContainerEl.style.justifyContent = "center";
+	statusContainerEl.style.alignItems = "center";
+
 	document.querySelector(".status-container").innerHTML = status;
 	setTimeout(function () {
 		document
@@ -371,4 +368,3 @@ function moveAdvancedItem() {
 	toggleDisplay2("none", 1);
 	toggleDisabled2(false);
 }
-

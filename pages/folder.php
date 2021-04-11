@@ -31,7 +31,7 @@ require('search.html');
 		<img id = 'new-audio-icon' src = '/images/NewAudio.png'>
 		<span>New Audio</span>
 	</button>
-	<button class = "new-button" id = 'new-folder-btn' onclick = "createNewFolder(<?php echo $_SESSION['userApiKey']; ?>)">
+	<button class = "new-button" id = 'new-folder-btn' onclick = "showNameFolderPopupBox()">
 		<img id = 'new-folder-icon' src = "/images/NewFolder.png">
 		<span>New Folder</span>
 	</button>
@@ -119,6 +119,20 @@ require('search.html');
 	<img src = "/images/Exit.png">
 	<input type = "text" value = "">
 	<input type = "button" value = "Rename" onclick = "renameFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
+</div>
+<div style = "display: none" class = "action-container create-container">
+	<img src = "/images/Exit.png" />
+	<label>File Name</label>
+	<input name="filename" value="New Audio" focus />
+	<button>Cancel</button>
+	<button onclick = "createNewFile(<?php echo $_SESSION['userApiKey']; ?>, this.previousElementSibling.value)">Create</button>
+</div>
+<div style = "display: none" class = "action-container create-container">
+	<img src = "/images/Exit.png" />
+	<label>Folder Name</label>
+	<input name="foldername" value="New Folder" focus />
+	<button>Cancel</button>
+	<button onclick = "createNewFolder('<?php echo $_SESSION['userApiKey']; ?>', this.previousElementSibling.value)">Create</button>
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">

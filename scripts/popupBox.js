@@ -7,7 +7,11 @@ function handleAllAudioBoxes() {
 	handleActionBox("share", "audio");
 	handleActionBox("delete", "audio");
 	handleActionBox("rename", "audio", (actionBoxEl, item) => {
-		actionBoxEl.querySelector('input').value = item.parentElement.parentElement.querySelector('p').textContent;
+		actionBoxEl.querySelector(
+			"input"
+		).value = item.parentElement.parentElement.querySelector(
+			"p"
+		).textContent;
 	});
 }
 
@@ -42,6 +46,13 @@ function handleActionBox(
 			additional(actionBoxEl, item);
 		};
 	});
+}
+
+function showNameFolderPopupBox() {
+	const boxEl = document.querySelectorAll(".create-container")[1];
+
+	boxEl.style.display = "block";
+	boxEl.querySelector("input").select();
 }
 
 const fileBoxEl = document.querySelector(".new-file-box-container");
