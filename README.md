@@ -30,7 +30,11 @@ uglifyjs-folder is an NPM package meant for minifying the JavaScript files. To i
 
 _Note: The -g flag is necessary because this is not a Node project, and the JavaScript is run directly in the browser_
 
-- Install XAMPP, WAMPP, AAMPP, or LAMPP or manually download Apache, MySQL, and PHP. Then, start the web server and open `localhost` in your browser. You may have to update the DocumentRoot in the httpd.conf file
+To run the PHP web server, you have two options:
+
+- Install XAMPP, WAMPP, AAMPP, or LAMPP or manually download Apache, MySQL, and PHP. Then, start the web server and open `localhost` in your browser. You may have to update the DocumentRoot in the httpd.conf file. This will run on port 80. 
+
+- Use PHP's built-in server and the router script `/index.php`. You can serve this on any port of your choosing.
 
 ## Built With
 

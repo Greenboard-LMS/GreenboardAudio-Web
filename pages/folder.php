@@ -132,7 +132,7 @@ require('search.html');
 	<label>Folder Name</label>
 	<input name="foldername" value="New Folder" focus />
 	<button>Cancel</button>
-	<button onclick = "createNewFolder('<?php echo $_SESSION['userApiKey']; ?>', this.previousElementSibling.value)">Create</button>
+	<button onclick = "createNewFolder('<?php echo $_SESSION['userApiKey']; ?>', this.parentElement.querySelector(`input[name='foldername']`).value)">Create</button>
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">

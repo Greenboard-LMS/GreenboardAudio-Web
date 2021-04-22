@@ -70,7 +70,7 @@ function sortBy($name) {
 			<?php
 			require_once('uniqueid.php');
 			# Retrieve folders for this user
-			require('../../flytrap_connect.inc.php');
+			require(__DIR__ . '/../../flytrap_connect.inc.php');
 			# Retrieve files for this user
 			$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']} AND parent_id = 0";
 			$q .= sortBy('folder_name');
