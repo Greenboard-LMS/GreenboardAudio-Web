@@ -1,5 +1,7 @@
 <?php
 
+# NOT FINISHED - Currently using XAMPP Apache local web server with .htaccess file instead
+
 chdir(__DIR__);
 
 if (php_sapi_name() !== 'cli-server') {
