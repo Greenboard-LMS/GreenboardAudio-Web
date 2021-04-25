@@ -36,7 +36,7 @@ require('search.html');
 		<img id = 'new-audio-icon' src = '/images/NewAudio.png'>
 		<span>New Audio</span>
 	</button>
-	<button class = "new-button" id = 'new-folder-btn' onclick = "createNewFolder(<?php echo $_SESSION['userApiKey']; ?>)">
+	<button class = "new-button" id = 'new-folder-btn' onclick = "createNewFolder(<?php echo '\'' . $_SESSION['userApiKey'] . '\''; ?>)">
 		<img id = 'new-folder-icon' src = "/images/NewFolder.png">
 		<span>New Folder</span>
 	</button>

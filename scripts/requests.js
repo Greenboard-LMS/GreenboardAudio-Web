@@ -81,7 +81,7 @@ function createNewFolder(userApiKey, name="New Folder") {
 	);
 
 	fetch(
-		"https://flytrap-api-git-borumer-issue4-varun-singh.vercel.app/v1/folder",
+		"https://api.audio.borumtech.com/v1/folder",
 		{
 			method: "post",
 			headers: {
