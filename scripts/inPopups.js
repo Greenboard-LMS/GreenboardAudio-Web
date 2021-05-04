@@ -48,8 +48,21 @@ function actionFolder(
 		});
 }
 
-function deleteFolder(user_id, folder_id) {
-	actionFolder("delete", user_id, folder_id);
+function deleteFolder(userApiKey, folder_id) {
+	fetch("https://api.audio.borumtech.com/v1/folder", {
+		method: "DELETE",
+		headers: {
+			"authorization": `Basic ${userApiKey}`,
+			"content-type": "application/x-www-form-urlencoded"
+		},
+		body: `folder_id=${folder_id}`
+	}).then(response => {
+		if (response.ok) return response.json();
+	}).then(response => {
+		window.displayStatus("The folder was successfully deleted");
+		document.querySelector(".folders.flexbox").removeChild(document.getElementById(`folder-${folder_id}`));
+		document.querySelectorAll(".delete-container")[1].style.display = "none";
+	});
 }
 
 function shareFolder(sender_id, folder_id) {

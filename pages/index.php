@@ -184,7 +184,7 @@ function sortBy($name) {
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this folder? You will not be able to get it back.</p>
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
-	<input type = "button" value = "Delete" onclick = "deleteFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(18))">
+	<input type = "button" value = "Delete" onclick = "deleteFolder(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id.substring(18))">
 </div>
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>
