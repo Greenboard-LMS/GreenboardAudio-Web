@@ -53,3 +53,7 @@ This goes into `static/bundle.js` using the following command:
 `uglifyjs-folder bundled -o static/bundle.js`
 
 Naturally, all PHP files must include this in their directory.
+
+### `npm run bundle` alias
+
+This is a three-step process, so the three commands are aliased both in the GitHub Workflow and for local development. To run the above commands in one line, run `npm run bundle`, which will invoke each chronologically.  
