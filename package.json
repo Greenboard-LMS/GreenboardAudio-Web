@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "jest",
-    "bundle": "uglifyjs-folder scripts/client -o bundled/web.bundled.js && browserify scripts/node/secure.js -o bundled/secure.bundled.js && uglifyjs-folder bundled -o static/bundle.js"
+    "bundle": "uglifyjs-folder scripts/client -o bundled/web.bundled.js && browserify scripts/node/secure.js -o bundled/node/secure.bundled.js && uglifyjs-folder bundled -o static/bundle.js"
   },
   "repository": {
     "type": "git",
