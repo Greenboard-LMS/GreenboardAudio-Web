@@ -1,3 +1,5 @@
+const CryptoJS = require('crypto-js');
+
 var encryptedAES = CryptoJS.AES.encrypt("Larry Ullman is a great teacher", "bell prompt doll");
 var decryptedBytes = CryptoJS.AES.decrypt(encryptedAES, "bell prompt doll");
 var plaintext = decryptedBytes.toString(CryptoJS.enc.Utf8);

@@ -95,7 +95,7 @@ function createNewFolder(userApiKey, name="New Folder") {
 			if (response.ok) return response.json();
 		})
 		.then(response => {
-			if (response.error?.message) {
+			if (response.error && response.error.message) {
 				window.displayStatus(response.error.message);
 			}
 			addNewFolder(response.data);

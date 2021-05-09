@@ -54,6 +54,8 @@ Thanks for considering contributing to Flytrap! To start contributing, fork and 
 
 Then follow the [Installation](#Installation) steps outlined above.
 
+Finally, read the [Contributing Guide](CONTRIBUTING.md) for information on how to connect the node files
+
 ## Author
 
 I, Varun Singh, started this project, engineered the REST API, designed the logo, wrote the scripts, and own the domain on which the site is deployed. Flytrap is part of the Borum Family of Products

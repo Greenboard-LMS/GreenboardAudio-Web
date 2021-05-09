@@ -1,0 +1,32 @@
+{
+  "name": "flytrap-web",
+  "version": "1.0.0",
+  "description": "A SaaS product for storing, editing, and sharing audio in the cloud",
+  "main": "index.js",
+  "dependencies": {
+    "crypto-js": "^4.0.0",
+    "parcel-bundler": "^1.12.5",
+    "yuicompressor": "^2.4.8"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Borumer/Flytrap.git"
+  },
+  "keywords": [
+    "saas",
+    "borum",
+    "flytrap",
+    "cloud",
+    "audio",
+    "encryption"
+  ],
+  "author": "Varun",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/Borumer/Flytrap/issues"
+  },
+  "homepage": "https://github.com/Borumer/Flytrap#readme"
+}

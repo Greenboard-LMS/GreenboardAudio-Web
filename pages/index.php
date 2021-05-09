@@ -192,14 +192,7 @@ function sortBy($name) {
 include('footer.html');
 ?>
 </div>
-<script src = "scripts/script.js"></script>
-<script src = "scripts/popupBox.js"></script>
-<script src = "scripts/filters.js"></script>
-<script src = "scripts/media.js"></script>
-<script src = "scripts/inPopups.js"></script>
-<script src = "scripts/microphoneinput.js"></script>
-<script src = "scripts/secure.js"></script>
-<script src = "scripts/requests.js"></script>
+<script src = "static/bundle.js"></script>
 
 <?php 
 

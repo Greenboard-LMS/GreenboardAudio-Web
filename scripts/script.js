@@ -278,7 +278,7 @@ function onDragEnd(event) {
 	event.currentTarget.style.background = "none";
 }
 
-showBoxBtnEl = document.getElementsByClassName("advanced-btn")[0];
+const advancedButtonEl = document.getElementsByClassName("advanced-btn")[0];
 const advancedMoveBox = document.getElementsByClassName(
 	"change-id-container"
 )[0];
@@ -293,9 +293,9 @@ function handleAdvancedMoveItem() {
 			elem.getClientRects().length
 		); // source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js
 
-	if (!showBoxBtnEl || !advancedMoveBox) return;
+	if (!advancedButtonEl || !advancedMoveBox) return;
 
-	showBoxBtnEl.addEventListener("click", showBox);
+	advancedButtonEl.addEventListener("click", showBox);
 	advancedMoveBox
 		.querySelectorAll(".file-list-container ul li")
 		.forEach((item, i) => {
@@ -343,7 +343,7 @@ function toggleDisplay2(display, opacity) {
 }
 
 function toggleDisabled2(bool) {
-	showBoxBtnEl.attributes.disabled = bool;
+	advancedButtonEl.attributes.disabled = bool;
 	isDisabled = bool;
 }
 
