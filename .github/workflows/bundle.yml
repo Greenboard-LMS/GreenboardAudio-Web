@@ -22,10 +22,10 @@ jobs:
       run: npm install
 
     - name: Bundle browser scripts
-      run: uglifyjs-folder scripts -o bundled/web.bundled.js
+      run: uglifyjs-folder scripts/client -o bundled/web.bundled.js
 
     - name: Bundle secure.js Node script and modules
-      run: watchify scripts/secure.js -o bundled/secure.bundled.js
+      run: watchify scripts/node/secure.js -o bundled/secure.bundled.js
 
     - name: Bundle and minify all scripts into one file
       run: uglifyjs-folder bundled -o static/bundle.js

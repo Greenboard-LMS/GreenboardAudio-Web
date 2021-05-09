@@ -12,36 +12,40 @@ Using either GitHub Desktop or the command line, connect your local repository t
 
 ## Minifying JavaScript Files
 
+All of the scripts are located in the `scripts/` folder.
+
 ### Browser Scripts
 
-All of the scripts are located in the `scripts/` folder. Instead of being linked directly, a minified and combined version of all these JavaScript files are put together in `static/bundle.js`.
+The browser scripts are in the `scripts/client` subdirectory. Instead of being linked directly, a minified and combined version of all these JavaScript files are put together in `static/bundle.js`.
 
-To minify the browser files to reduce file size and count, run 
+To minify the browser files to reduce file size and count, run
 
-`uglifyjs-folder scripts -o bundled/web.bundled.js`
+`uglifyjs-folder scripts/client -o bundled/web.bundled.js`
 
 ### Node Scripts
 
-The secure.js file requires the `CryptoJS` npm package, which means it cannot be included directly in the bundle. 
+Scripts that use `require` or `import` to use NPM packages are located in the `scripts/node` subdirectory.
 
-The `watchify` package puts the modules that it uses and the file itself into a browser readable file. In addition, building upon the original `browserify` package, it automatically rebuilds for continuous development. 
+The secure.js file requires the `CryptoJS` npm package, which means it cannot be included directly in the bundle.
 
-To continuously bundle a Node script, write it to the `bundled/` folder with the format 
+The `watchify` package puts the modules that it uses and the file itself into a browser readable file. In addition, building upon the original `browserify` package, it automatically rebuilds for continuous development.
 
-`watchify scripts/FILENAME.js -o bundled/FILENAME.bundled.js`
+To continuously bundle a Node script, write it to the `bundled/` folder with the format
+
+`watchify scripts/node/FILENAME.js -o bundled/node/FILENAME.bundled.js`
 
 where FILENAME is the name of the JavaScript file.
 
 For example, the `secure.js` would be:
 
-`watchify scripts/secure.js -o bundled/secure.bundled.js`
+`watchify scripts/node/secure.js -o bundled/node/secure.bundled.js`
 
 ### Merging them Together
 
-In order to decrease bundle size further and to create the need to include just one script tag, you must merge each bundled node file and the minified browser scripts file into one. 
+In order to decrease bundle size further and to create the need to include just one script tag, you must merge each bundled node file and the minified browser scripts file into one.
 
 This goes into `static/bundle.js` using the following command:
 
 `uglifyjs-folder bundled -o static/bundle.js`
 
-Naturally, all PHP files must include this in their directory. 
+Naturally, all PHP files must include this in their directory.

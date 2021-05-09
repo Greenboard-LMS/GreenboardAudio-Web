@@ -66,7 +66,7 @@ function handleNewFileBox() {
 			elem.getClientRects().length
 		); // source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js
 
-	showBoxBtnEl.addEventListener("click", showBox);
+	document.getElementById('new-audio-btn').addEventListener("click", showBox);
 
 	function showBox(event) {
 		if (!isDisabled) {
