@@ -66,14 +66,14 @@ function handleNewFileBox() {
 			elem.getClientRects().length
 		); // source (2018-03-11): https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js
 
-	showBoxBtnEl.addEventListener("click", showBox);
+	document.getElementById('new-audio-btn').addEventListener("click", showBox);
 
 	function showBox(event) {
 		if (!isDisabled) {
 			event.preventDefault();
 			event.stopPropagation();
 			toggleDisplay("block", 0.5);
-			toggleDisabled(true);
+			toggleDisabled(true, showBoxBtnEl);
 			document.addEventListener("click", outsideClickListener);
 			setTimeout(animateUploadArrow, 500);
 		}
@@ -83,7 +83,7 @@ function handleNewFileBox() {
 		if (!fileBoxEl.contains(event.target) && isVisible(fileBoxEl)) {
 			// or use: event.target.closest(selector) === null
 			toggleDisplay("none", 1);
-			toggleDisabled(false);
+			toggleDisabled(false, showBoxBtnEl);
 			document.removeEventListener("click", outsideClickListener);
 			document.getElementById("upload-file-progress-bar").style.display =
 				"none";
@@ -105,7 +105,7 @@ function toggleDisplay(display, opacity) {
 	fileBoxEl.style.display = display;
 }
 
-function toggleDisabled(bool) {
-	showBoxBtnEl.attributes.disabled = bool;
+function toggleDisabled(bool, el) {
+	el.attributes.disabled = bool;
 	isDisabled = bool;
 }
