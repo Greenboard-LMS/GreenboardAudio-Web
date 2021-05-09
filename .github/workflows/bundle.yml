@@ -1,0 +1,24 @@
+name: PHP Composer
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Bundle browser scripts
+      run: uglifyjs-folder scripts -o bundled/web.bundled.js
+
+    - name: Bundle secure.js Node script and modules
+      run: watchify scripts/secure.js -o bundled/secure.bundled.js
+
+    - name: Bundle and minify all scripts into one file
+      run: uglifyjs-folder bundled -o static/bundle.js
