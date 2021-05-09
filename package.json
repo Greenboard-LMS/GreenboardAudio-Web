@@ -27,5 +27,9 @@
   "bugs": {
     "url": "https://github.com/Borumer/Flytrap/issues"
   },
-  "homepage": "https://github.com/Borumer/Flytrap#readme"
+  "homepage": "https://github.com/Borumer/Flytrap#readme",
+  "devDependencies": {
+    "uglifyjs-folder": "^2.0.0",
+    "watchify": "^4.0.0"
+  }
 }
