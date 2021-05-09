@@ -8,7 +8,8 @@
     "yuicompressor": "^2.4.8"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "bundle": "uglifyjs-folder scripts/client -o bundled/web.bundled.js && browserify scripts/node/secure.js -o bundled/secure.bundled.js && uglifyjs-folder bundled -o static/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/Borumer/Flytrap#readme",
   "devDependencies": {
+    "browserify": "^17.0.0",
     "uglifyjs-folder": "^2.0.0",
     "watchify": "^4.0.0"
   }

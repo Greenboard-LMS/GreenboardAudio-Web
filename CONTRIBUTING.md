@@ -40,6 +40,10 @@ For example, the `secure.js` would be:
 
 `watchify scripts/node/secure.js -o bundled/node/secure.bundled.js`
 
+or, to do it once without continuous development
+
+`browserify scripts/node/secure.js -o bundled/node/secure.bundled.js`
+
 ### Merging them Together
 
 In order to decrease bundle size further and to create the need to include just one script tag, you must merge each bundled node file and the minified browser scripts file into one.
