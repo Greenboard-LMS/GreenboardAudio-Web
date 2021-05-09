@@ -73,7 +73,7 @@ function handleNewFileBox() {
 			event.preventDefault();
 			event.stopPropagation();
 			toggleDisplay("block", 0.5);
-			toggleDisabled(true);
+			toggleDisabled(true, showBoxBtnEl);
 			document.addEventListener("click", outsideClickListener);
 			setTimeout(animateUploadArrow, 500);
 		}
@@ -83,7 +83,7 @@ function handleNewFileBox() {
 		if (!fileBoxEl.contains(event.target) && isVisible(fileBoxEl)) {
 			// or use: event.target.closest(selector) === null
 			toggleDisplay("none", 1);
-			toggleDisabled(false);
+			toggleDisabled(false, showBoxBtnEl);
 			document.removeEventListener("click", outsideClickListener);
 			document.getElementById("upload-file-progress-bar").style.display =
 				"none";
@@ -105,7 +105,7 @@ function toggleDisplay(display, opacity) {
 	fileBoxEl.style.display = display;
 }
 
-function toggleDisabled(bool) {
-	showBoxBtnEl.attributes.disabled = bool;
+function toggleDisabled(bool, el) {
+	el.attributes.disabled = bool;
 	isDisabled = bool;
 }
