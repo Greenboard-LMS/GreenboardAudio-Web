@@ -169,7 +169,7 @@ function sortBy($name) {
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this file? You will not be able to get it back.</p>
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
-	<input type = "button" value = "Delete" onclick = "deleteAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(17))">
+	<input type = "button" value = "Delete" onclick = "deleteAudioFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id.substring(17))">
 </div>
 <div style = "display: none" class = "action-container rename-container">
 	<img src = "/images/Exit.png">
@@ -192,6 +192,7 @@ function sortBy($name) {
 include('footer.html');
 ?>
 </div>
+
 <script src = "static/bundle.js"></script>
 
 <?php 

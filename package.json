@@ -30,7 +30,9 @@
   },
   "homepage": "https://github.com/Borumer/Flytrap#readme",
   "devDependencies": {
+    "borum-api-client-node": "^0.1.5",
     "browserify": "^17.0.0",
+    "gsap": "^3.6.1",
     "uglifyjs-folder": "^2.0.0",
     "watchify": "^4.0.0"
   }
