@@ -16,22 +16,6 @@ require('search.html');
 
 ?>
 <div class = "nav-container">
-	<div id = 'filter-view'>
-		<svg height="12" width="12">
-			<line x1="0" y1="1" x2="12" y2="1" style="stroke:rgb(0,0,0);stroke-width:2" />
-			<line x1="0" y1="6" x2="12" y2="6" style="stroke:rgb(0,0,0);stroke-width:2" />
-			<line x1="0" y1="11" x2="12" y2="11" style="stroke:rgb(0,0,0);stroke-width:2" />
-			Sorry, your browser does not support inline SVG.
-		</svg>
-		<svg height="12" width="12">
-			<line x1="1" y1="0" x2="1" y2="12" style="stroke:rgb(0,0,0);stroke-width:2" />
-			<line x1="6" y1="0" x2="6" y2="12" style="stroke:rgb(0,0,0);stroke-width:2" />
-			<line x1="11" y1="0" x2="11" y2="12" style="stroke:rgb(0,0,0);stroke-width:2" />
-			Sorry, your browser does not support inline SVG.
-		</svg>
-		<div class = "slider" style = "<?php echo isset($_GET['sortby']) ? 'left: 0px' : 'left: 18px'; ?>"></div>
-	</div>
-
 	<button class = "new-button" id = 'new-audio-btn'>
 		<img id = 'new-audio-icon' src = '/images/NewAudio.png'>
 		<span>New Audio</span>
@@ -59,66 +43,6 @@ function sortBy($name) {
 	<ul class = "folders flexbox" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>"></ul>
 	<ul class = "files flexbox" style = "<?php echo !isset($_GET['sortby']) ? 'display:flex' : 'display:none'; ?>">
 	</ul>
-	<table style = "<?php echo isset($_GET['sortby']) ? 'display:block' : 'display:none'; ?>" class = "folders">
-		<thead>
-			<tr>
-				<th><a href = "?sortby=name">Name</a></th>
-				<th><a href = "?sortby=time">Date Created</a></th>
-				<th>Modify</th>
-		</thead>
-		<tbody>
-			<?php
-			require_once('uniqueid.php');
-			# Retrieve folders for this user
-			require(__DIR__ . '/../../flytrap_connect.inc.php');
-			# Retrieve files for this user
-			$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']} AND parent_id = 0";
-			$q .= sortBy('folder_name');
-			$r = mysqli_query($dbc, $q);
-			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-				$alphaid = alphaID($row['id'], false, 10);
-				echo "
-				<tr id = \"folder-{$row['id']}\">
-					<td><a href = 'folders/$alphaid'>{$row['folder_name']}</a></td>
-					<td>{$row['time_created']}</td>
-					<td class = 'customize-btns'>
-						<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
-						<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button>
-						<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button>
-					</td>
-				</tr>";
-			}
-			?>
-		</tbody>
-	</table>
-	<table class = "files" style = "<?php echo isset($_GET['sortby']) ? 'display:block' : 'display:none'; ?>">
-		<thead>
-			<tr>
-				<th><a href = "?sortby=name">Name</a></th>
-				<th><a href = "?sortby=time">Date Created</a></th>
-				<th>Modify</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php
-			# Retrieve files for this user
-			$q = "SELECT id, file_name, time_created FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
-			$q .= sortBy('file_name');
-			$r = mysqli_query($dbc, $q);
-			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
-				$alphaid = alphaID($row['id'], false, 10);
-				echo "
-				<tr id = \"file-{$row['id']}\">
-					<td><a href = 'audio/$alphaid'>{$row['file_name']}</a></td>
-					<td>{$row['time_created']}</td>
-					<td class = 'customize-btns'>					<button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
-										<button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button>
-										<button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button></td>
-				</tr>";
-			}
-			?>
-		</tbody>
-	</table>
 </div>
 <div class = "plus-container">
 	<a id = "add-audio">+</a>
@@ -164,7 +88,7 @@ function sortBy($name) {
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">
 	<input id = 'share-file-email' type = "text" placeholder = "Insert recipient's email">
-	<input onclick = "shareAudioFile(<?php echo $_SESSION['userApiKey']; ?>, this.parentElement.id)" type = "button" value = "Share">
+	<input onclick = "shareAudioFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this file? You will not be able to get it back.</p>
@@ -179,7 +103,7 @@ function sortBy($name) {
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">
 	<input type = "text" id = "share-folder-email" placeholder = "Insert recipient's email">
-	<input onclick = "shareFolder(<?php echo $_SESSION['userApiKey']; ?>, this.parentElement.id)" type = "button" value = "Share">
+	<input onclick = "shareFolder(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this folder? You will not be able to get it back.</p>
@@ -196,13 +120,9 @@ include('footer.html');
 <script src = "https://cdn.jsdelivr.net/npm/borum-api-client-node@0.2.0"></script>
 <script src = "static/bundle.js"></script>
 
-<?php 
-
-echo "<script>
-getAndDisplayFolderElements('" . $_SESSION["userApiKey"] . "');
-</script>";
-
-?>
+<script>
+getAndDisplayFolderElements('<?php echo $_SESSION["userApiKey"]; ?>');
+</script>
 
 </body>
 </html>

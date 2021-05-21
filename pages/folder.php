@@ -155,13 +155,13 @@ require('search.html');
 </div>
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>
+
+<script src = "https://cdn.jsdelivr.net/npm/borum-api-client-node@0.2.0"></script>
 <script src = "/static/bundle.js"></script>
 
-<?php 
-echo "<script>
-getAndDisplayFolderElements('" . $_SESSION["userApiKey"] . "', '" . $_GET['id'] . "');
-</script>"
+<script>
+getAndDisplayFolderElements(<?php echo "`{$_SESSION['userApiKey']}`, `{$_GET['id']}`"; ?>);
+</script>
 
-?>
 </body>
 </html>

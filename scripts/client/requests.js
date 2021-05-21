@@ -12,12 +12,17 @@ function getAndDisplayFolderElements(userApiKey, folderId = "") {
 			document.querySelector(".folders.flexbox").innerHTML =
 				displayFolderData(response.folder);
 			handleAllFolderBoxes();
+			
+			const isNotRootFolder = response.root.data;
+			if (isNotRootFolder)
+				document.title = response.root.data.folder_name + " | Flytrap";
 		})
 		.catch(response => {
 			window.displayStatus(
 				"The data could not be fetched due to a system error",
 				"error"
 			);
+			console.error(response);
 		});
 }
 
@@ -153,21 +158,28 @@ function deleteAudioFile(userApiKey, audio_id) {
 
 function shareFolder(userApiKey, folder_id) {
 	const emailInput = document.getElementById("share-folder-email");
-	const share_id = emailInput.parentElement.id.substring(17);
 	folder_id = folder_id.substring("share-folder-box-".length);
-	FlytrapRequest.initialize("folder/collaborators")
+
+	FlytrapRequest.initialize("folder/collaboration")
 		.post(
-			`audio_id=${audio_id}&share_id=${share_id}&recipient_email=${emailInput.value}`
+			`folder_id=${folder_id}&recipient_email=${emailInput.value}`
 		)
 		.authorize(userApiKey)
-		.makeRequest();
+		.makeRequest()
+		.then(response => {
+			window.displayStatus("Folder shared successfully");
+			document.querySelectorAll(".share-container")[1].style.display = "none";
+		})
+		.catch(response => {
+			window.displayStatus(response, "error");
+		})
 }
 
 function shareAudioFile(userApiKey, audio_id) {
 	const emailInput = document.getElementById("share-file-email");
 	audio_id = audio_id.substring("share-audio-box-".length);
 	
-	FlytrapRequest.initialize("audio/collaborators")
+	FlytrapRequest.initialize("audio/collaboration")
 		.post(
 			`audio_id=${audio_id}&recipient_email=${emailInput.value}`
 		)
@@ -175,5 +187,9 @@ function shareAudioFile(userApiKey, audio_id) {
 		.makeRequest()
 		.then(response => {
 			window.displayStatus("Audio successfully shared");
+			document.querySelectorAll(".share-container")[0].style.display = "none";
+		})
+		.catch(response => {
+			window.displayStatus(response, "error");
 		})
 }
