@@ -1,24 +1,26 @@
 const showBoxBtnEl = document.querySelector("#new-audio-btn");
 
+const setOriginalNameInRenameBox = (actionBoxEl, item) => {
+	actionBoxEl.querySelector(
+		"input"
+	).value = item.parentElement.parentElement.querySelector(
+		"a"
+	).textContent.trim();
+};
+
 handleAllAudioBoxes();
 handleAllFolderBoxes();
 
 function handleAllAudioBoxes() {
 	handleActionBox("share", "audio");
 	handleActionBox("delete", "audio");
-	handleActionBox("rename", "audio", (actionBoxEl, item) => {
-		actionBoxEl.querySelector(
-			"input"
-		).value = item.parentElement.parentElement.querySelector(
-			"p"
-		).textContent;
-	});
+	handleActionBox("rename", "audio", setOriginalNameInRenameBox);
 }
 
 function handleAllFolderBoxes() {
 	handleActionBox("share", "folder");
 	handleActionBox("delete", "folder");
-	handleActionBox("rename", "folder");
+	handleActionBox("rename", "folder", setOriginalNameInRenameBox);
 }
 
 function handleActionBox(

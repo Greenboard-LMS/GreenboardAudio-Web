@@ -1,23 +1,16 @@
 function getAndDisplayFolderElements(userApiKey, folderId = "") {
-	fetch(`https://api.audio.borumtech.com/v1/folder?folder_id=${folderId}`, {
-		headers: {
-			authorization: `Basic ${userApiKey}`,
-		},
-	})
-		.then(response => {
-			if (response.ok) return response.json();
-		})
+	FlytrapRequest.initialize(`folder?folder_id=${folderId}`)
+		.authorize(userApiKey)
+		.makeRequest()
 		.then(response => {
 			console.info(response);
 
-			document.querySelector(
-				".files.flexbox"
-			).innerHTML = displayAudioData(response.audio);
+			document.querySelector(".files.flexbox").innerHTML =
+				displayAudioData(response.audio);
 			handleAllAudioBoxes();
 
-			document.querySelector(
-				".folders.flexbox"
-			).innerHTML = displayFolderData(response.folder);
+			document.querySelector(".folders.flexbox").innerHTML =
+				displayFolderData(response.folder);
 			handleAllFolderBoxes();
 		})
 		.catch(response => {
@@ -75,29 +68,112 @@ function displayAudioData(audioResponse) {
 	return audioList;
 }
 
-function createNewFolder(userApiKey, name="New Folder") {
+function createNewFolder(userApiKey, name = "New Folder") {
 	const parentId = window.location.href.substring(
 		window.location.href.lastIndexOf("/") + 1
 	);
 
-	fetch(
-		"https://api.audio.borumtech.com/v1/folder",
-		{
-			method: "post",
-			headers: {
-				authorization: `Basic ${userApiKey}`,
-				"content-type": "application/x-www-form-urlencoded",
-			},
-			body: `parent_id=${parentId}&name=${name}`,
-		}
-	)
-		.then(response => {
-			if (response.ok) return response.json();
-		})
+	FlytrapRequest.initialize(`folder`)
+		.post(`parent_id=${parentId}&name=${name}`)
+		.authorize(userApiKey)
+		.makeRequest()
 		.then(response => {
 			if (response.error && response.error.message) {
-				window.displayStatus(response.error.message);
+				window.displayStatus(response.error.message, "error");
 			}
 			addNewFolder(response.data);
 		});
+}
+
+function renameFolder(userApiKey, folder_id) {
+	let new_name = document.querySelector(
+		"#" + folder_id + ' input[type="text"]'
+	);
+
+	new_name = new_name.value;
+
+	const id = folder_id.substring("rename-folder-box-".length);
+
+	FlytrapRequest
+		.initialize("folder")
+		.authorize(userApiKey)
+		.put(`id=${id}&new_name=${encodeURIComponent(new_name)}`)
+		.makeRequest()
+		.then(response => {
+			document.querySelector("#folder-" + id + " a").innerHTML = new_name;
+		});
+}
+
+function renameAudioFile(userApiKey, audio_id) {
+	const new_name = document.querySelector(
+		"#" + audio_id + ' input[type="text"]'
+	).value;
+	const id = audio_id.substring(17);
+
+	FlytrapRequest.initialize(`audio`)
+		.put(`audio_id=${id}&new_name=${new_name}`)
+		.authorize(userApiKey)
+		.makeRequest()
+		.then(response => {
+			document.querySelector(".rename-container").style.display = "none";
+			window.displayStatus(response);
+			document.querySelector("#file-" + id + " p").innerHTML = new_name;
+		})
+		.catch(response => {
+			document.querySelector(".rename-container").style.display = "none";
+			window.displayStatus(response, "error");
+		});
+}
+
+function deleteFolder(userApiKey, folder_id) {
+	FlytrapRequest.initialize("folder")
+		.delete(`folder_id=${folder_id}`)
+		.authorize(userApiKey)
+		.makeRequest()
+		.then(response => {
+			window.displayStatus("The folder was successfully deleted");
+			document
+				.querySelector(".folders.flexbox")
+				.removeChild(document.getElementById(`folder-${folder_id}`));
+			document.querySelectorAll(".delete-container")[1].style.display =
+				"none";
+		});
+}
+
+function deleteAudioFile(userApiKey, audio_id) {
+	FlytrapRequest.initialize("audio")
+		.delete(`audio_id=${audio_id}`)
+		.authorize(userApiKey)
+		.makeRequest()
+		.then(response => {
+			document.querySelector(".delete-container").style.display = "none";
+			window.displayStatus(response);
+		});
+}
+
+function shareFolder(userApiKey, folder_id) {
+	const emailInput = document.getElementById("share-folder-email");
+	const share_id = emailInput.parentElement.id.substring(17);
+	folder_id = folder_id.substring("share-folder-box-".length);
+	FlytrapRequest.initialize("folder/collaborators")
+		.post(
+			`audio_id=${audio_id}&share_id=${share_id}&recipient_email=${emailInput.value}`
+		)
+		.authorize(userApiKey)
+		.makeRequest();
+}
+
+function shareAudioFile(userApiKey, audio_id) {
+	const emailInput = document.getElementById("share-file-email");
+	audio_id = audio_id.substring("share-audio-box-".length);
+	
+	FlytrapRequest.initialize("audio/collaborators")
+		.post(
+			`audio_id=${audio_id}&recipient_email=${emailInput.value}`
+		)
+		.authorize(userApiKey)
+		.makeRequest()
+		.then(response => {
+			window.displayStatus("Audio successfully shared");
+		})
 }

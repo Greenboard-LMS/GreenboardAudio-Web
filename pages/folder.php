@@ -103,12 +103,12 @@ require('search.html');
 <div style = "display: none" class = "action-container rename-container">
 	<img src = "/images/Exit.png">
 	<input type = "text" value = "">
-	<input type = "button" value = "Rename" onclick = "renameAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
+	<input type = "button" value = "Rename" onclick = "renameAudioFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)">
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">
 	<input id = 'share-file-email' type = "text" placeholder = "Insert recipient's email">
-	<input onclick = "shareAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)" type = "button" value = "Share">
+	<input onclick = "shareAudioFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this file? You will not be able to get it back.</p>
@@ -118,14 +118,14 @@ require('search.html');
 <div style = "display: none" class = "action-container rename-container">
 	<img src = "/images/Exit.png">
 	<input type = "text" value = "">
-	<input type = "button" value = "Rename" onclick = "renameFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
+	<input type = "button" value = "Rename" onclick = "renameFolder(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)">
 </div>
 <div style = "display: none" class = "action-container create-container">
 	<img src = "/images/Exit.png" />
 	<label>File Name</label>
 	<input name="filename" value="New Audio" focus />
 	<button>Cancel</button>
-	<button onclick = "createNewFile(<?php echo $_SESSION['userApiKey']; ?>, this.previousElementSibling.value)">Create</button>
+	<button onclick = "createNewFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.previousElementSibling.value)">Create</button>
 </div>
 <div style = "display: none" class = "action-container create-container">
 	<img src = "/images/Exit.png" />
@@ -137,12 +137,12 @@ require('search.html');
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">
 	<input type = "text" id = "share-folder-email" placeholder = "Insert recipient's email">
-	<input onclick = "shareFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id)" type = "button" value = "Share">
+	<input onclick = "shareFolder(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this folder? You will not be able to get it back.</p>
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
-	<input type = "button" value = "Delete" onclick = "deleteFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id.substring(18))">
+	<input type = "button" value = "Delete" onclick = "deleteFolder(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id.substring(18))">
 </div>
 <div style = "display: none" class = "change-id-container">
 		<div class = "file-list-container" style = "overflow: auto">

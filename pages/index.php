@@ -164,7 +164,7 @@ function sortBy($name) {
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">
 	<input id = 'share-file-email' type = "text" placeholder = "Insert recipient's email">
-	<input onclick = "shareAudioFile(<?php echo $_SESSION['id']; ?>, this.parentElement.id)" type = "button" value = "Share">
+	<input onclick = "shareAudioFile(<?php echo $_SESSION['userApiKey']; ?>, this.parentElement.id)" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this file? You will not be able to get it back.</p>
@@ -174,12 +174,12 @@ function sortBy($name) {
 <div style = "display: none" class = "action-container rename-container">
 	<img src = "/images/Exit.png">
 	<input type = "text" value = "">
-	<input type = "button" value = "Rename" onclick = "renameFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id)">
+	<input type = "button" value = "Rename" onclick = "renameFolder(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)">
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">
 	<input type = "text" id = "share-folder-email" placeholder = "Insert recipient's email">
-	<input onclick = "shareFolder(<?php echo $_SESSION['id']; ?>, this.parentElement.id)" type = "button" value = "Share">
+	<input onclick = "shareFolder(<?php echo $_SESSION['userApiKey']; ?>, this.parentElement.id)" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this folder? You will not be able to get it back.</p>
@@ -193,6 +193,7 @@ include('footer.html');
 ?>
 </div>
 
+<script src = "https://cdn.jsdelivr.net/npm/borum-api-client-node@0.2.0"></script>
 <script src = "static/bundle.js"></script>
 
 <?php 

@@ -33326,6 +33326,10 @@ fetch('/ajax/getaeskey.php').then(response => {
 	console.log(response);
 	x = CryptoJS.AES.encrypt("Hello world", response).toString();
 	console.log(x);
-})
+}); 
+
+class HelloWorld {}
+
+new HelloWorld();
 
 },{"crypto-js":80}]},{},[221]);
