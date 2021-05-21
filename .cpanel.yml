@@ -1,5 +1,5 @@
 ---
 deployment:
-  tasks:
-    - export DEPLOYPATH=/home/libuc6kfb0jg/Flytrap/Flytrap-Web/
-    - /bin/cp -r * $DEPLOYPATH
+	tasks:
+		- export DEPLOYPATH=/home/libuc6kfb0jg/Flytrap/Flytrap-Web/
+		- /bin/cp -r * $DEPLOYPATH
