@@ -22,7 +22,7 @@ jobs:
         CONTEXT_GITHUB: ${{ toJson(github) }}
         CONTEXT_SECRETS: ${{ toJson(secrets) }}
         TWEETREL_TEMPLATE: |
-          We are proud to announce the {tag_name} release of Flytrap for Web!
+          We are proud to announce the {tag_name} release of #Flytrap for Web!
           
           For more, see: {html_url}. Here are the details:
           {body}
