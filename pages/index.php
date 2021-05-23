@@ -110,6 +110,20 @@ function sortBy($name) {
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
 	<input type = "button" value = "Delete" onclick = "deleteFolder(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id.substring(18))">
 </div>
+<div style = "display: none" class = "action-container create-container">
+	<img src = "/images/Exit.png" />
+	<label>File Name</label>
+	<input name="filename" value="New Audio" focus />
+	<button>Cancel</button>
+	<button onclick = "createNewFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.previousElementSibling.value)">Create</button>
+</div>
+<div style = "display: none" class = "action-container create-container">
+	<img src = "/images/Exit.png" />
+	<label>Folder Name</label>
+	<input name="foldername" value="New Folder" focus />
+	<button>Cancel</button>
+	<button onclick = "createNewFolder('<?php echo $_SESSION['userApiKey']; ?>', this.parentElement.querySelector(`input[name='foldername']`).value)">Create</button>
+</div>
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>
 <?php

@@ -1,34 +1,31 @@
 function searchFlytrap(e) {
 	const query = e.target.value;
-	const fileListEl = document.querySelector(".file-list-container");
+
 	if (["Shift", "Control"].includes(e.key)) return;
-	fetch("ajax/search.php?q=" + query, { method: "get" })
-		.then(response => {
-			if (response.status >= 200 && response.status < 300) {
-				return response.text();
-			}
-		})
-		.then(response => {
-			return JSON.parse(response);
-		})
-		.then(response => {
-			document.querySelector(".files.flexbox").innerHTML = "";
-			document.querySelector(".folders.flexbox").innerHTML = "";
-			document.querySelector("table.files tbody").innerHTML = "";
-			document.querySelector("table.folders tbody").innerHTML = "";
-			// Display the files that match the query
-			console.log("Add New File Data: ");
-			console.log(response[0]);
-			for (item of response[0]) {
-				addNewFile(item);
-			}
-			// Display the folders that match the query
-			console.log("Add New Folder Data: ");
-			console.log(response[1]);
-			for (item of response[1]) {
-				addNewFolder(item);
-			}
-		});
+
+	console.debug(Datastore.folder.data);
+
+	const filteredAudios = Datastore.audio.data.filter(item => item.file_name.includes(query));
+	const filteredFolders = Datastore.folder.data.filter(item => item.folder_name.includes(query));
+
+	console.debug(filteredAudios);
+
+	// Clear the current results
+	document.querySelector(".files.flexbox").innerHTML = "";
+	document.querySelector(".folders.flexbox").innerHTML = "";
+	
+	// Display the files that match the query
+	for (item of filteredAudios) {
+		addNewFile(item);
+	}
+	console.info("Filtered Audios", filteredAudios);
+
+	// Display the folders that match the query
+	for (item of filteredFolders) {
+		addNewFolder(item);
+	}
+	console.info("Filtered Folders", filteredFolders);
+
 	if (e.key == "Enter") {
 		location.href = "/search?q=" + query;
 	}
@@ -36,8 +33,8 @@ function searchFlytrap(e) {
 
 function addNewFolder(data) {
 	document.querySelector(".folders.flexbox").innerHTML += `
-	<li id = \"folder-${data["id"]}\">
-		<a href = "/folders/${data["alpha_id"]}">${data["folder_name"]}</a>
+	<li id = \"folder-${data.id}\">
+		<a href = "/folders/${data.alpha_id}">${data.folder_name}</a>
 		<div class = 'customize-btns'>
 			<button class = 'rename-folder'>
 				<img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'>
@@ -51,19 +48,7 @@ function addNewFolder(data) {
 		</div>
 	</li>`;
 
-	document.querySelector(
-		"table.folders tbody"
-	).innerHTML += `<tr id = "folder-${data["id"]}">
-		<td><a href = 'folders/${data["alpha_id"]}'>${data["folder_name"]}</a></td>
-		<td>${data["time_created"]}</td>
-		<td class = 'customize-btns'>
-			<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
-			<button class = 'delete-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button>
-			<button class = 'share-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button>
-		</td>
-	</tr>`;
-
-	document.querySelectorAll(".create-container")[1].style.display="none";
+	document.getElementsByClassName("create-container")[1].style.display = "none";
 
 	handleActionBox("share", "folder");
 	handleActionBox("delete", "folder");
@@ -77,10 +62,6 @@ function addNewFile(data) {
 		<img src = '/images/microphone.png'>
 		<p>${data["file_name"]}</p></a><div class = 'customize-btns'>	<button class="rename-audio"><img class="grey-circle" src="https://cdn.borumtech.com/images/Edit.png"></button><button class="delete-audio"><img class="grey-circle" src="https://cdn.borumtech.com/images/Delete.png"></button><button class="share-audio"><img class="grey-circle" src="https://cdn.borumtech.com/images/register.png"></button></div></li>`;
 
-	document.querySelector(
-		"table.files tbody"
-	).innerHTML += `<tr id = "file-${data[0]}"><td><a href = "audio/${data["afid"]}">${data["file_name"]}</a></td><td>${data["time_created"]}</td><td class = 'customize-btns'><button class = 'rename-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button><button class = 'delete-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Delete.png'></button><button class = 'share-audio'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/register.png'></button></td>
-	</tr>`;
 	handleActionBox("share", "audio");
 	handleActionBox("delete", "audio");
 	handleActionBox("rename", "audio");

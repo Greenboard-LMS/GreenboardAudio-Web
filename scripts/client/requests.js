@@ -5,6 +5,8 @@ function getAndDisplayFolderElements(userApiKey, folderId = "") {
 		.then(response => {
 			console.info(response);
 
+			Object.assign(Datastore, response);
+
 			document.querySelector(".files.flexbox").innerHTML =
 				displayAudioData(response.audio);
 			handleAllAudioBoxes();
