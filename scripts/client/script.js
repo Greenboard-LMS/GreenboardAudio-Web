@@ -31,6 +31,10 @@ function searchFlytrap(e) {
 	}
 }
 
+/**
+ * Adds a new folder to the UI
+ * @param {{id : number, alpha_id : string, folder_name : string}} data The folder object
+ */
 function addNewFolder(data) {
 	document.querySelector(".folders.flexbox").innerHTML += `
 	<li id = \"folder-${data.id}\">
@@ -55,6 +59,10 @@ function addNewFolder(data) {
 	handleActionBox("rename", "folder");
 }
 
+/**
+ * Adds a new file to the UI
+ * @param {{id : number, alpha_id : string, file_name : string}} data The file object
+ */
 function addNewFile(data) {
 	document.querySelector(
 		".files.flexbox"
