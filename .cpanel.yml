@@ -1,6 +1,6 @@
 ---
 deployment:
       tasks:
-        - export DEPLOYPATH=/home/libuc6kfb0jg/Flytrap/Flytrap-Web/  
-        - /bin/cp -r /home/libuc6kfb0jg/repositories/Flytrap/ $DEPLOYPATH  # Copy all recursively to $DEPLOYPATH
+        - export DEPLOYPATH=/home/libuc6kfb0jg/Flytrap/  
+        - /bin/cp -r /home/libuc6kfb0jg/repositories/Flytrap/Flytrap-Web $DEPLOYPATH  # Copy all recursively to $DEPLOYPATH
         
