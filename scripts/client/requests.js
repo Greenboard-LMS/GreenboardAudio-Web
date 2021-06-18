@@ -14,7 +14,7 @@ function getAndDisplayFolderElements(userApiKey, folderId = "") {
 			document.querySelector(".folders.flexbox").innerHTML =
 				displayFolderData(response.folder);
 			handleAllFolderBoxes();
-			
+
 			const isNotRootFolder = response.root.data;
 			if (isNotRootFolder)
 				document.title = response.root.data.folder_name + " | Flytrap";
@@ -101,8 +101,7 @@ function renameFolder(userApiKey, folder_id) {
 
 	const id = folder_id.substring("rename-folder-box-".length);
 
-	FlytrapRequest
-		.initialize("folder")
+	FlytrapRequest.initialize("folder")
 		.authorize(userApiKey)
 		.put(`id=${id}&new_name=${encodeURIComponent(new_name)}`)
 		.makeRequest()
@@ -121,14 +120,16 @@ function renameAudioFile(userApiKey, audio_id) {
 		.put(`audio_id=${id}&new_name=${new_name}`)
 		.authorize(userApiKey)
 		.makeRequest()
-		.then(response => {
-			document.querySelector(".rename-container").style.display = "none";
-			window.displayStatus(response);
-			document.querySelector("#file-" + id + " p").innerHTML = new_name;
-		})
 		.catch(response => {
+			// Always catch because the lack of content throws error in makeRequest()
 			document.querySelector(".rename-container").style.display = "none";
-			window.displayStatus(response, "error");
+			
+			// If request is successful, the error is a JSON.parse because there's nothing to parse
+			if (response.message.includes("JSON.parse"))
+				document.querySelector("#file-" + id + " p").innerHTML =
+					new_name;
+			// If the request failed, display the error
+			else window.displayStatus(response, "error");
 		});
 }
 
@@ -153,8 +154,11 @@ function deleteAudioFile(userApiKey, audio_id) {
 		.authorize(userApiKey)
 		.makeRequest()
 		.then(response => {
+			window.displayStatus("The audio was successfully deleted");
+		}).catch(err => {
+			window.displayStatus("Error: " + err.error.message)
+		}).finally(response => {
 			document.querySelector(".delete-container").style.display = "none";
-			window.displayStatus(response);
 		});
 }
 
@@ -163,35 +167,33 @@ function shareFolder(userApiKey, folder_id) {
 	folder_id = folder_id.substring("share-folder-box-".length);
 
 	FlytrapRequest.initialize("folder/collaboration")
-		.post(
-			`folder_id=${folder_id}&recipient_email=${emailInput.value}`
-		)
+		.post(`folder_id=${folder_id}&recipient_email=${emailInput.value}`)
 		.authorize(userApiKey)
 		.makeRequest()
 		.then(response => {
 			window.displayStatus("Folder shared successfully");
-			document.querySelectorAll(".share-container")[1].style.display = "none";
+			document.querySelectorAll(".share-container")[1].style.display =
+				"none";
 		})
 		.catch(response => {
 			window.displayStatus(response, "error");
-		})
+		});
 }
 
 function shareAudioFile(userApiKey, audio_id) {
 	const emailInput = document.getElementById("share-file-email");
 	audio_id = audio_id.substring("share-audio-box-".length);
-	
+
 	FlytrapRequest.initialize("audio/collaboration")
-		.post(
-			`audio_id=${audio_id}&recipient_email=${emailInput.value}`
-		)
+		.post(`audio_id=${audio_id}&recipient_email=${emailInput.value}`)
 		.authorize(userApiKey)
 		.makeRequest()
 		.then(response => {
 			window.displayStatus("Audio successfully shared");
-			document.querySelectorAll(".share-container")[0].style.display = "none";
+			document.querySelectorAll(".share-container")[0].style.display =
+				"none";
 		})
 		.catch(response => {
 			window.displayStatus(response, "error");
-		})
+		});
 }

@@ -13,7 +13,7 @@
 
 	function saveAudio($file, $id) {
 		require('../pages/uniqueid.php');
-		if(move_uploaded_file($file['tmp_name'], "../../audio_uploads/" . alphaid($id, false, 10))) {
+		if(move_uploaded_file($file['tmp_name'], "../../audio_uploads/" . $id)) {
 				echo "<p class = 'success'>The file {$file['name']} uploaded successfully. </p>";
 				return true;
 		} else { // File not saved to the directory
@@ -22,18 +22,8 @@
 	}
 
 	function enterFile($file) {
-		global $dbc;
-		$q = "INSERT INTO audio_files (file_name, user_id) VALUES (\"{$file['name']}\", \"{$_SESSION['id']}\")";
-		$r = mysqli_query($dbc, $q);
-		if (mysqli_affected_rows($dbc) == 1) {
-			$q = "SELECT id FROM audio_files ORDER BY time_created DESC LIMIT 1";
-			$r = mysqli_query($dbc, $q);
-			$row = mysqli_fetch_array($r, MYSQLI_NUM);
-			if (saveAudio($file, $row[0])) {
-				return true;
-			}
-		} else { // File credentials not saved on the database
-			echo "<p class = 'failure'>System failure: The file details were not saved due to a system error.</p>";
+		if (saveAudio($file, $_GET['file_alpha_id'])) {
+			return true;
 		}
 	}
 

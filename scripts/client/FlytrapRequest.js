@@ -1,6 +1,9 @@
 class FlytrapRequest extends BorumRequest {
     static initialize(input, init) {
-        return new FlytrapRequest(`https://api.audio.borumtech.com/v1/${input}`, init);
+        const host = `https://api.audio.borumtech.com`;
+        // const host = `http://localhost:8100`;
+        const url = `${host}/v1/${input}`;
+        return new FlytrapRequest(url, init);
     }
 }
 

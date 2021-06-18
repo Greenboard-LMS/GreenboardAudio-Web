@@ -1,19 +1,27 @@
+/**
+ * Case insensitively searches the Flytrap using the Datastore object
+ * @param {*} e keyup Event
+ */
 function searchFlytrap(e) {
-	const query = e.target.value;
+	const query = e.target.value.toLowerCase();
 
 	if (["Shift", "Control"].includes(e.key)) return;
 
 	console.debug(Datastore.folder.data);
 
-	const filteredAudios = Datastore.audio.data.filter(item => item.file_name.includes(query));
-	const filteredFolders = Datastore.folder.data.filter(item => item.folder_name.includes(query));
+	const filteredAudios = Datastore.audio.data.filter(item =>
+		item.file_name.toLowerCase().includes(query)
+	);
+	const filteredFolders = Datastore.folder.data.filter(item =>
+		item.folder_name.toLowerCase().includes(query)
+	);
 
 	console.debug(filteredAudios);
 
 	// Clear the current results
 	document.querySelector(".files.flexbox").innerHTML = "";
 	document.querySelector(".folders.flexbox").innerHTML = "";
-	
+
 	// Display the files that match the query
 	for (item of filteredAudios) {
 		addNewFile(item);
@@ -52,7 +60,8 @@ function addNewFolder(data) {
 		</div>
 	</li>`;
 
-	document.getElementsByClassName("create-container")[1].style.display = "none";
+	document.getElementsByClassName("create-container")[1].style.display =
+		"none";
 
 	handleActionBox("share", "folder");
 	handleActionBox("delete", "folder");
@@ -90,17 +99,13 @@ document.querySelectorAll(".action-container img").forEach((item, i) => {
 	};
 });
 
-document.querySelector(
-	'.new-file-box-container form input[name="file"]'
-).onchange = uploadFile;
-
-function uploadFile(e) {
+function uploadFile(userApiKey, inputEl) {
 	const progressBar = document.getElementById("upload-file-progress-bar");
 	const data = new FormData();
 
-	for (let fileNumber in this.files) {
-		if (this.files.hasOwnProperty(fileNumber)) {
-			const file = this.files[fileNumber];
+	for (let fileNumber in inputEl.files) {
+		if (inputEl.files.hasOwnProperty(fileNumber)) {
+			const file = inputEl.files[fileNumber];
 
 			data.append("file" + fileNumber, file);
 
@@ -112,7 +117,7 @@ function uploadFile(e) {
 					"audio/mpeg",
 				].includes(file.type)
 			) {
-				displayStatus("You may only upload an audio file!");
+				displayStatus("You may only upload audio files!");
 				return;
 			}
 
@@ -125,57 +130,90 @@ function uploadFile(e) {
 		}
 	}
 
-	sendFiles(data);
+	sendFiles(userApiKey, data);
 }
 
-function sendFiles(data) {
-	let xhr;
-	if (window.XMLHttpRequest) {
-		// code for IE7+, Firefox, Chrome, Opera, Safari
-		xhr = new XMLHttpRequest();
-	} else {
-		// code for IE6, IE5
-		xhr = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	const url = "/ajax/uploadaudio.php";
-	xhr.open("POST", url, true);
+function sendFiles(userApiKey, data) {
+	const parentId =
+		window.location.href.substring(
+			window.location.href.lastIndexOf("/") + 1
+		) || 0;
 
-	// Send the proper header information along with the request
-	xhr.overrideMimeType("multipart/form-data");
+	data.forEach(file => {
+		console.info(file);
 
-	function handleEvent(e) {
-		document.getElementById("upload-file-progress-bar").value = e.loaded;
-	}
+		FlytrapRequest.initialize("audio?folder_alpha_id=" + parentId)
+			.authorize(userApiKey)
+			.post(`name=${file.name}`)
+			.makeRequest()
+			.then(response => {
 
-	xhr.addEventListener("loadstart", handleEvent);
-	function fakeProgress(percent) {
-		if (percent > 90) {
-			// Base case
-			return;
-		} else {
-			document.getElementById("upload-file-progress-bar").value = percent;
-			setTimeout(function () {
-				fakeProgress(percent + 1);
-			}, 200);
-		}
-	}
+				let xhr;
+				if (window.XMLHttpRequest) {
+					// code for IE7+, Firefox, Chrome, Opera, Safari
+					xhr = new XMLHttpRequest();
+				} else {
+					// code for IE6, IE5
+					xhr = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				const url = "/ajax/uploadaudio.php?file_alpha_id=" + response.data.alpha_id;
+				xhr.open("POST", url, true);
 
-	fakeProgress(1);
-	xhr.addEventListener("loadend", handleEvent);
-	xhr.addEventListener("error", handleEvent);
-	xhr.addEventListener("abort", handleEvent);
+				// Send the proper header information along with the request
+				xhr.overrideMimeType("multipart/form-data");
 
-	xhr.onreadystatechange = function () {
-		// Call a function when the state changes.
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			toggleDisplay("none", 1);
-			toggleDisabled(false);
-			document.getElementById("upload-file-progress-bar").style.display =
-				"none";
-			displayStatus(xhr.responseText);
-		}
-	};
-	xhr.send(data);
+				function handleEvent(e) {
+					document.getElementById("upload-file-progress-bar").value =
+						e.loaded;
+				}
+
+				xhr.addEventListener("loadstart", handleEvent);
+				function fakeProgress(percent) {
+					if (percent > 90) {
+						// Base case
+						return;
+					} else {
+						document.getElementById(
+							"upload-file-progress-bar"
+						).value = percent;
+						setTimeout(function () {
+							fakeProgress(percent + 1);
+						}, 200);
+					}
+				}
+
+				fakeProgress(1);
+				xhr.addEventListener("loadend", handleEvent);
+				xhr.addEventListener("error", handleEvent);
+				xhr.addEventListener("abort", handleEvent);
+
+				xhr.onreadystatechange = function () {
+					// Call a function when the state changes.
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						toggleDisabled(
+							false,
+							document.getElementById("audio-files")
+						);
+
+						if (xhr.responseText.includes("failure")) {
+							displayStatus(xhr.responseText, "error");
+							return;
+						}
+
+						document.getElementById(
+							"upload-file-progress-bar"
+						).style.display = "none";
+						toggleDisplay("none", 1);
+
+						if (response.includes("failure"))
+							displayStatus(response, "error");
+						else displayStatus(response);
+					}
+				};
+
+				xhr.send(data);
+			});
+	});
 }
 
 function displayStatus(status, statusType = "success") {

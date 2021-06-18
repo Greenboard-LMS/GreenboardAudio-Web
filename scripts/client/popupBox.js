@@ -1,4 +1,4 @@
-const showBoxBtnEl = document.querySelector("#new-audio-btn");
+const showBoxBtnEl = document.getElementById("new-audio-btn");
 
 const setOriginalNameInRenameBox = (actionBoxEl, item) => {
 	actionBoxEl.querySelector(

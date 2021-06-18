@@ -87,7 +87,7 @@ require('search.html');
 	<!-- Upload file -->
 	<form id = 'upload-form' action = '' enctype = 'multipart/form-data'>
 		<label class="audio-option custom-file-upload">
-	    <input multiple id = "audio-files" name = "file" type="file"/>
+	    <input onchange="uploadFile(`<?php echo $_SESSION['userApiKey']; ?>`, this)" multiple id = "audio-files" name = "file" type="file"/>
     	Upload mp3, wav, m4a
 		</label>
 		<img height = "200" id = 'upload-file-arrow' src = "/images/UploadFileArrow.png">
@@ -156,8 +156,9 @@ require('search.html');
 <div class = "new-media-btn-container"></div>
 <div class = "status-container" style = "display: none"></div>
 
-<script src = "https://cdn.jsdelivr.net/npm/borum-api-client-node@0.2.0"></script>
-<script src = "/static/bundle.js"></script>
+<?php 
+require('scripts.html');
+?>
 
 <script>
 getAndDisplayFolderElements(<?php echo "`{$_SESSION['userApiKey']}`, `{$_GET['id']}`"; ?>);
