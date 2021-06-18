@@ -140,14 +140,11 @@ function sendFiles(userApiKey, data) {
 		) || 0;
 
 	data.forEach(file => {
-		console.info(file);
-
 		FlytrapRequest.initialize("audio?folder_alpha_id=" + parentId)
 			.authorize(userApiKey)
 			.post(`name=${file.name}`)
 			.makeRequest()
 			.then(response => {
-
 				let xhr;
 				if (window.XMLHttpRequest) {
 					// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -203,11 +200,11 @@ function sendFiles(userApiKey, data) {
 						document.getElementById(
 							"upload-file-progress-bar"
 						).style.display = "none";
+
 						toggleDisplay("none", 1);
 
-						if (response.includes("failure"))
-							displayStatus(response, "error");
-						else displayStatus(response);
+						displayStatus(xhr.responseText);
+						addNewFile(response.data);
 					}
 				};
 
