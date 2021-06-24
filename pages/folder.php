@@ -161,7 +161,7 @@ require('scripts.html');
 ?>
 
 <script>
-getAndDisplayFolderElements(<?php echo "`{$_SESSION['userApiKey']}`, `{$_GET['id']}`"; ?>);
+getAndDisplayFolderElements(`<?php echo $_SESSION['userApiKey'] . "`,`" . $_GET['id']; ?>`);
 </script>
 
 </body>
