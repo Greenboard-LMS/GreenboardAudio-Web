@@ -246,7 +246,7 @@ function onDragOver(event) {
 	event.preventDefault();
 }
 
-function onDrop(event) {
+function onDrop(userApiKey, event) {
 	event.preventDefault();
 
 	const dropzone = event.target.closest("li");
@@ -257,30 +257,10 @@ function onDrop(event) {
 		const fileId = fileElId.substring("file-".length);
 		const newFolderID = dropzone.id.substring("folder-".length);
 
-		moveFolder(newFolderID, fileId);
+		moveFolder(userApiKey, newFolderID, fileId);
 
 		event.dataTransfer.clearData();
 	}
-}
-
-function moveFolder(newFolderID, fileID, convert = "0") {
-	fetch("/ajax/moveaudio.php", {
-		method: "post",
-		headers: {
-			"Content-Type": "application/x-www-form-urlencoded",
-		},
-
-		//make sure to serialize your JSON body
-		body: `new_folder=${newFolderID}&file_id=${fileID}&convert=${convert}`,
-	})
-		.then(response => {
-			if (response.status >= 200 && response.status < 300) {
-				return response.text();
-			}
-		})
-		.then(response => {
-			window.displayStatus(response);
-		});
 }
 
 function moveDragOver(event) {

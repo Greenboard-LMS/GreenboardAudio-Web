@@ -12,7 +12,7 @@ function getAndDisplayFolderElements(userApiKey, folderId = "") {
 			handleAllAudioBoxes();
 
 			document.querySelector(".folders.flexbox").innerHTML =
-				displayFolderData(response.folder);
+				displayFolderData(userApiKey, response.folder);
 			handleAllFolderBoxes();
 
 			const isNotRootFolder = response.root.data;
@@ -28,14 +28,14 @@ function getAndDisplayFolderElements(userApiKey, folderId = "") {
 		});
 }
 
-function displayFolderData(folderResponse) {
+function displayFolderData(userApiKey, folderResponse) {
 	if (folderResponse.error || !!!folderResponse.data) return;
 
 	let folderList = "";
 	
 	for (const folder of folderResponse.data) {
 		const folderListItem = `
-		<li id="folder-${folder.id}" ondragover="onDragOver(event)" ondrop="onDrop(event)">
+		<li id="folder-${folder.id}" ondragover="onDragOver(event)" ondrop="onDrop('${userApiKey}', event)">
 			<a href="/folders/${folder.alpha_id}">${folder.folder_name}</a>
 			<div class = 'customize-btns'>
 				<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
@@ -195,5 +195,19 @@ function shareAudioFile(userApiKey, audio_id) {
 		})
 		.catch(response => {
 			window.displayStatus(response, "error");
+		});
+}
+
+function moveFolder(userApiKey, newFolderID, fileID) {
+	FlytrapRequest
+		.initialize(`audio/location`)
+		.put(`new_folder_id=${newFolderID}&audio_id=${fileID}`)
+		.authorize(userApiKey)
+		.makeRequest()
+		.then(() => {
+			window.displayStatus("The audio file was moved");
+		})
+		.catch(err => {
+			console.error(err);
 		});
 }
