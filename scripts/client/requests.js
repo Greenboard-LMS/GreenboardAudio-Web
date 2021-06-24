@@ -32,10 +32,10 @@ function displayFolderData(folderResponse) {
 	if (folderResponse.error || !!!folderResponse.data) return;
 
 	let folderList = "";
-
+	
 	for (const folder of folderResponse.data) {
 		const folderListItem = `
-		<li id="folder-${folder.id}">
+		<li id="folder-${folder.id}" ondragover="onDragOver(event)" ondrop="onDrop(event)">
 			<a href="/folders/${folder.alpha_id}">${folder.folder_name}</a>
 			<div class = 'customize-btns'>
 				<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
@@ -57,9 +57,9 @@ function displayAudioData(audioResponse) {
 	let audioList = "";
 
 	for (const audio of audioResponse.data) {
-		const audioListItem = `<li id = "file-${audio.id}">
+		const audioListItem = `<li ondragstart='onDragStart(event)' ondragend="onDragEnd(event)" draggable='true' id = "file-${audio.id}">
 			<a href = '/audio/${audio.alpha_id}'>
-				<img id = "microphone-${audio.id}" ondragstart='onDragStart(event);' ondragend='onDragEnd(event)' draggable='true' src = '/images/microphone.png'>
+				<img id = "microphone-${audio.id}" src = '/images/microphone.png'>
 				<p>${audio.file_name}</p>
 			</a>
 			<div class = 'customize-btns'>

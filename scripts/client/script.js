@@ -238,33 +238,28 @@ function displayStatus(status, statusType = "success") {
 }
 
 function onDragStart(event) {
-	event.dataTransfer.setData("text/plain", event.target.id);
+	event.dataTransfer.setData("text/plain", event.currentTarget.id);
 	event.currentTarget.style.backgroundColor = "yellow";
 }
 
 function onDragOver(event) {
 	event.preventDefault();
-
-	if (event.target.getAttribute("draggable") == "true")
-		event.dataTransfer.dropEffect = "none";
-	// dropping is not allowed
-	else event.dataTransfer.dropEffect = "all"; // drop it like it's hot
 }
 
 function onDrop(event) {
-	const id = event.dataTransfer.getData("text"); // Get id in text format
+	event.preventDefault();
 
-	if (id.includes("microphone-")) {
-		const draggableElement = document.getElementById(id);
-		const dropzone = event.target.closest("li");
-		let newFolderID = dropzone.id.substring("folder-".length);
-		let fileID = draggableElement.parentElement.parentElement.id.substring(
-			"file-".length
-		);
-		console.log("Folder ID: " + newFolderID + ", File ID: " + fileID);
+	const dropzone = event.target.closest("li");
+	const dropzoneIsFolder = dropzone !== null && dropzone.id.includes("folder-");
+	
+	if (dropzoneIsFolder) {
+		const fileElId = event.dataTransfer.getData('text/plain');
+		const fileId = fileElId.substring("file-".length);
+		const newFolderID = dropzone.id.substring("folder-".length);
+
+		moveFolder(newFolderID, fileId);
 
 		event.dataTransfer.clearData();
-		moveFolder(newFolderID, fileID);
 	}
 }
 
