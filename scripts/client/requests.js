@@ -16,8 +16,21 @@ function getAndDisplayFolderElements(userApiKey, folderId = "") {
 			handleAllFolderBoxes();
 
 			const isNotRootFolder = response.root.data;
-			if (isNotRootFolder)
-				document.title = response.root.data.folder_name + " | Flytrap";
+			if (isNotRootFolder) {
+				const rootData = response.root.data;
+
+				document.title = rootData.folder_name + " | Flytrap";
+
+				const parentIsNotRootFolder = rootData.parent_id != '0';
+				const parentFolderLinkEl = document.querySelector('.map-container a:first-of-type');
+
+				if (parentIsNotRootFolder)
+					parentFolderLinkEl.href = `/folders/${rootData.parent_id}`
+				else
+					parentFolderLinkEl.href = `/`;
+				
+				document.querySelector('.move-to-parent-folder li').id += rootData.parent_id
+			}
 		})
 		.catch(response => {
 			window.displayStatus(
@@ -138,14 +151,20 @@ function deleteFolder(userApiKey, folder_id) {
 		.delete(`folder_id=${folder_id}`)
 		.authorize(userApiKey)
 		.makeRequest()
-		.then(response => {
-			window.displayStatus("The folder was successfully deleted");
-			document
-				.querySelector(".folders.flexbox")
+		// Only catch because 204 No Content fails to parse JSON
+		.catch(err => {
+			// Check for successful response
+			if (err.message?.includes('JSON.parse')) {
+				window.displayStatus('Folder was successfully deleted');
+				document
+				.querySelector(".file-list-container .folders.flexbox")
 				.removeChild(document.getElementById(`folder-${folder_id}`));
-			document.querySelectorAll(".delete-container")[1].style.display =
+				document.querySelectorAll(".delete-container")[1].style.display =
 				"none";
-		});
+			} else if (err.error?.message) {
+				window.displayStatus(`Error: ${err.error.message}`, "error");
+			}
+		})
 }
 
 function deleteAudioFile(userApiKey, audio_id) {
@@ -204,11 +223,19 @@ function moveAudio(userApiKey, newFolderID, fileID) {
 		.put(`new_folder_id=${newFolderID}&audio_id=${fileID}`)
 		.authorize(userApiKey)
 		.makeRequest()
-		.then(() => {
-			window.displayStatus("The audio file was moved");
-		})
+		// Only catch because 204 No Content fails to parse JSON
 		.catch(err => {
-			console.error(err);
+			// Check for successful response
+			if (err.message?.includes('JSON.parse')) {
+				window.displayStatus('Audio moved successfully');
+				document.querySelector('.file-list-container .files.flexbox').removeChild(
+					document.getElementById(`file-${fileId}`)
+				);
+			} else if (err.error?.message) {
+				window.displayStatus(err.error.message, "error");
+			} else {
+				window.displayStatus(err.message);
+			}
 		});
 }
 
@@ -218,6 +245,14 @@ function moveFolder(userApiKey, newFolderId, folderId) {
 		.put(`new_folder_id=${newFolderId}&folder_id=${folderId}`)
 		.authorize(userApiKey)
 		.makeRequest()
-		.then(() => window.displayStatus("The folder was moved"))
-		.catch(console.error);
+		// Only catch because 204 No Content fails to parse JSON
+		.catch(err => {
+			// Check for successful response
+			if (err.message?.includes('JSON.parse')) {
+				window.displayStatus('Folder moved successfully');
+				document.querySelector('.file-list-container .folders.flexbox').removeChild(
+					document.getElementById(`folder-${folderId}`)
+				);
+			}
+		});
 }

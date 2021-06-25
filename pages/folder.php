@@ -11,7 +11,7 @@ $totype = "Folder";
 require('search.html');
 ?>
 <div class = "nav-container">
-	<div id = 'filter-view'>
+	<div id = 'filter-view' style='display:none'>
 		<svg height="12" width="12">
 			<line x1="0" y1="1" x2="12" y2="1" style="stroke:rgb(0,0,0);stroke-width:2" />
 			<line x1="0" y1="6" x2="12" y2="6" style="stroke:rgb(0,0,0);stroke-width:2" />
@@ -45,17 +45,17 @@ require('search.html');
 ?>
 </div> -->
 <div class = "map-container">
-	<a href = "<?php echo $row['parent_id'] != 0 ? @alphaID($row['parent_id'], false, 10) : '/'; ?>">Go to Parent Folder</a>
+	<a>Go to Parent Folder</a>
 	<figure class = 'move-to-parent-folder'>
-		<li id = "folder-<?php echo $row['parent_id']; ?>">
+		<li id="folder-">
 			<figcaption>Move up a folder</figcaption>
-			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(event)" src = "/images/closedbox.png" height = "100">
+			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(`<?php echo $_SESSION['userApiKey']; ?>`, event)" src = "/images/closedbox.png" height = "100">
 		</li>
 	</figure>
 	<figure class = 'move-to-root-folder'>
 		<li id = "folder-0">
 			<figcaption>Move to root folder</figcaption>
-			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(event)" src = "/images/closedbox.png" height = "100">
+			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(`<?php echo $_SESSION['userApiKey']; ?>`, event)" src = "/images/closedbox.png" height = "100">
 		</li>
 	</figure>
 	<button class = "advanced-btn">Advanced >></button>
