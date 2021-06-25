@@ -253,11 +253,18 @@ function onDrop(userApiKey, event) {
 	const dropzoneIsFolder = dropzone !== null && dropzone.id.includes("folder-");
 	
 	if (dropzoneIsFolder) {
-		const fileElId = event.dataTransfer.getData('text/plain');
-		const fileId = fileElId.substring("file-".length);
-		const newFolderID = dropzone.id.substring("folder-".length);
+		const itemToMoveElId = event.dataTransfer.getData('text/plain');
+		const newFolderId = dropzone.id.substring("folder-".length);
 
-		moveFolder(userApiKey, newFolderID, fileId);
+		if (itemToMoveElId.includes("file-")) {
+			const fileId = itemToMoveElId.substring("file-".length);
+			moveAudio(userApiKey, newFolderId, fileId);
+
+		} else if (itemToMoveElId.includes('folder-')) {
+			const folderId = itemToMoveElId.substring("folder-".length);
+			moveFolder(userApiKey, newFolderId, folderId);
+
+		} else return;
 
 		event.dataTransfer.clearData();
 	}

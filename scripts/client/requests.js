@@ -35,7 +35,7 @@ function displayFolderData(userApiKey, folderResponse) {
 	
 	for (const folder of folderResponse.data) {
 		const folderListItem = `
-		<li id="folder-${folder.id}" ondragover="onDragOver(event)" ondrop="onDrop('${userApiKey}', event)">
+		<li id="folder-${folder.id}" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" ondragover="onDragOver(event)" ondrop="onDrop('${userApiKey}', event)">
 			<a href="/folders/${folder.alpha_id}">${folder.folder_name}</a>
 			<div class = 'customize-btns'>
 				<button class = 'rename-folder'><img class = 'grey-circle' src = 'https://cdn.borumtech.com/images/Edit.png'></button>
@@ -198,7 +198,7 @@ function shareAudioFile(userApiKey, audio_id) {
 		});
 }
 
-function moveFolder(userApiKey, newFolderID, fileID) {
+function moveAudio(userApiKey, newFolderID, fileID) {
 	FlytrapRequest
 		.initialize(`audio/location`)
 		.put(`new_folder_id=${newFolderID}&audio_id=${fileID}`)
@@ -210,4 +210,14 @@ function moveFolder(userApiKey, newFolderID, fileID) {
 		.catch(err => {
 			console.error(err);
 		});
+}
+
+function moveFolder(userApiKey, newFolderId, folderId) {
+	FlytrapRequest
+		.initialize(`folder/location`)
+		.put(`new_folder_id=${newFolderId}&folder_id=${folderId}`)
+		.authorize(userApiKey)
+		.makeRequest()
+		.then(() => window.displayStatus("The folder was moved"))
+		.catch(console.error);
 }
