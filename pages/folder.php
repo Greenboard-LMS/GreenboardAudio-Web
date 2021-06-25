@@ -77,10 +77,9 @@ require('search.html');
 <div style = "display: none" class = "new-file-box-container">
 	<!-- Record audio -->
 	<div>
-		<button class = "audio-option" onclick = "recordDirectly()">Record directly</button><br>
-		<button class = "stop-recording">Stop Recording</button>
-		<video style = "display:none" autoplay></video>
-		<input id = 'volume' type = 'range' min = '1' max = '10'>
+		<button class = "audio-option" onclick = "startRecording(this)">Record directly</button>
+		<button class = "stop-recording" onclick="stopRecording(this)" disabled aria-disabled="true">Stop Recording</button>
+		<ul id='recordings-list'></ul>
 	</div>
 	<!-- Vertical line -->
 	<span class = "vertical-line"></span>

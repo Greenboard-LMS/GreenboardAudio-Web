@@ -57,8 +57,8 @@ function sortBy($name) {
 <div style = "display: none" class = "new-file-box-container">
 	<!-- Record audio -->
 	<div>
-		<button class = "audio-option" onclick = "recordDirectly()">Record directly</button><br>
-		<button class = "stop-recording">Stop Recording</button>
+		<button class = "audio-option" onclick = "startRecording(this)">Record directly</button>
+		<button class = "stop-recording" onclick = "stopRecording(this)" disabled aria-disabled="true">Stop Recording</button>
 		<video style = "display:none" autoplay></video>
 		<input id = 'volume' type = 'range' min = '1' max = '10'>
 	</div>
