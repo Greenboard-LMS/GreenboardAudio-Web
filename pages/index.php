@@ -59,8 +59,7 @@ function sortBy($name) {
 	<div>
 		<button class = "audio-option" onclick = "startRecording(this)">Record directly</button>
 		<button class = "stop-recording" onclick = "stopRecording(this)" disabled aria-disabled="true">Stop Recording</button>
-		<video style = "display:none" autoplay></video>
-		<input id = 'volume' type = 'range' min = '1' max = '10'>
+		<ul id='recordings-list'></ul>
 	</div>
 	<!-- Vertical line -->
 	<span class = "vertical-line"></span>
