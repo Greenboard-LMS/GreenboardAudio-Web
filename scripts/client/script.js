@@ -16,8 +16,6 @@ function searchFlytrap(e) {
 		item.folder_name.toLowerCase().includes(query)
 	);
 
-	console.debug(filteredAudios);
-
 	// Clear the current results
 	document.querySelector(".files.flexbox").innerHTML = "";
 	document.querySelector(".folders.flexbox").innerHTML = "";
@@ -275,21 +273,22 @@ function moveDragOver(event) {
 	onDragOver(event);
 }
 
-function moveDrop(event) {
+function moveDrop(userApiKey, event) {
 	event.target.src = "/images/closedbox.png";
-	onDrop(event);
+	onDrop(userApiKey, event);
 }
 
 function onDragEnd(event) {
-	event.currentTarget.style.background = "none";
+	event.currentTarget.style.background = null;
+	document.querySelectorAll('.map-container figure > li > img').forEach(item => item.src = "/images/closedbox.png");
 }
 
 const advancedButtonEl = document.getElementsByClassName("advanced-btn")[0];
 const advancedMoveBox = document.getElementsByClassName(
 	"change-id-container"
 )[0];
-handleAdvancedMoveItem();
-function handleAdvancedMoveItem() {
+
+(function handleAdvancedMoveItem() {
 	let isDisabled = false;
 	const isVisible = elem =>
 		!!elem &&
@@ -337,7 +336,7 @@ function handleAdvancedMoveItem() {
 			document.removeEventListener("click", outsideClickListener);
 		}
 	}
-}
+})();
 
 function toggleDisplay2(display, opacity) {
 	document
