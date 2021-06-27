@@ -1,5 +1,7 @@
 # Flytrap
 
+[![BSD-3-Clause License](https://img.shields.io/github/license/varunsingh87/Flytrap-Web?color=red)](LICENSE)
+
 Flytrap is an audio cloud-based service for the Borum Ecosystem. The app consists of four main features:
 
  - [x] The ability to upload audio files to your account
