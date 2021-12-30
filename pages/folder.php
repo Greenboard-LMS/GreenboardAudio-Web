@@ -49,13 +49,13 @@ require('search.html');
 	<figure class = 'move-to-parent-folder'>
 		<li id="folder-">
 			<figcaption>Move up a folder</figcaption>
-			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(`<?php echo $_SESSION['userApiKey']; ?>`, event)" src = "/images/closedbox.png" height = "100">
+			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(`<?php echo $_COOKIE['apiKey']; ?>`, event)" src = "/images/closedbox.png" height = "100">
 		</li>
 	</figure>
 	<figure class = 'move-to-root-folder'>
 		<li id = "folder-0">
 			<figcaption>Move to root folder</figcaption>
-			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(`<?php echo $_SESSION['userApiKey']; ?>`, event)" src = "/images/closedbox.png" height = "100">
+			<img ondragover = "moveDragOver(event)" ondrop = "moveDrop(`<?php echo $_COOKIE['apiKey']; ?>`, event)" src = "/images/closedbox.png" height = "100">
 		</li>
 	</figure>
 	<button class = "advanced-btn">Advanced >></button>
@@ -86,7 +86,7 @@ require('search.html');
 	<!-- Upload file -->
 	<form id = 'upload-form' action = '' enctype = 'multipart/form-data'>
 		<label class="audio-option custom-file-upload">
-	    <input onchange="uploadFile(`<?php echo $_SESSION['userApiKey']; ?>`, this)" multiple id = "audio-files" name = "file" type="file"/>
+	    <input onchange="uploadFile(`<?php echo $_COOKIE['apiKey']; ?>`, this)" multiple id = "audio-files" name = "file" type="file"/>
     	Upload mp3, wav, m4a
 		</label>
 		<img height = "200" id = 'upload-file-arrow' src = "/images/UploadFileArrow.png">
@@ -102,46 +102,46 @@ require('search.html');
 <div style = "display: none" class = "action-container rename-container">
 	<img src = "/images/Exit.png">
 	<input type = "text" value = "">
-	<input type = "button" value = "Rename" onclick = "renameAudioFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)">
+	<input type = "button" value = "Rename" onclick = "renameAudioFile(`<?php echo $_COOKIE['apiKey']; ?>`, this.parentElement.id)">
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">
 	<input id = 'share-file-email' type = "text" placeholder = "Insert recipient's email">
-	<input onclick = "shareAudioFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)" type = "button" value = "Share">
+	<input onclick = "shareAudioFile(`<?php echo $_COOKIE['apiKey']; ?>`, this.parentElement.id)" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this file? You will not be able to get it back.</p>
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
-	<input type = "button" value = "Delete" onclick = "deleteAudioFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id.substring(17))">
+	<input type = "button" value = "Delete" onclick = "deleteAudioFile(`<?php echo $_COOKIE['apiKey']; ?>`, this.parentElement.id.substring(17))">
 </div>
 <div style = "display: none" class = "action-container rename-container">
 	<img src = "/images/Exit.png">
 	<input type = "text" value = "">
-	<input type = "button" value = "Rename" onclick = "renameFolder(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)">
+	<input type = "button" value = "Rename" onclick = "renameFolder(`<?php echo $_COOKIE['apiKey']; ?>`, this.parentElement.id)">
 </div>
 <div style = "display: none" class = "action-container create-container">
 	<img src = "/images/Exit.png" />
 	<label>File Name</label>
 	<input name="filename" value="New Audio" focus />
 	<button>Cancel</button>
-	<button onclick = "createNewFile(`<?php echo $_SESSION['userApiKey']; ?>`, this.previousElementSibling.value)">Create</button>
+	<button onclick = "createNewFile(`<?php echo $_COOKIE['apiKey']; ?>`, this.previousElementSibling.value)">Create</button>
 </div>
 <div style = "display: none" class = "action-container create-container">
 	<img src = "/images/Exit.png" />
 	<label>Folder Name</label>
 	<input name="foldername" value="New Folder" focus />
 	<button>Cancel</button>
-	<button onclick = "createNewFolder('<?php echo $_SESSION['userApiKey']; ?>', this.parentElement.querySelector(`input[name='foldername']`).value)">Create</button>
+	<button onclick = "createNewFolder('<?php echo $_COOKIE['apiKey']; ?>', this.parentElement.querySelector(`input[name='foldername']`).value)">Create</button>
 </div>
 <div style = "display: none" class = "action-container share-container">
 	<img src = "/images/Exit.png">
 	<input type = "text" id = "share-folder-email" placeholder = "Insert recipient's email">
-	<input onclick = "shareFolder(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id)" type = "button" value = "Share">
+	<input onclick = "shareFolder(`<?php echo $_COOKIE['apiKey']; ?>`, this.parentElement.id)" type = "button" value = "Share">
 </div>
 <div style = "display: none" class = "action-container delete-container">
 	<p>Are you sure you want to <strong>permanently</strong> delete this folder? You will not be able to get it back.</p>
 	<input type = "button" value = "Cancel" onclick = "this.parentElement.style.display = 'none';">
-	<input type = "button" value = "Delete" onclick = "deleteFolder(`<?php echo $_SESSION['userApiKey']; ?>`, this.parentElement.id.substring(18))">
+	<input type = "button" value = "Delete" onclick = "deleteFolder(`<?php echo $_COOKIE['apiKey']; ?>`, this.parentElement.id.substring(18))">
 </div>
 <div style = "display: none" class = "change-id-container">
 		<div class = "file-list-container" style = "overflow: auto">
@@ -160,7 +160,7 @@ require('scripts.html');
 ?>
 
 <script>
-getAndDisplayFolderElements(`<?php echo $_SESSION['userApiKey'] . "`,`" . $_GET['id']; ?>`);
+getAndDisplayFolderElements(`<?php echo $_COOKIE['apiKey'] . "`,`" . $_GET['id']; ?>`);
 </script>
 
 </body>

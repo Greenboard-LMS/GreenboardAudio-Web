@@ -171,10 +171,15 @@ input[type="file"] {
 
 .custom-file-upload {
     border: 1px solid #ccc;
+	border-radius: 25px;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
-		margin-top: 3em;
+	margin-top: 3em;
+}
+
+.custom-file-upload:hover {
+	background-color: lightgrey;
 }
 
 .vertical-line {
