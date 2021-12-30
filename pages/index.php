@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_COOKIE['id'])) {
-	require('notloggedin.html');
+	header('Location: https://accounts.borumtech.com/login?redirect=Flytrap');
 	exit();
 }
 
