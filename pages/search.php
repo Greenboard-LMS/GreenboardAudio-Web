@@ -29,7 +29,7 @@ $searchquery = mysqli_real_escape_string($dbc, trim($_GET['q']))
 		<?php
 		# Retrieve files for this user
 		if (isset($searchquery)) {
-			$q = "SELECT id, folder_name, time_created, user_id FROM folders WHERE folder_name LIKE '%$searchquery%' AND user_id = {$_SESSION['id']} AND parent_id = 0";
+			$q = "SELECT id, folder_name, time_created, user_id FROM folders WHERE folder_name LIKE '%$searchquery%' AND user_id = {$_COOKIE['id']} AND parent_id = 0";
 			$r = mysqli_query($dbc, $q);
 			$encoded = [];
 			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
@@ -53,7 +53,7 @@ $searchquery = mysqli_real_escape_string($dbc, trim($_GET['q']))
 		<?php
 		# Retrieve files for this user
 		if (isset($searchquery)) {
-			$q = "SELECT id, file_name, time_created, user_id FROM audio_files WHERE file_name LIKE '%$searchquery%' AND user_id = {$_SESSION['id']} AND folder_id IS NULL";
+			$q = "SELECT id, file_name, time_created, user_id FROM audio_files WHERE file_name LIKE '%$searchquery%' AND user_id = {$_COOKIE['id']} AND folder_id IS NULL";
 			$r = mysqli_query($dbc, $q);
 			$encoded = [];
 			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
@@ -82,7 +82,7 @@ $searchquery = mysqli_real_escape_string($dbc, trim($_GET['q']))
 		<tbody>
 			<?php
 			# Retrieve files for this user
-			$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_SESSION['id']}";
+			$q = "SELECT id, folder_name, time_created FROM folders WHERE user_id = {$_COOKIE['id']}";
 			$r = mysqli_query($dbc, $q);
 			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
 				echo "
@@ -104,7 +104,7 @@ $searchquery = mysqli_real_escape_string($dbc, trim($_GET['q']))
 		<tbody>
 			<?php
 			# Retrieve files for this user
-			$q = "SELECT id, file_name, time_created FROM audio_files WHERE user_id = {$_SESSION['id']} AND folder_id IS NULL";
+			$q = "SELECT id, file_name, time_created FROM audio_files WHERE user_id = {$_COOKIE['id']} AND folder_id IS NULL";
 			$r = mysqli_query($dbc, $q);
 			while ($row = mysqli_fetch_array($r, MYSQLI_BOTH)) {
 				echo "
