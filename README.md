@@ -1,5 +1,7 @@
 # Flytrap
 
+[![BSD-3-Clause License](https://img.shields.io/github/license/varunsingh87/Flytrap-Web?color=red)](LICENSE)
+
 Flytrap is an audio cloud-based service for the Borum Ecosystem. The app consists of four main features:
 
  - [x] The ability to upload audio files to your account
@@ -8,7 +10,7 @@ Flytrap is an audio cloud-based service for the Borum Ecosystem. The app consist
  
  - [x] The ability to link and share these audio files
  
- - [ ] The ability to record audio directly
+ - [x] The ability to record audio directly
 
 Google, Microsoft, and Apple give users the ability to store documents, spreadsheets, and slideshows quite effectively, but not one of them offers the service both at zero price, honors consumer privacy, and offers the product to users not already in that ecosystem. Flytrap uses some features of G Suite plus simple editing tools that Google Drive does not supply.
 
@@ -58,6 +60,6 @@ Finally, read the [Contributing Guide](CONTRIBUTING.md) for information on how t
 
 ## Author
 
-I, Varun Singh, started this project, engineered the REST API, designed the logo, wrote the scripts, and own the domain on which the site is deployed. Flytrap is part of the Borum Family of Products
+I, Varun Singh, started this project, engineered the REST API, designed the logo, wrote the scripts, and own the domain on which the site is deployed. Flytrap is part of the Borum Ecosystem
 
 Copyright 2021 Borum Tech
