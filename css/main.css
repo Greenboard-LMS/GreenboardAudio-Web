@@ -6,7 +6,7 @@ body {
 	display: grid;
 	grid-template-columns: 230px auto 80px 10px;
   	grid-template-rows: 80px 10% auto 15% auto;
-	min-height: 100vh;
+	min-height: calc(100vh - 16px);
 }
 
 .grid div.line {
