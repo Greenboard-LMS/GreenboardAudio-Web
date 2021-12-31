@@ -4,9 +4,9 @@ body {
 
 .grid {
 	display: grid;
-	height: calc(100vh - 16px);
 	grid-template-columns: 230px auto 80px 10px;
-  	grid-template-rows: 80px 10% auto 15% 20%;
+  	grid-template-rows: 80px 10% auto 15% auto;
+	min-height: 100vh;
 }
 
 .grid div.line {
@@ -198,15 +198,27 @@ body {
 
 footer {
 	/* Put at bottom of grid and span entire length of window */
-	grid-row: 5;
+	grid-row: 5 / -1;
 	grid-column: 1 / -1;
-	width: calc(100vw - 17px);
-	height: 60px;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	padding: 1em;
 	box-sizing: border-box;
 	margin: -8px; /* Cancels out body margin */
 	background-color: lightcoral;
+}
+
+footer > div > * {
+	margin: 0 1em;
+	text-decoration: none;
+}
+
+.social-media {
+	transition: .2s all ease;
+	height: 30px;
+}
+
+.social-media:hover path {
+	fill: #444444;
 }
