@@ -23,14 +23,31 @@ define('NOT_USING_HTTPS', empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == 'off'
 		<meta name="author" content="Varun Singh" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+		<meta property="twitter:card" content="summary" />
+		<meta property="twitter:site" content="@FlytrapAudio" />
+		<meta property="twitter:title" content="Flytrap" />
+		<meta property="twitter:description" content="A free audio cloud-based service" />
+		<meta property="twitter:image" content="/images/icon.png" />
+
+		<meta property="og:title" content="My Flytrap" />
+		<meta property="og:description" content="A free audio cloud-based service" />
+		<meta property="og:image" content="/images/icon.png" />
+		<meta property="og:url" content="https://audio.borumtech.com" />
+		<meta property="og:site_name" content="Flytrap" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="en_US" />
+
+		<link rel="canonical" href="https://audio.borumtech.com" />
+
 		<link href="/css/rip.css" rel="stylesheet" type="text/css" />
 		<link href="/css/animations.css" rel="stylesheet" type="text/css" />
 		<link href="/css/sub.css" rel="stylesheet" type="text/css" />
 		<link href="/css/style.css" rel="stylesheet" type="text/css" />
 		<link href="/css/main.css" rel="stylesheet" type="text/css" />
 		<?php echo isset($css) ? $css : ''; ?>
+
 		<link href="/images/icon.png" rel="shortcut icon" type="image/x-icon" />
+
 		<title><?php echo $page_title ?></title>
 	</head>
-	<body></body>
-</html>
+	<body>
